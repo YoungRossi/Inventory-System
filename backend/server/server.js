@@ -1,5 +1,6 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
+const session = require('express-session')
 const { connectToDB } = require('./database')
 const { Logger } = require('./middleware/Logger') 
 const usersRouter = require('./routes/UsersRoute')
@@ -11,6 +12,14 @@ const port = 3000
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(session({
+    secret:"Ross-TheBoss",
+    saveUninitialized: false,
+    resave: false,
+    cookie:{
+        maxAge:60000 * 60
+    }
+}))
 app.use(Logger)
 app.use(authRouter, usersRouter)
 
