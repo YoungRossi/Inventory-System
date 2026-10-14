@@ -29,9 +29,15 @@ async function deleteUserById(id){
   
 }
 
+async function findAUserByUsername(username){
+        const result = await usersCollection.findOne({username:`${username}`})
+        return result
+}
+
 module.exports = {
     getAllUsersInDB,
     insertIntoDB,
     updateUserById,
-    deleteUserById
+    deleteUserById,
+    findAUserByUsername
 }

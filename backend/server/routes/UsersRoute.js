@@ -5,12 +5,7 @@ const router = express.Router()
 
 
 router.get("/", (req, res)=>{
-    res.cookie('username', 'Ross', {
-        maxAge: 60 * 60 * 1000, // 1 hour
-        httpOnly: true
-    })
     res.send("Hello World")
-
 })
 
 router.get('/users', async (req,res)=>{
