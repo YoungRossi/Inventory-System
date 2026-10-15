@@ -1,7 +1,7 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-const { connectToDB } = require('./database')
+const { connectToDB, store } = require('./database')
 const { Logger } = require('./middleware/Logger') 
 const usersRouter = require('./routes/UsersRoute')
 const authRouter = require('./routes/AuthRoute')
@@ -16,8 +16,9 @@ app.use(session({
     secret:"Ross-TheBoss",
     saveUninitialized: false,
     resave: false,
+    store:store,
     cookie:{
-        maxAge:60000 * 60
+       maxAge: 1000 * 60 *60
     }
 }))
 app.use(Logger)

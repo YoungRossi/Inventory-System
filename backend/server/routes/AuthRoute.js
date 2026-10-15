@@ -8,7 +8,6 @@ router.post('/login', async(req,res)=>{
     res.cookie('Username', `${username}`)
     try{
         const result = await findAUserByUsername(username)
-        
 
          if (!result) {
             console.log("User Not Found")

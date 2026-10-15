@@ -1,4 +1,6 @@
-const { MongoClient} = require("mongodb")
+const { MongoClient} = require("mongodb") 
+const session = require('express-session')
+const MongoDBStore = require('connect-mongodb-session')(session)
 
 const dbconn = new MongoClient("mongodb://localhost:27017", {
     serverSelectionTimeoutMS: 5000})
@@ -16,7 +18,14 @@ async function connectToDB(){
     }
 }
 
+const store = new MongoDBStore({
+    uri: 'mongodb://localhost:27017',
+    databaseName:'InventorySystem',
+    collection: 'sessions'
+})
+
 module.exports = {
+    store,
     connectToDB,
     usersCollection
 }
