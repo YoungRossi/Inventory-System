@@ -1,36 +1,32 @@
-const { ObjectId } = require('mongodb')
-const { usersCollection } = require('../database')
+
+const User = require('../model/Users')
 
 async function getAllUsersInDB(){
-        const result = await usersCollection.find().toArray()
+        const result = await User.find()
         console.log('GET REQUEST: Find All Users')
         return result
 }
 
 async function insertIntoDB(user){
-        const result = await usersCollection.insertOne(user)
+        const result = await User.create(user)
         console.log('POST REQUEST: Create New User')
         return result
 }
 
 async function updateUserById(id, doc){
-        const result = await usersCollection.updateOne({ _id: new ObjectId(id) }, { $set: doc })
+        const result = await User.findByIdAndUpdate(id, doc,{ new: true, runValidators: true } )
         console.log('PUT REQUEST: Update A User')
         return result
- 
 }
 
 async function deleteUserById(id){
-        const result = await usersCollection.deleteOne({_id: new ObjectId(id)})
+        const result = await User.findByIdAndDelete(id)
         console.log('DELETE REQUEST: Delete A User')
         return result
-
-       
-  
 }
 
 async function findAUserByUsername(username){
-        const result = await usersCollection.findOne({username:`${username}`})
+        const result = await User.findOne({username})
         return result
 }
 

@@ -9,7 +9,6 @@ router.get("/", (req, res)=>{
 })
 
 router.get('/users', async (req,res)=>{
-
     try{
         console.log(req.cookies.username)
         const result = await getAllUsersInDB()
@@ -23,31 +22,43 @@ router.get('/users', async (req,res)=>{
 })
 
 router.post('/users', async (req,res)=>{
-    const {firstname, lastname, role, email} = req.body
+    try{
+    const {firstname, lastname, username, password, role, email} = req.body
 
     const user = {
         firstname,
         lastname,
+        username,
+        password,
         role,
         email
     }
-
     await insertIntoDB(user)
     res.status(201).send("User Inserted Sucessfully")
+}catch(err){
+    res.status(401).send(`User Not Created: ${err}` )
+}
 })
 
 router.put('/users/:id', async (req, res)=>{
     const id = req.params.id
-    const {firstname,lastname,role,email} = req.body
+    const {firstname, lastname, username, password, role, email} = req.body
+
     const updatedUserData={
-        firstname,
+       firstname,
         lastname,
+        username,
+        password,
         role,
         email
     }
-
-    await updateUserById(id, updatedUserData)
-    res.status(200).send("User Updated Sucessfully")
+    try{
+        await updateUserById(id, updatedUserData)
+        res.status(200).send("User Updated Sucessfully")
+    }catch(err){
+        res.status(401).send("User Updated Sucessfully")
+    }
+    
 })
 
 router.delete('/users/:id', async (req, res)=>{
