@@ -1,10 +1,10 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-const { connectToDB, store } = require('./database')
-const { Logger } = require('./middleware/Logger') 
+const { connectToDB, store } = require('./database') 
 const usersRouter = require('./routes/UsersRoute')
 const authRouter = require('./routes/AuthRoute')
+const homeRouter = require('./routes/HomeRoute')
 
 
 const app = express()
@@ -21,18 +21,21 @@ app.use(session({
        maxAge: 1000 * 60 *60
     }
 }))
-app.use(Logger)
-app.use(authRouter, usersRouter)
+
+app.use(authRouter, usersRouter, homeRouter)
 
 
 async function startServer() {
+    try{
+        await connectToDB()
 
-    await connectToDB()
-
-    app.listen(port, () => {
-        console.log("Server Running on Port 3000........")
-    })
-
+        app.listen(port, () => {
+            console.log("Server Running on Port 3000........")
+        })
+    }
+    catch(err){
+        console.log(`Error: ${err}`)
+    }
 }
 
 startServer()

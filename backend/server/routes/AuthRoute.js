@@ -5,7 +5,7 @@ const router = express.Router()
 router.post('/login', async(req,res)=>{
     const{username, password}=req.body
     req.session.visited = true
-    res.cookie('Username', `${username}`)
+    req.session.username = username
     try{
         const result = await findAUserByUsername(username)
 

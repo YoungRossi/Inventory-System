@@ -1,12 +1,6 @@
-const { usersCollection } = require('../database')
 const { insertIntoDB, updateUserById, deleteUserById, getAllUsersInDB } = require('../controller/UsersController')
 const express = require('express')
 const router = express.Router()
-
-
-router.get("/", (req, res)=>{
-    res.send("Hello World")
-})
 
 router.get('/users', async (req,res)=>{
     try{
