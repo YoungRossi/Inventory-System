@@ -59,7 +59,7 @@ router.delete('/users/:id', async (req, res)=>{
     const id = req.params.id
     await deleteUserById(id)
 
-    res.status(200).send('User Deleted Successfully')
+    res.status(204).send('User Deleted Successfully')
 })
 
 module.exports = router

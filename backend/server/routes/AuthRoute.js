@@ -4,8 +4,7 @@ const router = express.Router()
 
 router.post('/login', async(req,res)=>{
     const{username, password}=req.body
-    req.session.visited = true
-    req.session.username = username
+    
     try{
         const result = await findAUserByUsername(username)
 
@@ -19,10 +18,9 @@ router.post('/login', async(req,res)=>{
         const lname = result.lastname
 
         if (password === dbPassword) {
-            req.session.visited = true;
-            req.session.userId = result._id;
-
-            res.cookie('Username', username);
+            req.session.visited = true
+            req.session.userId = result._id.toString()
+            req.session.username = username
             req.session.user = `${fname} ${lname}`
 
             return res.status(200).send(`${fname} Signed in successfully`);
