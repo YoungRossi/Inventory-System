@@ -3,7 +3,10 @@ import { useState } from'react'
 import { toast } from 'sonner'
 import axios from 'axios'
 
-export function LoginPage(){
+import ivslogo from '../assets/ivslogo.png'
+
+
+ export function LoginPage(){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -49,6 +52,7 @@ export function LoginPage(){
                 <form className="md:w-96 w-80 flex flex-col items-center justify-center border-none"
                     onSubmit={checkCredentials}
                 >
+                <img src={ivslogo} alt="Inventory System Logo" className="object-contain"/>
                     <h2 className="text-4xl text-gray-900 font-medium">Sign in</h2>
                     <p className="text-sm text-gray-500/90 mt-3">Welcome back! Please sign in to continue</p>
         
@@ -84,4 +88,6 @@ export function LoginPage(){
        
     );
 };
+
+
            
