@@ -17,7 +17,7 @@ export function AssetSelector(){
                         </div>
                 </div>
                 <div id='contentDiv' className='flex w-full justify-center gap-3'>
-                    <div id="computerAssetCtnr" className='border border-radius rounded-md p-3'>
+                    <div id="computerAssetCtnr" className='border border-radius rounded-md p-3 mt-2'>
                         <div id="computerAsset" className='flex flex-col items-center'>
                             <img src={computerType} alt="Computer asset" className="w-32 h-32 object-contain" />
                             <h2>Computer</h2>
@@ -25,7 +25,7 @@ export function AssetSelector(){
                         </div>     
                     </div>
 
-                    <div id="printerAsset" className='border border-radius rounded-md flex flex-col items-center'>
+                    <div id="printerAsset" className='border border-radius rounded-md flex flex-col items-center mt-2'>
                         <img src={printerType} alt="Computer asset" className="w-32 h-32 object-contain" />
                         <h2>Computer</h2>
                         <p>Desktops, Laptops, Tablets and AIOs</p>

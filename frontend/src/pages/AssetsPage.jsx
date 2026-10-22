@@ -1,5 +1,6 @@
 import { NavBar } from '../components/NavBar'
 import { AssetSelector } from '../components/assetsPage/AssetSelector'
+import { SharedInfo } from '../components/assetsPage/SharedInfo'
 
 export function AssetsPage (){
 
@@ -14,6 +15,8 @@ export function AssetsPage (){
 
                     <div id="middleContainer" className="bg-green-100">
                         <AssetSelector />
+                        <SharedInfo/>
+
                     </div>
 
                     <div id="rightContainer" className="bg-orange-100">
