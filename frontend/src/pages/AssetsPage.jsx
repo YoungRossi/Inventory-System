@@ -8,7 +8,7 @@ export function AssetsPage (){
         <> 
             <div id='mainContainer' className='w-full min-h-screen flex flex-col' >
                 <NavBar/>
-                <div id="ctnContainer" className="flex-1 grid grid-cols-1 md:grid-cols-[25%_50%_25%] items-stretch">
+                <div id="ctnContainer" className="flex-1 grid grid-cols-1 md:grid-cols-[25%_50%_25%] items-stretch gap-3">
                     <div id="leftContainer" className="bg-blue-100 w-full min-h-full">
                         Left side
                     </div>

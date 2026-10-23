@@ -1,16 +1,42 @@
-export function InputField({ label, name, id, type, desc }) {
+
+export function InputField({ label, name, id, type, desc, placeholder, required=false, icon: Icon }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={name} className="text-[14px] -mb-2 font-medium ">{label}</label>
+        <div className="flex flex-col w-full">
+            <label htmlFor={id} className="text-[13px] font-medium -mb-1">
+                {label}
+                {required && <span className="text-red-500"> *</span>}
+            </label>
 
-      <input
-        id={id}
-        name={name}
-        type={type}
-        className="border border-gray-300 rounded-md p-2 bg-gray-50"
-      />
+            {/* Input wrapper */}
+            <div className="relative w-full">
+                 {Icon && (
+                    <span className="bg-amber-400 w-2 h-2">
+                        <Icon
+                            className="absolute left-3 top-1/2
+                                    -translate-y-1/2 text-gray-400 "
+                            size={18}
+                        />
+                    </span>
+                )}
 
-      <p className="text-[12px] italic -mt-2">{desc}</p>
-    </div>
-  );
+                <input
+                    id={id}
+                    name={name}
+                    placeholder={placeholder}
+                    type={type}
+                    className="w-14/15 text-xs h-8 border border-gray-300
+                               rounded-md py-2 pl-8 pr-3
+                               bg-gray-50 outline-none
+                               focus:border-blue-500
+                               focus:ring-1 focus:ring-blue-500/20 "
+                />
+            </div>
+
+            {desc && (
+                <p className="text-[11px] italic text-gray-500">
+                    {desc}
+                </p>
+            )}
+        </div>
+    )
 }
