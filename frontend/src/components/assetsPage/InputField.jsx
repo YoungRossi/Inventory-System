@@ -13,7 +13,7 @@ export function InputField({ label, name, id, type, desc, placeholder, required=
                  {Icon && (
                     <span className="bg-amber-400 w-2 h-2">
                         <Icon
-                            className="absolute left-3 top-1/2
+                            className="absolute left-2 top-1/2
                                     -translate-y-1/2 text-gray-400 "
                             size={18}
                         />
@@ -25,11 +25,11 @@ export function InputField({ label, name, id, type, desc, placeholder, required=
                     name={name}
                     placeholder={placeholder}
                     type={type}
-                    className="w-14/15 text-xs h-8 border border-gray-300
+                    className="w-full text-xs h-8 border border-gray-300
                                rounded-md py-2 pl-8 pr-3
                                bg-gray-50 outline-none
                                focus:border-blue-500
-                               focus:ring-1 focus:ring-blue-500/20 "
+                               focus:ring-1 focus:ring-blue-500/20 shadow shadow-gray-400"
                 />
             </div>
 

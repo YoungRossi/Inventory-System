@@ -38,13 +38,13 @@ export function InputDateField({
         id={id}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-14/15 h-8 items-center justify-between
+        className="flex w-full h-8 items-center justify-between
                    rounded-md border border-gray-300 bg-white
                    px-3 py-2 text-xs text-gray-700
                    hover:bg-gray-50 focus:outline-none
-                   focus:ring-2 focus:ring-blue-500"
+                   focus:ring-2 focus:ring-blue-500 shadow shadow-gray-400"
       >
-        <CalendarDays size={18} className="text-gray-400" />
+        <CalendarDays size={18} className="text-gray-400 -pl-1" />
         <span>
           {selectedDate
             ? format(selectedDate, "PPP")

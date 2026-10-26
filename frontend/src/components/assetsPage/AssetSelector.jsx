@@ -1,8 +1,10 @@
 
 import {useState} from 'react'
 
-import computerType from '../../assets/computerType.avif'
-import printerType from '../../assets/printerType.avif'
+import section1 from '../../assets/section1.png'
+
+import { FaComputer } from "react-icons/fa6"
+import { ImPrinter } from "react-icons/im"
 
 export function AssetSelector({isComputer, setIsComputer}){
     function selectDevice(bool){
@@ -11,32 +13,71 @@ export function AssetSelector({isComputer, setIsComputer}){
     }
     return(
         <>
-            <div id="assetSelectorMainCtnr" className='flex flex-col items-center justify-center gap-3'>
-                <div id='assetSelectorCtnr' className='bg-amber-400 w-full rounded-xl border border-gray-500 pb-2'>
-                    <div id="titleSec" className="flex bg-amber-100 gap-2 items-center px-4 w-full ">
+            <div id="assetSelectorMainCtnr" className='flex flex-col items-center justify-center px-4 gap-3 border rounded-md'>
+                <div id='assetSelectorCtnr' className='w-full rounded-xl pb-2'>
+                    <div id="titleSec" className="flex gap-2 items-center w-full pt-1">
                          <div id="imgctnr">
-                            <img src="" className='w-8 h-8' />
+                            <img src={section1} className='w-8 h-8' />
                         </div>
                         <div id="titlesCtnr" className="flex flex-col">
-                            <p className='text-10 font-medium'>What are you adding?</p>
+                            <p className='text-10 font-medium'>Select Deivce</p>
                             <p className='text-xs'>Select the type of equipment you want to add to the inventory</p>
                         </div>
-                </div>
-                <div id='contentDiv' className='flex w-full justify-center gap-3'>
-                    <div onClick={() => selectDevice(true)} id="computerAssetCtnr" className='border border-radius rounded-md mt-2'>
-                        <div id="computerAsset" className='flex flex-col items-center'>
-                            <img src={computerType} alt="Computer asset" className="w-32 h-32 object-contain" />
-                            <h2>Computer</h2>
-                            <p>Desktops, Laptops, Tablets and AIOs</p>
-                        </div>     
                     </div>
+                    <div id='contentDiv' className='flex w-full justify-center gap-3'>
+                    <button onClick={() => selectDevice(true)} id="computerAssetBtn" 
+                        className={`group mt-2 flex h-9 w-60 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 
+                            ${
+                                isComputer
+                                    ? "bg-blue-500"
+                                    : "bg-gray-100 hover:bg-blue-500"
+                            }`}
+                        >
+                        <FaComputer
+                            className={`text-[25px] ${
+                                isComputer
+                                    ? "text-white"
+                                    : "text-gray-400 group-hover:text-white"
+                            }`}
+                        />
+                        <p
+                            className={`font-medium ${
+                                isComputer
+                                    ? "text-white"
+                                    : "text-gray-400 group-hover:text-white"
+                            }`}
+                        >
+                            Computer
+                        </p>
+                    </button>
+                    <button onClick={() => selectDevice(false)} id="printerAssetBtn" 
+                        className={`group mt-2 flex h-9 w-60 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 
+                            ${
+                                !isComputer
+                                    ? "bg-blue-500"
+                                    : "bg-gray-100 hover:bg-blue-500"
+                            }`}
+                    >
+                        <ImPrinter
+                            className={`text-[25px] ${
+                                !isComputer
+                                    ? "text-white"
+                                    : "text-gray-400 group-hover:text-white"
+                            }`}
+                        />
+                        <p
+                            className={`font-medium ${
+                                !isComputer
+                                    ? "text-white"
+                                    : "text-gray-400 group-hover:text-white"
+                            }`}
+                        >
+                            Printer
+                        </p>
+                    </button>
 
-                    <div onClick={() => selectDevice(false)} id="printerAsset" className='border border-radius rounded-md flex flex-col items-center mt-2'>
-                        <img src={printerType} alt="Computer asset" className="w-32 h-32 object-contain" />
-                        <h2>Computer</h2>
-                        <p>Desktops, Laptops, Tablets and AIOs</p>
+                    
                     </div>
-                </div>
                 </div>
                 
             </div>

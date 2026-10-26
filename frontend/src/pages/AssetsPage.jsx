@@ -26,7 +26,7 @@ export function AssetsPage (){
                         isComputer={isComputer}
                         setIsComputer={setIsComputer}
                         />
-                        <SharedInfo/>
+                        <SharedInfo isComputer={isComputer}/>
                         <DeviceDetails isComputer={isComputer}/>
 
                     </div>

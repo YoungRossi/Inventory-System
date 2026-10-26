@@ -2,6 +2,8 @@ import { InputField } from './InputField'
 import { InputSelectField } from './InputSelectField'
 import { InputDateField } from './InputDateField'
 
+import section2 from '../../assets/section2.png'
+
 import { FaTag, FaLocationDot, FaMemory } from "react-icons/fa6"
 import { BsFillInfoCircleFill } from "react-icons/bs"
 import { IoMdBarcode } from "react-icons/io"
@@ -10,22 +12,24 @@ import { TbFileInfoFilled } from "react-icons/tb"
 import { SiDell } from "react-icons/si"
 import { GiLaptop } from "react-icons/gi"
 
-export function SharedInfo(){
+
+
+export function SharedInfo({isComputer}){
     return(
         <>
-            <div id="mainCntr" className="flex flex-col w-full">
-                <div id="titleSec" className="flex bg-amber-100 gap-2 items-center px-4 w-full ">
+            <div id="mainCntr" className="flex flex-col w-full px-4 border rounded-md">
+                <div id="titleSec" className="flex gap-2 items-center w-full mb-3 mt-2">
                          <div id="imgctnr">
-                            <img src="" className='w-8 h-8' />
+                            <img src={section2} className='w-8 h-8' />
                         </div>
-                        <div id="titlesCtnr" className="flex flex-col">
-                            <p className='text-10 font-medium'>Basic Information</p>
+                        <div id="titlesCtnr" className="flex flex-col ">
+                            <p className='text-10 font-medium'>{isComputer ? 'Computer':'Printer'} Information</p>
                             <p className='text-xs'>Please fill out these essential fields</p>
                         </div>
                 </div>
 
                  <div id="formCtnr" className="w-full">
-    <form className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center justify-center">
+    <form className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center justify-center">
 
         <InputField
             id="assetTag"

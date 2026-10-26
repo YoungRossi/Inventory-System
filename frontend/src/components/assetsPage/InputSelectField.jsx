@@ -23,7 +23,7 @@ export function InputSelectField({
                 {Icon && (
                     <span className="bg-amber-400 w-2 h-2">
                         <Icon
-                            className="absolute left-3 top-1/2
+                            className="absolute left-2 top-1/2
                                     -translate-y-1/2 text-gray-400 "
                             size={18}
                         />
@@ -36,11 +36,11 @@ export function InputSelectField({
                 value={value}
                 onChange={onChange}
                 required={required}
-                className="w-14/15 h-8 text-xs rounded-md border
-                           border-gray-300 pl-8 pr-8 bg-white 
+                className="w-full h-8 text-xs rounded-md border
+                           border-gray-300 pl-8 bg-white 
                            outline-none transition appearance-none
                            focus:border-blue-500 focus:ring-2
-                           focus:ring-blue-500/20"
+                           focus:ring-blue-500/20 shadow shadow-gray-400"
             >
                 <option value="" disabled>Select {label}</option>
 
@@ -53,7 +53,7 @@ export function InputSelectField({
 
             <TbSquareRoundedChevronDownFilled
                 size={16}
-                className="absolute right-5 top-1/2
+                className="absolute right-4 top-1/2
                -translate-y-1/2 pointer-events-none
                text-gray-400"
             />
