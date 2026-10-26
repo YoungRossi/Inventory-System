@@ -1,8 +1,16 @@
 import { NavBar } from '../components/NavBar'
 import { AssetSelector } from '../components/assetsPage/AssetSelector'
 import { SharedInfo } from '../components/assetsPage/SharedInfo'
+import { DeviceDetails } from '../components/assetsPage/DeviceDetails'
+
+import { useState } from 'react'
 
 export function AssetsPage (){
+     const [isComputer, setIsComputer] = useState(true)
+    function selectDevice(bool){
+        setIsComputer(bool)
+        console.log(bool)
+    }
 
     return(
         <> 
@@ -13,9 +21,13 @@ export function AssetsPage (){
                         Left side
                     </div>
 
-                    <div id="middleContainer" className="bg-green-100">
-                        <AssetSelector />
+                    <div id="middleContainer" className="bg-green-100 grid grid-rows-[auto_auto_auto] gap-3">
+                        <AssetSelector 
+                        isComputer={isComputer}
+                        setIsComputer={setIsComputer}
+                        />
                         <SharedInfo/>
+                        <DeviceDetails isComputer={isComputer}/>
 
                     </div>
 

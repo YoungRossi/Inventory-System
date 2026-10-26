@@ -1,3 +1,4 @@
+import { TbSquareRoundedChevronDownFilled } from "react-icons/tb"
 export function InputSelectField({
     id,
     label,
@@ -36,8 +37,8 @@ export function InputSelectField({
                 onChange={onChange}
                 required={required}
                 className="w-14/15 h-8 text-xs rounded-md border
-                           border-gray-300 pl-8 bg-white px-2
-                           outline-none transition
+                           border-gray-300 pl-8 pr-8 bg-white 
+                           outline-none transition appearance-none
                            focus:border-blue-500 focus:ring-2
                            focus:ring-blue-500/20"
             >
@@ -49,6 +50,13 @@ export function InputSelectField({
                     </option>
                 ))}
             </select>
+
+            <TbSquareRoundedChevronDownFilled
+                size={16}
+                className="absolute right-5 top-1/2
+               -translate-y-1/2 pointer-events-none
+               text-gray-400"
+            />
             </div>
             
             {desc && (
