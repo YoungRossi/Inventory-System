@@ -13,9 +13,9 @@ export function AssetSelector({isComputer, setIsComputer}){
     }
     return(
         <>
-            <div id="assetSelectorMainCtnr" className='flex flex-col items-center justify-center px-4 gap-3 border rounded-md'>
+            <div id="assetSelectorMainCtnr" className='flex flex-col items-center justify-center px-3 gap-3 border rounded-md'>
                 <div id='assetSelectorCtnr' className='w-full rounded-xl pb-2'>
-                    <div id="titleSec" className="flex gap-2 items-center w-full pt-1">
+                    <div id="titleSec" className="flex gap-2 items-center w-full">
                          <div id="imgctnr">
                             <img src={section1} className='w-8 h-8' />
                         </div>

@@ -17,7 +17,7 @@ import { GiLaptop } from "react-icons/gi"
 export function SharedInfo({isComputer}){
     return(
         <>
-            <div id="mainCntr" className="flex flex-col w-full px-4 border rounded-md">
+            <div id="mainCntr" className="flex flex-col w-full px-3 border rounded-md">
                 <div id="titleSec" className="flex gap-2 items-center w-full mb-3 mt-2">
                          <div id="imgctnr">
                             <img src={section2} className='w-8 h-8' />
@@ -37,7 +37,7 @@ export function SharedInfo({isComputer}){
             placeholder="e.g. 4-2026-17"
             desc="Enter the NWRHA Asset Tag"
             icon={FaTag}
-            required={true}
+            required={false}
         />
 
         <InputField

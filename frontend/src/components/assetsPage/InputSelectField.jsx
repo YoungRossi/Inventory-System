@@ -40,7 +40,8 @@ export function InputSelectField({
                            border-gray-300 pl-8 bg-white 
                            outline-none transition appearance-none
                            focus:border-blue-500 focus:ring-2
-                           focus:ring-blue-500/20 shadow shadow-gray-400"
+                           focus:ring-blue-500/20 
+                           shadow shadow-gray-400"
             >
                 <option value="" disabled>Select {label}</option>
 

@@ -4,17 +4,23 @@ import { InputDateField } from './InputDateField'
 
 import section3 from '../../assets/section3.png'
 
-import { FaTag, FaWindows } from "react-icons/fa6"
+import { FaWindows, FaDroplet } from "react-icons/fa6"
 import { BsFillInfoCircleFill, BsDeviceHddFill } from "react-icons/bs"
 import { IoMdBarcode } from "react-icons/io"
 import { HiMiniCpuChip } from "react-icons/hi2"
 import { LiaMemorySolid, LiaBarcodeSolid } from "react-icons/lia"
-import { SiDell } from "react-icons/si"
+import { SiDell, SiHp } from "react-icons/si"
+import { PiDesktopTowerBold } from "react-icons/pi"
+import { TiPrinter } from "react-icons/ti"
+import { GiEyedropper } from "react-icons/gi"
+import { PiBarcodeDuotone, PiNetworkFill } from "react-icons/pi"
+import { BsPciCardNetwork } from "react-icons/bs"
+
 
 export function DeviceDetails({isComputer}){
     return(
         <>
-            <div id="mainCntr" className="flex flex-col w-full px-4 border rounded-md">
+            <div id="mainCntr" className="flex flex-col w-full px-3 border rounded-md">
                 <div id="titleSec" className="flex gap-2 items-center w-full mb-3 mt-2">
                          <div id="imgctnr">
                             <img src={section3} className='w-8 h-8' />
@@ -27,7 +33,7 @@ export function DeviceDetails({isComputer}){
 
                  <div id="formCtnr" className="w-full">
                     {isComputer ? (
-                    <form className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center justify-center">
+                    <form className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center">
                         <InputSelectField
                             label='Form Factor'
                             required={true}
@@ -41,16 +47,7 @@ export function DeviceDetails({isComputer}){
                                     {label:'Thin Client', value:'Thin Client'}
                                 ]
                             }
-                            icon={ BsFillInfoCircleFill }   
-                        />
-
-                        <InputField
-                            id="assetTag"
-                            label="Asset Tag"
-                            placeholder="e.g. 4-2026-17"
-                            desc="Enter the NWRHA Asset Tag"
-                            icon={FaTag}
-                            required={false}
+                            icon={ PiDesktopTowerBold }   
                         />
 
                         <InputSelectField
@@ -143,11 +140,89 @@ export function DeviceDetails({isComputer}){
                             desc="Enter Computer's MAC Address"
                             placeholder='.e.g. A4-BB-6D-12-34-56'   
                             required={true}
-                            icon={HiMiniCpuChip}
+                            icon={ BsPciCardNetwork }
                         />
 
                     </form>
-                    ):(<h2>Printer</h2>)
+
+                    ):(
+
+                        <form className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center">
+                       
+                        <InputSelectField
+                            id="Manufacturer"
+                            label="Manufacturer"
+                            desc="Select the Brand of the Computer"
+                            icon={SiHp}
+                            required={true}
+                            options={[
+                                { label:'HP', value:'HP' },
+                                { label:'Xerox', value:'Xerox' },
+                                { label:'Zebra', value:'Zebra' },
+                                { label:'Brother', value:'Brother' },
+                            ]}
+
+                        />
+                        <InputField
+                            id="Model"
+                            label="Model"
+                            placeholder='e.g. HP LaserJet Enterprise M506n'
+                            desc="Enter the cpmputer model"
+                            icon={LiaBarcodeSolid}
+                            required={true}
+                        />
+                         <InputSelectField
+                            label='Printer Functionality'
+                            required={true}
+                            desc='Select the features of the Printer'
+                            options={
+                                [
+                                    {label:'Mulitfunction', value:'Multifunction'},
+                                    {label:'Print-Only', value:'Print-Only'}
+                                   
+                                ]
+                            }
+                            icon={ TiPrinter }   
+                        />
+                       <InputSelectField
+                            id="colour"
+                            label="Color Capability"
+                            desc="Select what colour the printer use"
+                            icon={FaDroplet}
+                            required={true}
+                            options={[
+                                { label:'Colour', value:'Colour' },
+                                { label:'Black/White (Monochrome)', value:'Black/White (Monochrome)' }
+                            ]}
+
+                        />
+
+                        <InputField
+                            label='Toner Model'
+                            desc='Enter the Toner Model'
+                            placeholder='e.g. HP 414A/414X'   
+                            required={true}
+                            icon={PiBarcodeDuotone}
+                        />
+
+                        <InputField
+                            label='IP Address'
+                            desc='Enter the IP Address'
+                            placeholder='e.g. 192.168.1.1'
+                            required={true}
+                            icon={PiNetworkFill}
+                        />
+
+                        <InputField
+                            label='MAC Address'
+                            desc="Enter Computer's MAC Address"
+                            placeholder='.e.g. A4-BB-6D-12-34-56'   
+                            required={true}
+                            icon={BsPciCardNetwork}
+                        />
+
+                    </form>
+                    )
                     }
                 </div>
             </div>
