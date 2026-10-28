@@ -15,14 +15,14 @@ export function AssetsPage (){
 
     return(
         <> 
-            <div id='mainContainer' className='w-full min-h-screen flex flex-col' >
+            <div id='mainContainer' className='w-full min-h-screen flex flex-col bg-gray-200' >
                 <NavBar/>
                 <div id="ctnContainer" className="flex-1 grid grid-cols-1 md:grid-cols-[minmax(0,25fr)_minmax(0,50fr)_minmax(0,25fr)] content-start items-stretch gap-3">
                     <div id="leftContainer" className="bg-blue-100 w-full min-h-full">
                         Left side
                     </div>
 
-                    <div id="middleContainer" className="bg-green-100 grid grid-rows-[auto_auto_auto] content-start gap-3">
+                    <div id="middleContainer" className="bg-white grid grid-rows-[auto_auto_auto] content-start p-3 gap-3">
                         <AssetSelector 
                         isComputer={isComputer}
                         setIsComputer={setIsComputer}
@@ -32,7 +32,7 @@ export function AssetsPage (){
 
                     </div>
 
-                    <div id="rightContainer" className="bg-orange-100 px-3">
+                    <div id="rightContainer" className="py-2 pr-3">
                         <DeviceCatalogue/>
                     </div>
                 </div>

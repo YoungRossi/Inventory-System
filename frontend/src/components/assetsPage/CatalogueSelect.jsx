@@ -29,7 +29,7 @@ export function CatalogueSelect(){
         <>
         {!btnClicked ? (
             <>
-            <div className="flex flex-col w-full border rounded-md gap-2">
+            <div className="flex flex-col w-full shadow-lg shadow-gray-700 rounded-md bg-white gap-2 p-2">
             <div className="flex mt-2 gap-2 ml-2">
                 <GrCatalog className="text-[30px] text-blue-600"/>
                 <div className="flex flex-col -mt-1" >
@@ -38,7 +38,7 @@ export function CatalogueSelect(){
                 </div>
             </div>
 
-            <div className="flex mt-3 gap-2">
+            <div className="flex mt-3 gap-2 border border-gray-300 rounded-lg p-3 bg-gray-200">
                 <img src={computerType} className="w-40 h-40"/>
                 <div className="flex flex-col gap-2 mt-3">
                     
@@ -52,17 +52,17 @@ export function CatalogueSelect(){
 
         </div>
 
-        <button onClick={()=>{setBtnClicked(true)}} className='flex justify-center items-center w-full h-8 rounded-md bg-blue-500 text-white text-sm mt-1 shadow-md shadow-gray-500'><GrAddCircle className='text-sm mr-1'/>Add new device</button>
+        <button onClick={()=>{setBtnClicked(true)}} className='flex justify-center items-center w-full h-8 rounded-md bg-blue-500 text-white text-sm mt-2 shadow-md shadow-gray-500'><GrAddCircle className='text-sm mr-1'/>Add new device</button>
         </>
         ):(
-            <div className="flex flex-col w-full border rounded-md gap-2">
+            <div className="flex flex-col w-full shadow-lg shadow-gray-700 rounded-md gap-2 bg-white">
                 <div className="flex mt-2 gap-2 ml-2">
-                    <GrCatalog className="text-[30px] text-blue-600"/>
+                    <GrCatalog className="text-[30px] text-blue-600 "/>
                     <div className="flex flex-col -mt-1" >
                         <p className=" text-sm font-medium">Device Catalogue</p>
                         <p className="text-xs">Add new device models to the catalogue </p>
                     </div>
-                    <RiCloseCircleFill className='text-red-500' onClick={()=>{setBtnClicked(false)}}/>
+                    <RiCloseCircleFill className='text-lg text-red-500 ml-auto mr-2' onClick={()=>{setBtnClicked(false)}}/>
                 </div>
 
                  <div id='contentDiv' className='flex w-full justify-center gap-3 px-2'>
@@ -120,8 +120,8 @@ export function CatalogueSelect(){
 
                                     <div id="formCtnr" className="w-full p-2">
                                                         {isComputer ? (<>
-                                                        <form className="grid grid-cols-1 md:grid-cols-1 gap-1 items-center justify-center">
-                                                           <div className='border rounded-md p-2'>
+                                                        <form className="">
+                                                           <div className='border border-gray-300 rounded-md p-2 grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center bg-gray-200'>
                                                             <InputSelectField
                                                                 label='Form Factor'
                                                                 required={true}
@@ -222,7 +222,7 @@ export function CatalogueSelect(){
                                                         ):(
                                     
                                                             <form className="">
-                                                            <div className='grid grid-cols-1 md:grid-cols-1 gap-2 items-center justify-center border p-2 rounded-md'>
+                                                            <div className='grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center border p-2 rounded-md bg-gray-200'>
                                                                 <InputSelectField
                                                                 id="Manufacturer"
                                                                 label="Manufacturer"
