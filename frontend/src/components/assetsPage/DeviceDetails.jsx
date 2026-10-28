@@ -5,14 +5,13 @@ import { InputDateField } from './InputDateField'
 import section3 from '../../assets/section3.png'
 
 import { FaWindows, FaDroplet } from "react-icons/fa6"
-import { BsFillInfoCircleFill, BsDeviceHddFill } from "react-icons/bs"
+import { BsDeviceHddFill } from "react-icons/bs"
 import { IoMdBarcode } from "react-icons/io"
 import { HiMiniCpuChip } from "react-icons/hi2"
 import { LiaMemorySolid, LiaBarcodeSolid } from "react-icons/lia"
 import { SiDell, SiHp } from "react-icons/si"
 import { PiDesktopTowerBold } from "react-icons/pi"
 import { TiPrinter } from "react-icons/ti"
-import { GiEyedropper } from "react-icons/gi"
 import { PiBarcodeDuotone, PiNetworkFill } from "react-icons/pi"
 import { BsPciCardNetwork } from "react-icons/bs"
 
