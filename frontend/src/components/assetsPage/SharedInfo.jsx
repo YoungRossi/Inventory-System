@@ -17,8 +17,8 @@ import { GiLaptop } from "react-icons/gi"
 export function SharedInfo({isComputer}){
     return(
         <>
-            <div id="mainCntr" className="flex flex-col w-full px-3 border rounded-md">
-                <div id="titleSec" className="flex gap-2 items-center w-full mb-3 mt-2">
+            <div id="mainCntr" className="flex flex-col w-full p-3 shadow-lg shadow-gray-300 border-gray-200 border rounded-md">
+                <div id="titleSec" className="flex gap-2 items-center w-full mb-3">
                          <div id="imgctnr">
                             <img src={section2} className='w-8 h-8' />
                         </div>
@@ -29,7 +29,7 @@ export function SharedInfo({isComputer}){
                 </div>
 
                  <div id="formCtnr" className="w-full">
-    <form className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center justify-center">
+    <form className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center justify-center border rounded-lg border-gray-200 bg-blue-100 p-3">
 
         <InputField
             id="assetTag"

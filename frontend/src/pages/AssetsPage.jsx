@@ -22,7 +22,7 @@ export function AssetsPage (){
                         Left side
                     </div>
 
-                    <div id="middleContainer" className="bg-white grid grid-rows-[auto_auto_auto] content-start p-3 gap-3">
+                    <div id="middleContainer" className="bg-white grid grid-rows-[auto_auto_auto] rounded-lg content-start mt-2 p-3 gap-3">
                         <AssetSelector 
                         isComputer={isComputer}
                         setIsComputer={setIsComputer}

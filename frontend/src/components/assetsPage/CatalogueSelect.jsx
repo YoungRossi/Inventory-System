@@ -7,7 +7,7 @@ import { InputSelectField } from './InputSelectField'
 
 import { GrCatalog, GrAddCircle } from "react-icons/gr"
 import { BsFillCpuFill, BsMemory, BsFillDeviceHddFill, BsWindows} from "react-icons/bs"
-import { RiCloseCircleFill } from "react-icons/ri"
+import { IoMdCloseCircle } from "react-icons/io"
 import { FaComputer } from "react-icons/fa6"
 import { ImPrinter } from "react-icons/im"
 import { FaWindows, FaDroplet } from "react-icons/fa6"
@@ -29,8 +29,8 @@ export function CatalogueSelect(){
         <>
         {!btnClicked ? (
             <>
-            <div className="flex flex-col w-full shadow-lg shadow-gray-700 rounded-md bg-white gap-2 p-2">
-            <div className="flex mt-2 gap-2 ml-2">
+            <div className="flex flex-col w-full shadow-lg shadow-gray-400 rounded-md bg-white gap-1 p-3">
+            <div className="flex gap-2">
                 <GrCatalog className="text-[30px] text-blue-600"/>
                 <div className="flex flex-col -mt-1" >
                     <p className=" text-sm font-medium">Device Catalogue</p>
@@ -38,7 +38,7 @@ export function CatalogueSelect(){
                 </div>
             </div>
 
-            <div className="flex mt-3 gap-2 border border-gray-300 rounded-lg p-3 bg-gray-200">
+            <div className="flex mt-3 gap-2 border border-gray-300 rounded-lg p-3 bg-blue-100">
                 <img src={computerType} className="w-40 h-40"/>
                 <div className="flex flex-col gap-2 mt-3">
                     
@@ -52,7 +52,7 @@ export function CatalogueSelect(){
 
         </div>
 
-        <button onClick={()=>{setBtnClicked(true)}} className='flex justify-center items-center w-full h-8 rounded-md bg-blue-500 text-white text-sm mt-2 shadow-md shadow-gray-500'><GrAddCircle className='text-sm mr-1'/>Add new device</button>
+        <button onClick={()=>{setBtnClicked(true)}} className='flex justify-center items-center w-full h-8 rounded-md bg-blue-500 hover:bg-blue-700 hover:shadow-xl hover:scale-100 text-white text-sm mt-2 shadow-md shadow-gray-500'><GrAddCircle className='text-sm mr-1'/>Add new device</button>
         </>
         ):(
             <div className="flex flex-col w-full shadow-lg shadow-gray-700 rounded-md gap-2 bg-white">
@@ -62,12 +62,12 @@ export function CatalogueSelect(){
                         <p className=" text-sm font-medium">Device Catalogue</p>
                         <p className="text-xs">Add new device models to the catalogue </p>
                     </div>
-                    <RiCloseCircleFill className='text-lg text-red-500 ml-auto mr-2' onClick={()=>{setBtnClicked(false)}}/>
+                    <IoMdCloseCircle className='text-lg text-red-500 ml-auto mr-2 hover:shadow-lg hover:scale-105 hover:shadow-red-200' onClick={()=>{setBtnClicked(false)}}/>
                 </div>
 
                  <div id='contentDiv' className='flex w-full justify-center gap-3 px-2'>
                                     <button onClick={() => setIsComputer(true)} id="computerAssetBtn" 
-                                        className={`text-sm group mt-2 flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 
+                                        className={`text-sm group mt-2 flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 hover:bg-blue-700 hover:shadow-xl hover:scale-100 transition-colors duration-200 
                                             ${
                                                 isComputer
                                                     ? "bg-blue-500 text-sm"
@@ -92,7 +92,7 @@ export function CatalogueSelect(){
                                         </p>
                                     </button>
                                     <button onClick={() => setIsComputer(false)} id="printerAssetBtn" 
-                                        className={`group text-sm mt-2 flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 
+                                        className={`group text-sm mt-2 flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-100 
                                             ${
                                                 !isComputer
                                                     ? "bg-blue-500"
@@ -121,7 +121,7 @@ export function CatalogueSelect(){
                                     <div id="formCtnr" className="w-full p-2">
                                                         {isComputer ? (<>
                                                         <form className="">
-                                                           <div className='border border-gray-300 rounded-md p-2 grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center bg-gray-200'>
+                                                           <div className='border border-blue-200 rounded-md p-2 grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center bg-blue-100'>
                                                             <InputSelectField
                                                                 label='Form Factor'
                                                                 required={true}
@@ -222,7 +222,7 @@ export function CatalogueSelect(){
                                                         ):(
                                     
                                                             <form className="">
-                                                            <div className='grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center border p-2 rounded-md bg-gray-200'>
+                                                            <div className='grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center border border-blue-200 p-2 rounded-md bg-blue-100'>
                                                                 <InputSelectField
                                                                 id="Manufacturer"
                                                                 label="Manufacturer"

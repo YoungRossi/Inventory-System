@@ -19,8 +19,8 @@ import { BsPciCardNetwork } from "react-icons/bs"
 export function DeviceDetails({isComputer}){
     return(
         <>
-            <div id="mainCntr" className="flex flex-col w-full px-3 border rounded-md">
-                <div id="titleSec" className="flex gap-2 items-center w-full mb-3 mt-2">
+            <div id="mainCntr" className="flex flex-col w-full p-3 border shadow-lg shadow-gray-300 border-gray-200 rounded-md">
+                <div id="titleSec" className="flex gap-2 items-center w-full mb-3">
                          <div id="imgctnr">
                             <img src={section3} className='w-8 h-8' />
                         </div>
@@ -30,7 +30,7 @@ export function DeviceDetails({isComputer}){
                         </div>
                 </div>
 
-                 <div id="formCtnr" className="w-full">
+                 <div id="formCtnr" className="w-full border border-blue-100 rounded-lg p-3 bg-blue-100">
                     {isComputer ? (
                     <form className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center">
                         <InputSelectField
