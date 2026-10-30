@@ -1,10 +1,13 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const cors = require('cors')
+
 const { connectToDB, store } = require('./database') 
 const usersRouter = require('./routes/UsersRoute')
 const authRouter = require('./routes/AuthRoute')
 const homeRouter = require('./routes/HomeRoute')
+const deviceRouter = require('./routes/DeviceRoute')
 const { isSignedIn } = require('./middleware')
 const app = express()
 const port = 3000
@@ -20,10 +23,13 @@ app.use(session({
        maxAge: 1000 * 60 *60
     }
 }))
+app.use(cors({origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true}))
 
 app.use(authRouter)
-app.use(isSignedIn)
-app.use(usersRouter, homeRouter)
+//app.use(isSignedIn)
+app.use(usersRouter, homeRouter, deviceRouter)
 
 
 async function startServer() {

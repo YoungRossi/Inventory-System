@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 import computerType from '../../assets/computerType.avif'
 
 import { InputField } from './InputField'
@@ -7,7 +8,6 @@ import { InputSelectField } from './InputSelectField'
 
 import { GrCatalog, GrAddCircle } from "react-icons/gr"
 import { BsFillCpuFill, BsMemory, BsFillDeviceHddFill, BsWindows} from "react-icons/bs"
-import { IoMdCloseCircle } from "react-icons/io"
 import { FaComputer } from "react-icons/fa6"
 import { ImPrinter } from "react-icons/im"
 import { FaWindows, FaDroplet } from "react-icons/fa6"
@@ -18,9 +18,7 @@ import { LiaMemorySolid, LiaBarcodeSolid } from "react-icons/lia"
 import { SiDell, SiHp } from "react-icons/si"
 import { PiDesktopTowerBold, PiBarcodeDuotone } from "react-icons/pi"
 import { TiPrinter } from "react-icons/ti"
-
-
-
+import { VscCloseAll } from "react-icons/vsc"
 
 export function CatalogueSelect(){
     const [btnClicked, setBtnClicked] = useState(false)
@@ -34,6 +32,42 @@ export function CatalogueSelect(){
     const [memory, setMemory] = useState('')
     const [storage, setStorage] = useState('')
     const [os, setOs] = useState('')
+    const [functionality, setFunctionality] = useState('')
+    const [colour, setColour] = useState('')
+    const [printTech, setPrintTech] = useState('')
+    const [toner, setToner] = useState('')
+
+    async function submitForm(e) {
+    e.preventDefault();
+
+    const device = isComputer
+        ? {
+            type: "computer",
+            formFactor,
+            manufacturer,
+            model,
+            cpu,
+            memory,
+            storage,
+            os
+        }
+        : {
+            type: "printer",
+            manufacturer,
+            model,
+            functionality,
+            printTech,
+            colour,
+            toner
+        };
+
+    try {
+        const result = await axios.post('/devices', device);
+        console.log(result.data);
+    } catch (err) {
+        console.log(err.response?.data || err.message);
+    }
+}
 
     return(
         <>
@@ -72,12 +106,12 @@ export function CatalogueSelect(){
                         <p className=" text-sm font-medium">Device Catalogue</p>
                         <p className="text-xs">Add new device models to the catalogue </p>
                     </div>
-                    <IoMdCloseCircle className='text-lg text-red-500 ml-auto mr-2 hover:shadow-lg hover:scale-105 hover:shadow-red-200' onClick={()=>{setBtnClicked(false)}}/>
+                    <VscCloseAll className='text-lg text-red-500 ml-auto mr-2 hover:shadow-lg hover:scale-105 hover:shadow-red-200' onClick={()=>{setBtnClicked(false)}}/>
                 </div>
 
                  <div id='contentDiv' className='flex w-full justify-center gap-3 px-2'>
                                     <button onClick={() => setIsComputer(true)} id="computerAssetBtn" 
-                                        className={`text-sm group mt-2 flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 hover:bg-blue-700 hover:shadow-xl hover:scale-100 transition-colors duration-200 
+                                        className={`text-sm group mt-2 flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 hover:bg-blue-700 hover:shadow-xl hover:scale-103 transition-colors duration-200 
                                             ${
                                                 isComputer
                                                     ? "bg-blue-500 text-sm"
@@ -102,7 +136,7 @@ export function CatalogueSelect(){
                                         </p>
                                     </button>
                                     <button onClick={() => setIsComputer(false)} id="printerAssetBtn" 
-                                        className={`group text-sm mt-2 flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-100 
+                                        className={`group text-sm mt-2 flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103 
                                             ${
                                                 !isComputer
                                                     ? "bg-blue-500"
@@ -223,7 +257,7 @@ export function CatalogueSelect(){
                                                                 value={os}
                                                                 onChange={(e)=>setOs(e.target.value)}
                                                                 options={[
-                                                                    { label:'Windows 10', value:'WIndows 10' },
+                                                                    { label:'Windows 10', value:'Windows 10' },
                                                                     { label:'Windows 11', value:'Windows 11' },
                                                                     { label:'Android', value:'Android' },
                                                                     { label:'macOS', value:'macOS' },
@@ -233,8 +267,8 @@ export function CatalogueSelect(){
                                                                 icon={FaWindows}
                                                             />
 
-                                                            <button className='w-full '>
-
+                                                            <button onClick={submitForm} className='bg-blue-700 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
+                                                               <TbWorldUpload className='text-[25px] text-white'/> Save New Device
                                                             </button>
                                                         
                                                         </div>
@@ -242,13 +276,13 @@ export function CatalogueSelect(){
                                                             </form>
                                                         </>
                                                         ):(
-                                    
                                                             <form className="">
                                                             <div className='grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center border border-blue-200 p-2 rounded-md bg-blue-100'>
                                                                 <InputSelectField
                                                                 id="Manufacturer"
                                                                 label="Manufacturer"
-                                                                
+                                                                value={manufacturer}
+                                                                onChange={(e)=>setManufacturer(e.target.value)}
                                                                 icon={SiHp}
                                                                 required={true}
                                                                 options={[
@@ -263,14 +297,32 @@ export function CatalogueSelect(){
                                                                 id="Model"
                                                                 label="Model"
                                                                 placeholder='e.g. HP LaserJet Enterprise M506n'
-                                                                
+                                                                value={model}
+                                                                onChange={(e)=>setModel(e.target.value)}
                                                                 icon={LiaBarcodeSolid}
                                                                 required={true}
+                                                            />
+
+                                                             <InputSelectField
+                                                                label='Print Technology'
+                                                                required={true}
+                                                                value={printTech}
+                                                                onChange={(e)=>setPrintTech(e.target.value)}
+                                                                options={
+                                                                    [
+                                                                        {label:'Laser', value:'Laser'},
+                                                                        {label:'Inkjet', value:'Inkject'},
+                                                                        {label:'Thermal', value:'Thermal'},
+                                                                       
+                                                                    ]
+                                                                }
+                                                                icon={ TiPrinter }   
                                                             />
                                                              <InputSelectField
                                                                 label='Printer Functionality'
                                                                 required={true}
-                                                                
+                                                                value={functionality}
+                                                                onChange={(e)=>setFunctionality(e.target.value)}
                                                                 options={
                                                                     [
                                                                         {label:'Mulitfunction', value:'Multifunction'},
@@ -283,7 +335,8 @@ export function CatalogueSelect(){
                                                            <InputSelectField
                                                                 id="colour"
                                                                 label="Color Capability"
-                                                            
+                                                                value={colour}
+                                                                onChange={(e)=>setColour(e.target.value)}
                                                                 icon={FaDroplet}
                                                                 required={true}
                                                                 options={[
@@ -295,14 +348,19 @@ export function CatalogueSelect(){
                                     
                                                             <InputField
                                                                 label='Toner Model'
-                                                                
+                                                                value={toner}
+                                                                onChange={(e)=>setToner(e.target.value)}
                                                                 placeholder='e.g. HP 414A/414X'   
                                                                 required={true}
                                                                 icon={PiBarcodeDuotone}
                                                             />
+
+                                                              <button onClick={submitForm} className='bg-blue-700 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
+                                                               <TbWorldUpload className='text-[25px] text-white'/> Save New Device
+                                                            </button>
+
                                                             </div>
-                                                            
-                                                                                           
+                                                        
                                                         </form>
                                                         )
                                                         }

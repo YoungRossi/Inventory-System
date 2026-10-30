@@ -7,7 +7,6 @@ const deviceSchema = new mongoose.Schema({
     },
     formFactor:{
         type:String,
-        required: true
     },
     manufacturer:{
         type:String,
@@ -19,23 +18,34 @@ const deviceSchema = new mongoose.Schema({
     },
     cpu:{
         type:String,
-        required: true
+
     },
     memory:{
         type:String,
-        required:true
     },
     storage:{
         type:String,
-        required: true
+        
     },
     os:{
+        type:String, 
+    },
+    toner:{
         type:String,
-        required: true
+
+    },
+    colour:{
+        type:String
+    },
+    printTech:{
+        type:String
+    },
+    functionality:{
+        type:String
     },
     createdAt:{
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 
 })

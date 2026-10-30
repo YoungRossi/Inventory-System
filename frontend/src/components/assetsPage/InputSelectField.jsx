@@ -25,7 +25,7 @@ export function InputSelectField({
                     <span className="bg-amber-400 w-2 h-2">
                         <Icon
                             className="absolute left-2 top-1/2
-                                    -translate-y-1/2 text-gray-400 "
+                                    -translate-y-1/2 text-gray-400"
                             size={18}
                         />
                     </span>
@@ -44,7 +44,7 @@ export function InputSelectField({
                            focus:ring-blue-500/20 
                            shadow shadow-gray-400"
             >
-                <option value="" disabled>Select {label}</option>
+                <option value="">Select {label}</option>
 
                 {options.map((option) => (
                     <option key={option.value} value={option.value}>

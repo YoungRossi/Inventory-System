@@ -13,7 +13,7 @@ export function AssetSelector({isComputer, setIsComputer}){
     }
     return(
         <>
-            <div id="assetSelectorMainCtnr" className='flex flex-col items-center justify-center px-3 py-2 gap-3 border rounded-md'>
+            <div id="assetSelectorMainCtnr" className='flex flex-col items-center justify-center px-3 py-2 gap-3 border border-gray-200 shadow-gray-300 shadow-lg rounded-md'>
                 <div id='assetSelectorCtnr' className='w-full rounded-xl pb-2'>
                     <div id="titleSec" className="flex gap-2 items-center w-full">
                          <div id="imgctnr">
