@@ -12,7 +12,7 @@ import { FaComputer } from "react-icons/fa6"
 import { ImPrinter } from "react-icons/im"
 import { FaWindows, FaDroplet } from "react-icons/fa6"
 import { BsDeviceHddFill } from "react-icons/bs"
-
+import { TbWorldUpload } from "react-icons/tb"
 import { HiMiniCpuChip } from "react-icons/hi2"
 import { LiaMemorySolid, LiaBarcodeSolid } from "react-icons/lia"
 import { SiDell, SiHp } from "react-icons/si"
@@ -25,6 +25,16 @@ import { TiPrinter } from "react-icons/ti"
 export function CatalogueSelect(){
     const [btnClicked, setBtnClicked] = useState(false)
     const [isComputer, setIsComputer] = useState(true)
+
+    const [type, setType] = useState('Computer')
+    const [formFactor, setFormFactor] = useState('')
+    const [manufacturer, setManufacturer] = useState('')
+    const [model, setModel] = useState('')
+    const [cpu, setCpu] = useState('')
+    const [memory, setMemory] = useState('')
+    const [storage, setStorage] = useState('')
+    const [os, setOs] = useState('')
+
     return(
         <>
         {!btnClicked ? (
@@ -122,10 +132,12 @@ export function CatalogueSelect(){
                                                         {isComputer ? (<>
                                                         <form className="">
                                                            <div className='border border-blue-200 rounded-md p-2 grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center bg-blue-100'>
+                                                            
                                                             <InputSelectField
                                                                 label='Form Factor'
                                                                 required={true}
-                                                            
+                                                                value={formFactor}
+                                                                onChange={(e)=> setFormFactor(e.target.value)}
                                                                 options={
                                                                     [
                                                                         {label:'Desktop', value:'Desktop'},
@@ -141,7 +153,8 @@ export function CatalogueSelect(){
                                                             <InputSelectField
                                                                 id="Manufacturer"
                                                                 label="Manufacturer"
-                                                                
+                                                                value={manufacturer}
+                                                                onChange={(e)=> setManufacturer(e.target.value)}
                                                                 icon={SiDell}
                                                                 required={true}
                                                                 options={[
@@ -157,22 +170,25 @@ export function CatalogueSelect(){
                                                                 id="Model"
                                                                 label="Model"
                                                                 placeholder='e.g. Optiplex 7040'
-                                                                
+                                                                value={model}
+                                                                onChange={(e)=>setModel(e.target.value)}
                                                                 icon={LiaBarcodeSolid}
                                                                 required={true}
                                                             />
                                         
                                                             <InputField
                                                                 label='Processor'
-                                                                
                                                                 placeholder='13th Gen Intel(R) Core(TM) i5-13500'   
+                                                                value={cpu}
+                                                                onChange={(e)=>setCpu(e.target.value)}
                                                                 required={true}
                                                                 icon={HiMiniCpuChip}
                                                             />
                                     
                                                             <InputSelectField
                                                                 label='RAM Capacity'
-                                                                
+                                                                value={memory}
+                                                               onChange={(e)=>setMemory(e.target.value)}
                                                                 options={[
                                                                     { label:'4GB', value:'4GB' },
                                                                     { label:'8GB', value:'8GB' },
@@ -185,7 +201,8 @@ export function CatalogueSelect(){
                                                             />
                                                             <InputSelectField
                                                                 label='Storage Drive Capacity'
-                                                                
+                                                                value={storage}
+                                                                onChange={(e)=>setStorage(e.target.value)}
                                                                 options={[
                                                                     { label:'64GB', value:'64GB' },
                                                                     { label:'128GB', value:'128GB' },
@@ -203,7 +220,8 @@ export function CatalogueSelect(){
                                     
                                                             <InputSelectField
                                                                 label='Operating System'
-                                                                
+                                                                value={os}
+                                                                onChange={(e)=>setOs(e.target.value)}
                                                                 options={[
                                                                     { label:'Windows 10', value:'WIndows 10' },
                                                                     { label:'Windows 11', value:'Windows 11' },
@@ -214,6 +232,10 @@ export function CatalogueSelect(){
                                                                 required={true}
                                                                 icon={FaWindows}
                                                             />
+
+                                                            <button className='w-full '>
+
+                                                            </button>
                                                         
                                                         </div>
                                                             
