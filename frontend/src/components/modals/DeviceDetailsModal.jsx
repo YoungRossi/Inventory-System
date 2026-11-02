@@ -32,11 +32,17 @@ export function DeviceDetailsModal({ data, setShowModal }) {
                             
                                 {device.formFactor === 'Desktop' && 
                                     (
-                                        <div className="flex gap-1"> 
-                                            <PiDesktopTower className="text-[30px]"/> 
-                                            <span className="flex flex-col">
+                                        <div className="flex gap-1 items-center"> 
+                                            <PiDesktopTower className="text-[45px]"/> 
+                                            <span className="flex flex-col gap-1">
                                                 <p className="text-sm pl-1">{device.manufacturer} {device.model}</p>
-                                                <p className="text-xs flex gap-1"><BsCpu/>:{device.cpu} <BsMemory/>:{device.memory} <BsDeviceHdd/>:{device.storage}<BsWindowStack/>:{device.os} </p>
+                                                <hr className="text-gray-300"/>
+                                                <p className="text-xs flex gap-3">
+                                                    <span className="flex items-center justify-center gap-1"><BsCpu/>{device.cpu}</span>
+                                                    <span className="flex items-center justify-center gap-1"><BsMemory/>{device.memory}</span>
+                                                    <span className="flex items-center justify-center gap-1"><BsDeviceHdd/>{device.storage}</span> 
+                                                    <span className="flex items-center justify-center gap-1"><BsWindowStack/>{device.os}</span> 
+                                                </p>
                                             </span>
 
                                             <span className="flex">
