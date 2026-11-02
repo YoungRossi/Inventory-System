@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'sonner'
 import axios from 'axios'
 import computerType from '../../assets/computerType.avif'
 
@@ -37,12 +38,27 @@ export function CatalogueSelect(){
     const [printTech, setPrintTech] = useState('')
     const [toner, setToner] = useState('')
 
+    function clearForm(){
+    setType('')
+    setFormFactor('')
+    setManufacturer('')
+    setModel('')
+    setCpu('')
+    setMemory('')
+    setStorage('')
+    setOs('')
+    setPrintTech('')
+    setFunctionality('')
+    setColour('')
+    setToner('')
+
+}
     async function submitForm(e) {
     e.preventDefault();
 
     const device = isComputer
         ? {
-            type: "computer",
+            type: "Computer",
             formFactor,
             manufacturer,
             model,
@@ -52,7 +68,7 @@ export function CatalogueSelect(){
             os
         }
         : {
-            type: "printer",
+            type: "Printer",
             manufacturer,
             model,
             functionality,
@@ -62,12 +78,21 @@ export function CatalogueSelect(){
         };
 
     try {
-        const result = await axios.post('/devices', device);
-        console.log(result.data);
+        const result = await axios.post('/devices', device)
+        if(result.data) toast.success(`Successfully Added New ${device.type}`)
+        console.log(device)
+        console.log(result.data)
+        clearForm()
     } catch (err) {
-        console.log(err.response?.data || err.message);
+        toast.error(`Error: ${device.type} was not added`)
+        console.log(err.response?.data || err.message)
+
     }
+
+    
 }
+
+
 
     return(
         <>
@@ -267,7 +292,7 @@ export function CatalogueSelect(){
                                                                 icon={FaWindows}
                                                             />
 
-                                                            <button onClick={submitForm} className='bg-blue-700 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
+                                                            <button onClick={submitForm} className='bg-blue-500 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
                                                                <TbWorldUpload className='text-[25px] text-white'/> Save New Device
                                                             </button>
                                                         
@@ -355,7 +380,7 @@ export function CatalogueSelect(){
                                                                 icon={PiBarcodeDuotone}
                                                             />
 
-                                                              <button onClick={submitForm} className='bg-blue-700 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
+                                                            <button onClick={submitForm} className='bg-blue-500 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
                                                                <TbWorldUpload className='text-[25px] text-white'/> Save New Device
                                                             </button>
 

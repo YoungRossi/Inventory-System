@@ -1,6 +1,7 @@
 import { InputField } from './InputField'
 import { InputSelectField } from './InputSelectField'
 import { InputDateField } from './InputDateField'
+import { DeviceDetailsModal } from '../../components/modals/DeviceDetailsModal'
 
 import section3 from '../../assets/section3.png'
 
@@ -14,9 +15,37 @@ import { PiDesktopTowerBold } from "react-icons/pi"
 import { TiPrinter } from "react-icons/ti"
 import { PiBarcodeDuotone, PiNetworkFill } from "react-icons/pi"
 import { BsPciCardNetwork } from "react-icons/bs"
+import { TbDeviceDesktopUp } from "react-icons/tb"
+import { RiPrinterCloudLine } from "react-icons/ri"
+
+import { useState } from 'react'
+import { toast } from 'sonner'
+import axios from 'axios'
 
 
 export function DeviceDetails({isComputer}){
+    const[showModal, setShowModal] = useState(false)
+    const[data, setData] = useState([])
+
+   async function getAllDevices() {
+    try {
+        const response = await axios.get('/devices');
+
+        if (!Array.isArray(response.data) || response.data.length === 0) {
+            toast.info("There are no devices to choose from");
+            return;
+        }
+
+        setData(response.data);
+        setShowModal(true);
+
+    } catch (err) {
+        console.error("Error retrieving devices:", err);
+        toast.error("An error occurred while retrieving devices");
+    }
+}
+    
+
     return(
         <>
             <div id="mainCntr" className="flex flex-col w-full p-3 border shadow-lg shadow-gray-300 border-gray-200 rounded-md">
@@ -28,6 +57,15 @@ export function DeviceDetails({isComputer}){
                             <p className='text-10 font-medium'>{isComputer ? 'Computer ': 'Printer '}Details</p>
                             <p className='text-xs'>Please fill out the details</p>
                         </div>
+                        <button className='flex ml-auto bg-blue-500 w-32 h-7 shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-500  
+                        hover:bg-blue-600 rounded-md hover:scale-103 text-xs text-white gap-2 items-center justify-center'
+                        onClick={()=>getAllDevices()}>
+                            {isComputer ? <TbDeviceDesktopUp  className='text-[20px] text-white'/> : <RiPrinterCloudLine className='text-[20px] text-white'/>}
+                            Upload Details
+                        </button>
+
+                        {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={data}/>}
+
                 </div>
 
                  <div id="formCtnr" className="w-full border border-blue-100 rounded-lg p-3 bg-blue-100">

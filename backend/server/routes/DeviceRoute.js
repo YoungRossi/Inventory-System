@@ -19,13 +19,14 @@ router.post('/devices', async (req, res)=>{
     try{
     const {type, formFactor, manufacturer, model, cpu, memory, storage, os, printTech, functionality, colour, toner} = req.body
     
-    const device = type === 'computer'
+    const device = type === 'Computer'
     ? 
     {type, formFactor, manufacturer, model, cpu, memory, storage, os}
     : 
     {type, manufacturer, model, printTech, functionality, colour, toner}
 
     await insertDeviceIntoDB(device)
+    console.log(device)
     res.status(201).send("Device Created Successfully")
     }catch(err){
         res.status(401).send(`Error: Device Not Created ${err}`)
