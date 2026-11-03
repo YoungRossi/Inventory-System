@@ -26,16 +26,16 @@ export function DeviceDetailsModal({ data, setShowModal }) {
                 />
                 </div>
                 
-                <div className="flex flex-col gap-2 border border-blue-200 bg-blue-200 rounded-md shadow-lg shadow-gray-300 p-2">
+                <div className="flex flex-col gap-2 border border-blue-200  rounded-md shadow-lg shadow-gray-300 p-2">
                     {data.map((device)=>(
                         <div key={device._id}>
                             
                                 {device.formFactor === 'Laptop' && 
                                     (
-                                        <div className="flex gap-1 items-center border border-gray-300 p-1 bg-gray-100 rounded-md shadow-md shadows-gray-300"> 
+                                        <div onClick={''} className="flex gap-1 items-center border border-gray-300 p-1 bg-gray-100 rounded-md shadow-md shadows-gray-300"> 
                                             <div className="flex flex-col gap-1 w-full -mr-4  rounded-md">
-                                                <span className="flex items-center -mb-1 bg-blue-300 w-full">
-                                                    <PiDesktopTower className="text-[23px] text-white"/>
+                                                <span className="flex items-center -mb-1  w-full">
+                                                    <PiDesktopTower className="text-[23px]"/>
                                                     <p className="text-sm pl-1">{device.manufacturer} {device.model}</p>
                                                 </span>
                                             
