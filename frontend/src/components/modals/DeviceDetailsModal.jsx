@@ -1,12 +1,18 @@
 import { InputField } from "../assetsPage/InputField"
 
 import { TbDatabaseSearch } from "react-icons/tb"
-import { PiDesktopTower } from "react-icons/pi"
-import { GiLaptop } from "react-icons/gi"
+import { PiDesktopTower, PiDesktopTowerBold } from "react-icons/pi"
 import { BsCpu,BsMemory, BsWindowStack, BsDeviceHdd, BsDatabaseAdd } from "react-icons/bs"
+import { MdOutlineTabletMac } from "react-icons/md"
+import { FaLaptop } from "react-icons/fa"
 import { VscCloseAll } from "react-icons/vsc"
 
+import { useState } from "react"
+
+
+
 export function DeviceDetailsModal({ data, setShowModal, setFields }) {
+    const [filter, setFilter] = useState('Desktop')
     return (
         <div className="flex-col fixed inset-0 bg-black/20 z-50 flex items-center justify-center"
             onClick={()=>setShowModal(false)}
@@ -22,7 +28,7 @@ export function DeviceDetailsModal({ data, setShowModal, setFields }) {
                         <p className="text-[12px] leading-none">Select device from the list </p>
                     </div> 
 
-                    <VscCloseAll className="ml-auto text-red-500"/>  
+                    <VscCloseAll className="ml-auto rounded-3xl text-red-500"/>  
 
                 </div>    
 
@@ -33,13 +39,25 @@ export function DeviceDetailsModal({ data, setShowModal, setFields }) {
                 />
                 </div>
                 
-                <div className="flex flex-col gap-1 border border-gray-200 bg-gray-100 rounded-md shadow-lg shadow-gray-300 p-2 m-3">
+                <div className="flex flex-col gap-2 border border-gray-200 bg-gray-100 rounded-md shadow-lg shadow-gray-300 px-2 pb-2 m-3">
+                    <div className="flex h-5 gap-2 mt-2 w-full justify-center">
+                        <button onClick={()=>setFilter("Desktop")} className="cursor-pointer flex border border-blue-600 rounded-lg bg-blue-600 text-white text-xs gap-1 px-1">
+                            <PiDesktopTower className="text-[20px]"/>Desktop
+                        </button>
+                        <button onClick={()=>setFilter("Laptop")} className="cursor-pointer flex border border-blue-600 rounded-lg bg-blue-600 text-white text-xs gap-1 px-1">
+                            <FaLaptop className="text-[17px]"/>Laptop
+                        </button>
+                        <button onClick={()=>setFilter("Tablet")} className="cursor-pointer flex border border-blue-600 rounded-lg bg-blue-600 text-white text-xs gap-1 px-1">
+                            <MdOutlineTabletMac className="text-[16px] items-center"/>Tablet
+                        </button>
+                        
+                    </div>
                     {data.map((device)=>(
                         <div key={device._id} onClick={()=>setFields(device)}>
                             
-                                {device.formFactor === 'Laptop' && 
+                                {device.formFactor === filter && 
                                     (
-                                        <div onClick={''} className="flex gap-1 items-center border border-gray-200 rounded-lg shadow-md shadows-gray-500"> 
+                                        <div className="cursor-pointer flex gap-1 items-center border border-gray-200 rounded-lg shadow-lg shadows-gray-600 hover:scale-102"> 
                                             <div className="flex flex-col gap-1 w-full bg-gray-200 -mr-4 rounded-md">
                                                 <span className="flex items-center -mb-1 bg-blue-400 rounded-t-md p-0.5 w-full">
                                                     <PiDesktopTower className="text-[23px] text-white ml-0.5"/>
@@ -47,10 +65,10 @@ export function DeviceDetailsModal({ data, setShowModal, setFields }) {
                                                 </span>
                                             
                                                 <p className="text-xs flex gap-3 p-0.5 ml-1">
-                                                    <span className="flex items-center justify-center gap-1 text-[12px]"><BsCpu/>{device.cpu}</span>
-                                                    <span className="flex items-center justify-center gap-1 text-[12px]"><BsMemory/>{device.memory}</span>
-                                                    <span className="flex items-center justify-center gap-1 text-[12px]"><BsDeviceHdd/>{device.storage}</span> 
-                                                    <span className="flex items-center justify-center gap-1 text-[12px]"><BsWindowStack/>{device.os}</span> 
+                                                    <span className="flex items-center justify-center gap-1 text-[12px] text-black"><BsCpu className="text-blue-500"/>{device.cpu}</span>
+                                                    <span className="flex items-center justify-center gap-1 text-[12px] text-black"><BsMemory className="text-blue-500"/>{device.memory}</span>
+                                                    <span className="flex items-center justify-center gap-1 text-[12px] text-black"><BsDeviceHdd className="text-blue-500"/>{device.storage}</span> 
+                                                    <span className="flex items-center justify-center gap-1 text-[12px] text-black"><BsWindowStack className="text-blue-500"/>{device.os}</span> 
                                                 </p>
                                             </div>
 

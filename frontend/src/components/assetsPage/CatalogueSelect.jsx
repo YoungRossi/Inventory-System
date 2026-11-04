@@ -7,13 +7,11 @@ import { InputField } from './InputField'
 import { InputSelectField } from './InputSelectField'
 
 
-import { GrCatalog, GrAddCircle } from "react-icons/gr"
-import { BsFillCpuFill, BsMemory, BsFillDeviceHddFill, BsWindows} from "react-icons/bs"
+import { GrAddCircle } from "react-icons/gr"
+import { BsFillCpuFill, BsMemory, BsFillDeviceHddFill, BsWindows, BsDeviceHddFill, BsDatabaseAdd, BsDatabaseUp} from "react-icons/bs"
 import { FaComputer } from "react-icons/fa6"
 import { ImPrinter } from "react-icons/im"
 import { FaWindows, FaDroplet } from "react-icons/fa6"
-import { BsDeviceHddFill, BsDatabaseAdd } from "react-icons/bs"
-import { TbWorldUpload } from "react-icons/tb"
 import { HiMiniCpuChip } from "react-icons/hi2"
 import { LiaMemorySolid, LiaBarcodeSolid } from "react-icons/lia"
 import { SiDell, SiHp } from "react-icons/si"
@@ -126,7 +124,7 @@ export function CatalogueSelect(){
         ):(
             <div className="flex flex-col w-full shadow-lg shadow-gray-700 rounded-md gap-2 bg-white">
                 <div className="flex mt-2 gap-2 ml-2">
-                    <GrCatalog className="text-[30px] text-blue-600 "/>
+                    <BsDatabaseAdd className="text-[30px] text-blue-600 "/>
                     <div className="flex flex-col -mt-1" >
                         <p className=" text-sm font-medium">Device Catalogue</p>
                         <p className="text-xs">Add new device models to the catalogue </p>
@@ -293,7 +291,7 @@ export function CatalogueSelect(){
                                                             />
 
                                                             <button onClick={submitForm} className='bg-blue-500 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
-                                                               <TbWorldUpload className='text-[25px] text-white'/> Save New Device
+                                                               <BsDatabaseUp className='text-[25px] text-white'/> Save New Device
                                                             </button>
                                                         
                                                         </div>
@@ -381,7 +379,7 @@ export function CatalogueSelect(){
                                                             />
 
                                                             <button onClick={submitForm} className='bg-blue-500 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
-                                                               <TbWorldUpload className='text-[25px] text-white'/> Save New Device
+                                                               <BsDatabaseUp className='text-[25px] text-white'/> Save New Device
                                                             </button>
 
                                                             </div>
