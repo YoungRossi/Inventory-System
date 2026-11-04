@@ -12,7 +12,7 @@ import { BsFillCpuFill, BsMemory, BsFillDeviceHddFill, BsWindows} from "react-ic
 import { FaComputer } from "react-icons/fa6"
 import { ImPrinter } from "react-icons/im"
 import { FaWindows, FaDroplet } from "react-icons/fa6"
-import { BsDeviceHddFill } from "react-icons/bs"
+import { BsDeviceHddFill, BsDatabaseAdd } from "react-icons/bs"
 import { TbWorldUpload } from "react-icons/tb"
 import { HiMiniCpuChip } from "react-icons/hi2"
 import { LiaMemorySolid, LiaBarcodeSolid } from "react-icons/lia"
@@ -100,7 +100,7 @@ export function CatalogueSelect(){
             <>
             <div className="flex flex-col w-full shadow-lg shadow-gray-400 rounded-md bg-white gap-1 p-3">
             <div className="flex gap-2">
-                <GrCatalog className="text-[30px] text-blue-600"/>
+                <BsDatabaseAdd className="text-[30px] text-blue-600"/>
                 <div className="flex flex-col -mt-1" >
                     <p className=" text-sm font-medium">Device Catalogue</p>
                     <p className="text-xs">Add new device models to the catalogue </p>

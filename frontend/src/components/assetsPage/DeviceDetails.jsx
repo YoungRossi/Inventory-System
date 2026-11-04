@@ -26,6 +26,31 @@ import axios from 'axios'
 export function DeviceDetails({isComputer}){
     const[showModal, setShowModal] = useState(false)
     const[data, setData] = useState([])
+    const[deviceData, setDeviceData] = useState({})
+    const[formFactor, setFormFactor] = useState('')
+    const[manufacturer, setManufacturer] = useState('')
+    const[model, setModel] = useState('')
+    const[computerName, setComputerName] = useState('')
+    const[cpu, setCpu] = useState('')
+    const[memory, setMemory] = useState('')
+    const[storage, setStorage] = useState('')
+    const[os, setOs] = useState('')
+    const[macAddress, setMacAddress] = useState('')
+    
+    function setFields(deviceData){
+        const { formFactor, manufacturer, model, cpu, memory, storage, os } = deviceData
+        setFormFactor(formFactor)
+        setManufacturer(manufacturer)
+        setModel(model)
+        setCpu(cpu)
+        setMemory(memory)
+        setStorage(storage)
+        setOs(os)
+
+        setShowModal(false)
+
+        console.log(`${formFactor} ${manufacturer} ${model} ${cpu} ${memory} ${storage} ${os}`)
+    }
 
    async function getAllDevices() {
     try {
@@ -64,17 +89,38 @@ export function DeviceDetails({isComputer}){
                             Upload Details
                         </button>
 
-                        {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={data}/>}
+                        {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={data} setFields={setFields}/>}
 
                 </div>
 
                  <div id="formCtnr" className="w-full border border-blue-100 rounded-lg p-3 bg-blue-100">
                     {isComputer ? (
                     <form className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center">
+                        
+                         <InputField
+                            id="Computer Name"
+                            label="Computer Name"
+                            placeholder='e.g. NW-ICT-CS-003'
+                            value={computerName}
+                            desc="The PC name"
+                            icon={IoMdBarcode}
+                            required={true}
+                        />
+
+                        <InputField
+                            label='MAC Address'
+                            desc="Enter Computer's MAC Address"
+                            placeholder='.e.g. A4-BB-6D-12-34-56'   
+                            value={macAddress}
+                            required={true}
+                            icon={ BsPciCardNetwork }
+                        />
+
                         <InputSelectField
                             label='Form Factor'
                             required={true}
                             desc='What type of Computer it is'
+                            value={formFactor}
                             options={
                                 [
                                     {label:'Desktop', value:'Desktop'},
@@ -91,6 +137,7 @@ export function DeviceDetails({isComputer}){
                             id="Manufacturer"
                             label="Manufacturer"
                             desc="Select the Brand of the Computer"
+                            value={manufacturer}
                             icon={SiDell}
                             required={true}
                             options={[
@@ -107,15 +154,8 @@ export function DeviceDetails({isComputer}){
                             label="Model"
                             placeholder='e.g. Optiplex 7040'
                             desc="Enter the cpmputer model"
+                            value={model}
                             icon={LiaBarcodeSolid}
-                            required={true}
-                        />
-                        <InputField
-                            id="Computer Name"
-                            label="Computer Name"
-                            placeholder='e.g. NW-ICT-CS-003'
-                            desc="The PC name"
-                            icon={IoMdBarcode}
                             required={true}
                         />
 
@@ -124,12 +164,14 @@ export function DeviceDetails({isComputer}){
                             desc='The name of the processor'
                             placeholder='13th Gen Intel(R) Core(TM) i5-13500'   
                             required={true}
+                            value={cpu}
                             icon={HiMiniCpuChip}
                         />
 
                         <InputSelectField
                             label='RAM Capacity'
                             desc='Select the total amount of memory'
+                            value={memory}
                             options={[
                                 { label:'4GB', value:'4GB' },
                                 { label:'8GB', value:'8GB' },
@@ -143,6 +185,7 @@ export function DeviceDetails({isComputer}){
                         <InputSelectField
                             label='Storage Drive Capacity'
                             desc='Select the total amount of memory'
+                            value={storage}
                             options={[
                                 { label:'64GB', value:'64GB' },
                                 { label:'128GB', value:'128GB' },
@@ -161,6 +204,7 @@ export function DeviceDetails({isComputer}){
                         <InputSelectField
                             label='Operating System'
                             desc="Select the computer's OS"
+                            value={os}
                             options={[
                                 { label:'Windows 10', value:'WIndows 10' },
                                 { label:'Windows 11', value:'Windows 11' },
@@ -171,15 +215,7 @@ export function DeviceDetails({isComputer}){
                             required={true}
                             icon={FaWindows}
                         />
-
-                        <InputField
-                            label='MAC Address'
-                            desc="Enter Computer's MAC Address"
-                            placeholder='.e.g. A4-BB-6D-12-34-56'   
-                            required={true}
-                            icon={ BsPciCardNetwork }
-                        />
-
+                        
                     </form>
 
                     ):(
