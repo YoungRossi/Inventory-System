@@ -33,7 +33,7 @@ export function DeviceDetailsModal({ data, setShowModal, setFields }) {
                 />
                 </div>
                 
-                <div className="flex flex-col gap-2 border border-gray-200 bg-gray-100 rounded-md shadow-lg shadow-gray-300 p-2 m-3">
+                <div className="flex flex-col gap-1 border border-gray-200 bg-gray-100 rounded-md shadow-lg shadow-gray-300 p-2 m-3">
                     {data.map((device)=>(
                         <div key={device._id} onClick={()=>setFields(device)}>
                             
