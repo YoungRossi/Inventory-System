@@ -36,9 +36,12 @@ export function DeviceDetails({isComputer}){
     const[storage, setStorage] = useState('')
     const[os, setOs] = useState('')
     const[macAddress, setMacAddress] = useState('')
+    const[toner, setToner] = useState('')
+    const[colour, setColour] = useState('')
+    const[functionality, setFunctionality] = useState('')
     
     function setFields(deviceData){
-        const { formFactor, manufacturer, model, cpu, memory, storage, os } = deviceData
+        const { formFactor, manufacturer, model, cpu, memory, storage, os, toner, color, functionality } = deviceData
         setFormFactor(formFactor)
         setManufacturer(manufacturer)
         setModel(model)
@@ -46,6 +49,9 @@ export function DeviceDetails({isComputer}){
         setMemory(memory)
         setStorage(storage)
         setOs(os)
+        setToner(toner)
+        setColour(color)
+        setFunctionality(functionality)
 
         setShowModal(false)
 
@@ -89,7 +95,7 @@ export function DeviceDetails({isComputer}){
                             Upload Details
                         </button>
 
-                        {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={data} setFields={setFields}/>}
+                        {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={data} setFields={setFields} isComputer={isComputer}/>}
 
                 </div>
 
