@@ -41,7 +41,7 @@ export function DeviceDetails({isComputer}){
     const[functionality, setFunctionality] = useState('')
     
     function setFields(deviceData){
-        const { formFactor, manufacturer, model, cpu, memory, storage, os, toner, color, functionality } = deviceData
+        const { formFactor, manufacturer, model, cpu, memory, storage, os, toner, colour, functionality } = deviceData
         setFormFactor(formFactor)
         setManufacturer(manufacturer)
         setModel(model)
@@ -50,7 +50,7 @@ export function DeviceDetails({isComputer}){
         setStorage(storage)
         setOs(os)
         setToner(toner)
-        setColour(color)
+        setColour(colour)
         setFunctionality(functionality)
 
         setShowModal(false)

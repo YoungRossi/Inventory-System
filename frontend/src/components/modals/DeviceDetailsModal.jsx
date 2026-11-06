@@ -1,4 +1,5 @@
 import { InputField } from "../assetsPage/InputField"
+import { DeviceCard } from '../devices/DeviceCard'
 
 import { TbDatabaseSearch } from "react-icons/tb"
 import { PiDesktopTower } from "react-icons/pi"
@@ -9,17 +10,15 @@ import { VscCloseAll } from "react-icons/vsc"
 
 import { useState } from "react"
 
-
-
-
 export function DeviceDetailsModal({ data, setShowModal, setFields, isComputer }) {
     const [filter, setFilter] = useState('Desktop')
     const [needFilter, setNeedFilter] = useState(false)
+    const [btn, setBtn] = useState('All')
 
-    function displayItems(type){
-        setNeedFilter(true)
+    function displayItems(type, bool=false){
+        setNeedFilter(bool)
         setFilter(type)
-            
+        setBtn(type)  
         }
 
     return (
@@ -37,7 +36,7 @@ export function DeviceDetailsModal({ data, setShowModal, setFields, isComputer }
                         <p className="text-[12px] leading-none">Select device from the list </p>
                     </div> 
 
-                    <VscCloseAll className="ml-auto rounded-3xl text-red-500"/>  
+                    <VscCloseAll onClick={()=>setShowModal(false)} className="ml-auto text-[25px] rounded-3xl text-red-500"/>  
 
                 </div>    
 
@@ -49,55 +48,55 @@ export function DeviceDetailsModal({ data, setShowModal, setFields, isComputer }
                 </div>
                 
                 <div className="flex flex-col gap-2 border border-gray-100 bg-white rounded-md shadow-lg shadow-gray-300 pb-2 m-3">
-                    <div className="flex h-7 gap-2 w-full items-center justify-center bg-gray-200 border-b border-gray-200">
-                        <button onClick={()=>setNeedFilter(false)} 
-                        className="cursor-pointer flex border border-gray-100 rounded-4xl 
-                        bg-gray-400 text-white font-medium text-xs h-5 items-center gap-1 px-2">
+                    <div className="flex h-8 gap-2 w-full items-center justify-center bg-gray-200 border-b border-gray-200">
+                        <button onClick={()=>displayItems('All')} 
+                        className={`cursor-pointer flex border border-gray-100 rounded-4xl 
+                        text-white font-medium text-xs h-6 items-center gap-1 px-2
+                        hover:scale-104 hover:bg-blue-500 ${
+                            btn==='All' 
+                            ? 'bg-blue-500' 
+                            : 'bg-gray-400'
+                        }`}                               
+                        >
                             All 
                         </button>
-                        <button onClick={()=>displayItems("Desktop")} className="cursor-pointer flex border border-gray-500 rounded-4xl 
-                        bg-gray-400 text-white font-medium text-xs items-center h-5 gap-1 px-2">
+                        <button onClick={()=>displayItems("Desktop", true)} className={`cursor-pointer flex border border-gray-100 rounded-4xl 
+                        text-white font-medium text-xs h-6 items-center gap-1 px-2
+                        hover:scale-104 hover:bg-blue-500 ${
+                            btn==='Desktop' 
+                            ? 'bg-blue-500' 
+                            : 'bg-gray-400'
+                        }`}                    >
                             <PiDesktopTower className="text-[20px]"/>Desktop
                         </button>
-                        <button onClick={()=>displayItems("Laptop")} className="cursor-pointer flex border border-gray-500 rounded-4xl 
-                        bg-gray-400 text-white font-medium text-xs items-center h-5 gap-1 px-2">
+                        <button onClick={()=>displayItems("Laptop", true)} className={`cursor-pointer flex border border-gray-100 rounded-4xl 
+                        text-white font-medium text-xs h-6 items-center gap-1 px-2
+                        hover:scale-104 hover:bg-blue-500 ${
+                            btn==='Laptop' 
+                            ? 'bg-blue-500' 
+                            : 'bg-gray-400'
+                        }`}                    >
                             <FaLaptop className="text-[17px]"/>Laptop
                         </button>
-                        <button onClick={()=>displayItems("Tablet")} className="cursor-pointer flex border border-gray-500 rounded-4xl 
-                        bg-gray-400 text-white font-medium text-xs gap-1 px-2 items-center h-5">
+                        <button onClick={()=>displayItems("Tablet", true)} className={`cursor-pointer flex border border-gray-100 rounded-4xl 
+                        text-white font-medium text-xs h-6 items-center gap-1 px-2
+                        hover:scale-104 hover:bg-blue-500 ${
+                            btn==='Tablet' 
+                            ? 'bg-blue-500' 
+                            : 'bg-gray-400'
+                        }`}                    >
                             <MdOutlineTabletMac className="text-[14px] items-center"/>Tablet
                         </button>
                         
                     </div>
                     {data.map((device)=>(
                         <div key={device._id} onClick={()=>setFields(device)} className="px-3">
-                            
-                                {(!needFilter || device.formFactor === filter) && 
-                                    (
-                                        <div className="cursor-pointer flex gap-1 items-center border border-gray-300 shadow-lg shadows-gray-600 hover:scale-102"> 
-                                            <div className="flex flex-col gap-1 w-full bg-white -mr-4 rounded-md">
-                                                <span className="flex items-center -mb-1 bg-blue-700 p-0.5 w-full ml">
-                                                    <PiDesktopTower className="text-[22px] text-gray-200 ml-1"/>
-                                                    <p className="text-[13px]  pl-1 font-medium text-white">{device.manufacturer} {device.model}</p>
-                                                </span>
-                                            
-                                                <p className="text-xs flex gap-3 p-0.5 ml-2">
-                                                    <span className="flex items-center justify-center gap-1 text-[12px] text-black"><BsCpu className="text-blue-500"/>{device.cpu}</span>
-                                                    <span className="flex items-center justify-center gap-1 text-[12px] text-black"><BsMemory className="text-blue-500"/>{device.memory}</span>
-                                                    <span className="flex items-center justify-center gap-1 text-[12px] text-black"><BsDeviceHdd className="text-blue-500"/>{device.storage}</span> 
-                                                    <span className="flex items-center justify-center gap-1 text-[12px] text-black"><BsWindowStack className="text-blue-500"/>{device.os}</span> 
-                                                </p>
-                                            </div>
-
-                                            <span className="flex">
-                                                
-                                            </span>
-                                     </div>
-                                    )
-                                   
-                                }
-                        
-                           
+                                 <DeviceCard
+                                    key={device._id}
+                                    device={device}
+                                    needFilter={needFilter}
+                                    filter={filter}
+                                />
                         </div>
                     ))}
                 </div>
