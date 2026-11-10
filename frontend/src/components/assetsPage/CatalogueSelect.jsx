@@ -98,28 +98,29 @@ export function CatalogueSelect(){
             <>
             <div className="flex flex-col w-full shadow-lg shadow-gray-400 rounded-md bg-white gap-1 p-3">
             <div className="flex gap-2">
-                <BsDatabaseAdd className="text-[30px] text-blue-600"/>
+                <BsDatabaseAdd className="text-[30px] md:text-[25px] text-blue-600"/>
                 <div className="flex flex-col -mt-1" >
-                    <p className=" text-sm font-medium">Device Catalogue</p>
-                    <p className="text-xs">Add new device models to the catalogue </p>
+                    <p className=" text-sm md:text-xs font-medium">Device Catalogue</p>
+                    <p className="text-xs md:text-[11px]">Add new device models to the catalogue </p>
                 </div>
             </div>
 
             <div className="flex mt-3 gap-2 border border-gray-300 rounded-lg p-3 bg-blue-100">
                 <img src={computerType} className="w-40 h-40"/>
-                <div className="flex flex-col gap-2 mt-3">
+                <div className="flex flex-col gap-2 mt-3 md:mt-0">
                     
-                    <div className='flex gap-1'><SiDell className='text-[23px]'/><p className="text-xs"> Optiplex 7010 </p></div> 
-                    <div className='flex gap-1'><BsFillCpuFill className ='text-[20px]'/><p className="text-xs">Intel Core i5 13500f</p></div>
-                    <div className='flex gap-1'><BsMemory className ='text-[20px]'/><p className="text-xs">RAM: 16GB</p></div>
-                     <div className='flex gap-1'><BsFillDeviceHddFill className='text-[20px]'/><p className="text-xs">SSD: 512GB</p></div>
-                     <div className='flex gap-1'><BsWindows className='text-[20px]'/><p className="text-xs">Windows 11</p></div>
+                    <div className='flex gap-1'><SiDell className='text-[23px] md:text-[16px]'/><p className="text-xs md:text-[11px]"> Optiplex 7010 </p></div> 
+                    <div className='flex gap-1'><BsFillCpuFill className ='text-[20px] md:text-[16px]'/><p className="text-xs md:text-[11px]">Intel Core i5 13500f</p></div>
+                    <div className='flex gap-1'><BsMemory className ='text-[20px] md:text-[16px]'/><p className="text-xs md:text-[11px]">RAM: 16GB</p></div>
+                     <div className='flex gap-1'><BsFillDeviceHddFill className='text-[20px] md:text-[16px]'/><p className="text-xs md:text-[11px]">SSD: 512GB</p></div>
+                     <div className='flex gap-1'><BsWindows className='text-[20px] md:text-[16px]'/><p className="text-xs md:text-[11px]">Windows 11</p></div>
                 </div>
             </div>
 
         </div>
 
-        <button onClick={()=>{setBtnClicked(true)}} className='flex justify-center items-center w-full h-8 rounded-md bg-blue-500 hover:bg-blue-700 hover:shadow-xl hover:scale-100 text-white text-sm mt-2 shadow-md shadow-gray-500'><GrAddCircle className='text-sm mr-1'/>Add new device</button>
+        <button onClick={()=>{setBtnClicked(true)}} className='flex justify-center items-center w-full h-8 rounded-md bg-blue-500 hover:bg-blue-700 hover:shadow-xl
+         hover:scale-100 text-white text-sm md:text-xs mt-2 shadow-md shadow-gray-500'><GrAddCircle className='text-sm mr-1'/>Add new device</button>
         </>
         ):(
             <div className="flex flex-col w-full shadow-lg shadow-gray-700 rounded-md gap-2 bg-white">

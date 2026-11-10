@@ -11,11 +11,11 @@ export function InputSelectField({
     icon:Icon
 }) {
     return (
-        <div className="flex flex-col w-full min-w-0 ">
+        <div className="flex flex-col w-full min-w-0">
 
             <label
                 htmlFor={id}
-                className="text-[13px] font-medium leading-5"
+                className="text-[13px] font-medium leading-5 md:text-[11px]"
             >
                 {label}
                 {required && <span className="text-red-500"> *</span>}
@@ -42,7 +42,8 @@ export function InputSelectField({
                            outline-none transition appearance-none
                            focus:border-blue-500 focus:ring-2
                            focus:ring-blue-500/20 
-                           shadow shadow-gray-400"
+                           shadow shadow-gray-400
+                           md:text-[10px]"
             >
                 <option value="">Select {label}</option>
 
@@ -57,7 +58,7 @@ export function InputSelectField({
                 size={16}
                 className="absolute right-4 top-1/2
                -translate-y-1/2 pointer-events-none
-               text-gray-400"
+               text-gray-400 md:right-2"
             />
             </div>
             

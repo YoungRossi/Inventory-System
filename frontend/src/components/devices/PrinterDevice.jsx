@@ -4,7 +4,7 @@ import { GiLargePaintBrush } from "react-icons/gi"
 
 export function PrinterDevice({ device }) {
     return (
-        <div className="flex gap-3 ml-2">
+        <div className="flex gap-2 ml-2">
 
             <span className="flex items-center gap-1 text-black text-[12px]">
                 <GiLargePaintBrush className="text-blue-500"/>
@@ -12,12 +12,12 @@ export function PrinterDevice({ device }) {
             </span>
 
             <span className="flex items-center gap-1 text-black text-[12px]">
-                <RiColorFilterFill className="text-blue-500"/>
+                | <RiColorFilterFill className="text-blue-500"/>
                 {device.colour}
             </span>
 
             <span className="flex items-center gap-1 text-black text-[12px]">
-                <FaCopy className="text-blue-500"/>
+                | <FaCopy className="text-blue-500"/>
                 {device.functionality}
             </span>
 

@@ -24,9 +24,10 @@ export function AssetSelector({isComputer, setIsComputer}){
                             <p className='text-xs'>Select the type of equipment you want to add to the inventory</p>
                         </div>
                     </div>
-                    <div id='contentDiv' className='flex w-full justify-center gap-3'>
+                    <div id='contentDiv' className='flex w-full justify-center gap-3 mt-2'>
                     <button onClick={() => selectDevice(true)} id="computerAssetBtn" 
-                        className={`group mt-2 flex h-9 w-40 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 
+                        className={`group mt-2 flex h-9 w-40 items-center justify-center gap-2 rounded-md shadow
+                             shadow-gray-400 transition-colors duration-200 md:h-7 md:w-30
                             ${
                                 isComputer
                                     ? "bg-blue-500"
@@ -34,14 +35,14 @@ export function AssetSelector({isComputer, setIsComputer}){
                             }`}
                         >
                         <FaComputer
-                            className={`text-[25px] ${
+                            className={`text-[25px] md:text-[23px] ${
                                 isComputer
                                     ? "text-white"
                                     : "text-gray-400 group-hover:text-white"
                             }`}
                         />
                         <p
-                            className={`font-medium ${
+                            className={`font-medium md:text-sm ${
                                 isComputer
                                     ? "text-white"
                                     : "text-gray-400 group-hover:text-white"
@@ -51,7 +52,8 @@ export function AssetSelector({isComputer, setIsComputer}){
                         </p>
                     </button>
                     <button onClick={() => selectDevice(false)} id="printerAssetBtn" 
-                        className={`group mt-2 flex h-9 w-40 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 
+                        className={`group mt-2 flex h-9 w-40 items-center justify-center gap-2 rounded-md shadow
+                             shadow-gray-400 transition-colors duration-200 md:h-7 md:w-30
                             ${
                                 !isComputer
                                     ? "bg-blue-500"
@@ -59,14 +61,14 @@ export function AssetSelector({isComputer, setIsComputer}){
                             }`}
                     >
                         <ImPrinter
-                            className={`text-[25px] ${
+                            className={`text-[25px] md:text-[23px] ${
                                 !isComputer
                                     ? "text-white"
                                     : "text-gray-400 group-hover:text-white"
                             }`}
                         />
                         <p
-                            className={`font-medium ${
+                            className={`font-medium md:text-xs ${
                                 !isComputer
                                     ? "text-white"
                                     : "text-gray-400 group-hover:text-white"

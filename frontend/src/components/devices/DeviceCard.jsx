@@ -20,9 +20,9 @@ export function DeviceCard({ device, needFilter, filter }) {
             transition-all duration-200
         ">
 
-            <div className="flex flex-col gap-1 w-full bg-white rounded-md">
+            <div className="flex flex-col gap-1 w-full bg-gray-100 border-gray-300 rounded-md">
 
-                <div className="flex items-center -mb-1 bg-gray-300 p-0.5 w-full ml rounded-t-sm">
+                <div className="flex items-center -mb-1 bg-white p-0.5 w-full ml border-gray-300 rounded-t-sm">
 
                     {isComputer
                         ? <PiDesktopTower className="text-[22px] text-blue-500 ml-1"/>

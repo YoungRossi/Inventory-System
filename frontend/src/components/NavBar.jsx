@@ -8,8 +8,8 @@ export function NavBar(){
                 <div id="imgctnr">
                     <img src={addItem} className='w-9 h-9' />
                 </div>
-                <div id="titlesCtnr" className="flex flex-col">
-                    <p className='text-[10] font-medium'>Add New Asset</p>
+                <div id="titlesCtnr" className="flex flex-col gap-y-0">
+                    <p className='text-[16px] font-medium'>Add New Asset</p>
                     <p className='text-xs'>Lets add an assest to your inventory</p>
                 </div>
             </div>

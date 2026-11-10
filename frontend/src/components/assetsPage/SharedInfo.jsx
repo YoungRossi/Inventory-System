@@ -22,14 +22,14 @@ export function SharedInfo({isComputer}){
                          <div id="imgctnr">
                             <img src={section2} className='w-8 h-8' />
                         </div>
-                        <div id="titlesCtnr" className="flex flex-col ">
-                            <p className='text-10 font-medium'>{isComputer ? 'Computer':'Printer'} Information</p>
+                        <div id="titlesCtnr" className="flex flex-col">
+                            <p className='text-10 font-medium -mb-1'>{isComputer ? 'Computer':'Printer'} Information</p>
                             <p className='text-xs'>Please fill out these essential fields</p>
                         </div>
                 </div>
 
                  <div id="formCtnr" className="w-full">
-    <form className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center justify-center border rounded-lg border-gray-200 bg-blue-100 p-3">
+    <form className="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-0 items-center justify-center border rounded-lg border-gray-200 bg-blue-100 p-3">
 
         <InputField
             id="assetTag"
@@ -65,7 +65,7 @@ export function SharedInfo({isComputer}){
         <InputSelectField
         label='Status'
         required={true}
-        desc='Select the status of the equipment'
+        desc='Select equipment status'
         options={
             [
                 {label:'In-Service', value:'In-Service'},

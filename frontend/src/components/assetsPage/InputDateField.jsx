@@ -28,7 +28,7 @@ export function InputDateField({
     <div className="relative flex w-full flex-col">
       <label
         htmlFor={id}
-        className="text-[13px] font-medium -mb-1"
+        className="text-[13px] font-medium -mb-1 md:text-[11px]"
       >
         {label}
         {required && <span className="text-red-500"> *</span>}
@@ -42,10 +42,11 @@ export function InputDateField({
                    rounded-md border border-gray-300 bg-white
                    px-3 py-2 text-xs text-gray-700
                    hover:bg-gray-50 focus:outline-none
-                   focus:ring-2 focus:ring-blue-500 shadow shadow-gray-400"
+                   focus:ring-2 focus:ring-blue-500 shadow shadow-gray-400
+                   md:text-[11px]"
       >
         <CalendarDays size={18} className="text-gray-400 -pl-1" />
-        <span>
+        <span className="mr-auto ml-1">
           {selectedDate
             ? format(selectedDate, "PPP")
             : "Select date"}
@@ -103,7 +104,7 @@ export function InputDateField({
       )}
 
       {desc && (
-        <p className="text-[11px] italic text-gray-500">
+        <p className="text-[10px] italic text-gray-500">
           {desc}
         </p>
       )}

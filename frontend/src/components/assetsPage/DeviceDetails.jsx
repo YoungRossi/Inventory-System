@@ -176,7 +176,7 @@ export function DeviceDetails({isComputer}){
 
                         <InputSelectField
                             label='RAM Capacity'
-                            desc='Select the total amount of memory'
+                            desc='Select the total memory'
                             value={memory}
                             options={[
                                 { label:'4GB', value:'4GB' },
@@ -190,7 +190,7 @@ export function DeviceDetails({isComputer}){
                         />
                         <InputSelectField
                             label='Storage Drive Capacity'
-                            desc='Select the total amount of memory'
+                            desc='Select the total memory'
                             value={storage}
                             options={[
                                 { label:'64GB', value:'64GB' },

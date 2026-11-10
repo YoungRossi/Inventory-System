@@ -14,12 +14,46 @@ export function DeviceDetailsModal({ data, setShowModal, setFields, isComputer }
     const [filter, setFilter] = useState('Desktop')
     const [needFilter, setNeedFilter] = useState(false)
     const [btn, setBtn] = useState('All')
+    const [searchText, setSearchText] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
 
     function displayItems(type, bool=false){
         setNeedFilter(bool)
         setFilter(type)
         setBtn(type)  
         }
+    
+    
+    function searchCatalogue(devices, text) {
+
+    const searchText = text.toLowerCase().trim();
+
+        const results = devices
+            .map((device, index) => ({
+                ...device,
+                index: index
+            }))
+            .filter((device) =>
+                device.manufacturer.toLowerCase().includes(searchText) ||
+                device.model.toLowerCase().includes(searchText)
+            );
+
+        return results;
+    }
+
+
+    function handleSearch(value) {
+        setSearchText(value);
+
+        const results = searchCatalogue(data, value);
+
+        console.log(results)
+        console.log(value)
+         console.log(typeof value);
+}
+    }
+
 
     return (
         <div className="flex-col fixed inset-0 bg-black/20 z-50 flex items-center justify-center"
@@ -44,28 +78,29 @@ export function DeviceDetailsModal({ data, setShowModal, setFields, isComputer }
                     <InputField
                     placeholder='Search device model...'
                     icon={TbDatabaseSearch}
+                    onChange={handleSearch}
                 />
                 </div>
                 
                 <div className="flex flex-col gap-2 border border-gray-100 bg-white rounded-md shadow-lg shadow-gray-300 pb-2 m-3">
-                    <div className="flex h-8 gap-2 w-full items-center justify-center bg-gray-200 border-b border-gray-200">
+                    <div className="flex h-8 gap-2 w-full items-center justify-center bg-gray-100 border-b border-gray-200">
                         <button onClick={()=>displayItems('All')} 
-                        className={`cursor-pointer flex border border-gray-100 rounded-4xl 
+                        className={`cursor-pointer flex border border-gray-50 rounded-4xl 
                         text-white font-medium text-xs h-6 items-center gap-1 px-2
                         hover:scale-104 hover:bg-blue-500 ${
                             btn==='All' 
                             ? 'bg-blue-500' 
-                            : 'bg-gray-400'
+                            : 'bg-blue-300'
                         }`}                               
                         >
                             All 
                         </button>
-                        <button onClick={()=>displayItems("Desktop", true)} className={`cursor-pointer flex border border-gray-100 rounded-4xl 
+                        <button onClick={()=>displayItems("Desktop", true)} className={`cursor-pointer flex border border-gray-50 rounded-4xl 
                         text-white font-medium text-xs h-6 items-center gap-1 px-2
                         hover:scale-104 hover:bg-blue-500 ${
                             btn==='Desktop' 
                             ? 'bg-blue-500' 
-                            : 'bg-gray-400'
+                            : 'bg-blue-300'
                         }`}                    >
                             <PiDesktopTower className="text-[20px]"/>Desktop
                         </button>
@@ -74,7 +109,7 @@ export function DeviceDetailsModal({ data, setShowModal, setFields, isComputer }
                         hover:scale-104 hover:bg-blue-500 ${
                             btn==='Laptop' 
                             ? 'bg-blue-500' 
-                            : 'bg-gray-400'
+                            : 'bg-blue-300'
                         }`}                    >
                             <FaLaptop className="text-[17px]"/>Laptop
                         </button>
@@ -83,7 +118,7 @@ export function DeviceDetailsModal({ data, setShowModal, setFields, isComputer }
                         hover:scale-104 hover:bg-blue-500 ${
                             btn==='Tablet' 
                             ? 'bg-blue-500' 
-                            : 'bg-gray-400'
+                            : 'bg-blue-300'
                         }`}                    >
                             <MdOutlineTabletMac className="text-[14px] items-center"/>Tablet
                         </button>
@@ -105,4 +140,3 @@ export function DeviceDetailsModal({ data, setShowModal, setFields, isComputer }
 
         </div>
     );
-}
