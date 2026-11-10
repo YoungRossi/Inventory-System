@@ -39,6 +39,7 @@ export function DeviceDetails({isComputer}){
     const[toner, setToner] = useState('')
     const[colour, setColour] = useState('')
     const[functionality, setFunctionality] = useState('')
+    const[ip, setIp] = useState('')
     
     function setFields(deviceData){
         const { formFactor, manufacturer, model, cpu, memory, storage, os, toner, colour, functionality } = deviceData
@@ -111,6 +112,7 @@ export function DeviceDetails({isComputer}){
                             desc="The PC name"
                             icon={IoMdBarcode}
                             required={true}
+                            onchange={setComputerName}
                         />
 
                         <InputField
@@ -120,6 +122,7 @@ export function DeviceDetails({isComputer}){
                             value={macAddress}
                             required={true}
                             icon={ BsPciCardNetwork }
+                            onChange={setMacAddress}
                         />
 
                         <InputSelectField
@@ -136,7 +139,8 @@ export function DeviceDetails({isComputer}){
                                     {label:'Thin Client', value:'Thin Client'}
                                 ]
                             }
-                            icon={ PiDesktopTowerBold }   
+                            icon={ PiDesktopTowerBold }
+                            onChange={setFormFactor}   
                         />
 
                         <InputSelectField
@@ -153,6 +157,7 @@ export function DeviceDetails({isComputer}){
                                 { label:'Samsung', value:'Samsung' },
                                 { label:'Apple', value:'Apple' },
                             ]}
+                            onChange={setManufacturer}
 
                         />
                         <InputField
@@ -163,6 +168,7 @@ export function DeviceDetails({isComputer}){
                             value={model}
                             icon={LiaBarcodeSolid}
                             required={true}
+                            onChange={setModel}
                         />
 
                         <InputField
@@ -172,6 +178,7 @@ export function DeviceDetails({isComputer}){
                             required={true}
                             value={cpu}
                             icon={HiMiniCpuChip}
+                            onChange={setCpu}
                         />
 
                         <InputSelectField
@@ -187,6 +194,7 @@ export function DeviceDetails({isComputer}){
                             ]}
                             required={true}
                             icon={LiaMemorySolid}
+                            onChange={setMemory}
                         />
                         <InputSelectField
                             label='Storage Drive Capacity'
@@ -205,6 +213,7 @@ export function DeviceDetails({isComputer}){
                             ]}
                             required={true}
                             icon={BsDeviceHddFill}
+                            onChange={setStorage}
                         />
 
                         <InputSelectField
@@ -212,7 +221,7 @@ export function DeviceDetails({isComputer}){
                             desc="Select the computer's OS"
                             value={os}
                             options={[
-                                { label:'Windows 10', value:'WIndows 10' },
+                                { label:'Windows 10', value:'Windows 10' },
                                 { label:'Windows 11', value:'Windows 11' },
                                 { label:'Android', value:'Android' },
                                 { label:'macOS', value:'macOS' },
@@ -220,6 +229,7 @@ export function DeviceDetails({isComputer}){
                             ]}
                             required={true}
                             icon={FaWindows}
+                            onChange={setOs}
                         />
                         
                     </form>
@@ -240,6 +250,8 @@ export function DeviceDetails({isComputer}){
                                 { label:'Zebra', value:'Zebra' },
                                 { label:'Brother', value:'Brother' },
                             ]}
+                            value={manufacturer}
+                            onChange={setManufacturer}
 
                         />
                         <InputField
@@ -249,6 +261,8 @@ export function DeviceDetails({isComputer}){
                             desc="Enter the cpmputer model"
                             icon={LiaBarcodeSolid}
                             required={true}
+                            value={model}
+                            onChange={setModel}
                         />
                          <InputSelectField
                             label='Printer Functionality'
@@ -261,7 +275,9 @@ export function DeviceDetails({isComputer}){
                                    
                                 ]
                             }
-                            icon={ TiPrinter }   
+                            icon={ TiPrinter }
+                            value={functionality}
+                            onChange={setFunctionality}   
                         />
                        <InputSelectField
                             id="colour"
@@ -273,6 +289,8 @@ export function DeviceDetails({isComputer}){
                                 { label:'Colour', value:'Colour' },
                                 { label:'Black/White (Monochrome)', value:'Black/White (Monochrome)' }
                             ]}
+                            value={colour}
+                            onChange={setColour}
 
                         />
 
@@ -282,6 +300,9 @@ export function DeviceDetails({isComputer}){
                             placeholder='e.g. HP 414A/414X'   
                             required={true}
                             icon={PiBarcodeDuotone}
+                            value={toner}
+                            onChange={setToner}
+
                         />
 
                         <InputField
@@ -290,6 +311,9 @@ export function DeviceDetails({isComputer}){
                             placeholder='e.g. 192.168.1.1'
                             required={true}
                             icon={PiNetworkFill}
+                            value={ip}
+                            onChange={setIp}
+
                         />
 
                         <InputField
@@ -298,6 +322,8 @@ export function DeviceDetails({isComputer}){
                             placeholder='.e.g. A4-BB-6D-12-34-56'   
                             required={true}
                             icon={BsPciCardNetwork}
+                            value={macAddress}
+                            onChange={setMacAddress}
                         />
 
                     </form>

@@ -195,7 +195,7 @@ export function CatalogueSelect(){
                                                                 label='Form Factor'
                                                                 required={true}
                                                                 value={formFactor}
-                                                                onChange={(e)=> setFormFactor(e.target.value)}
+                                                                onChange={setFormFactor}
                                                                 options={
                                                                     [
                                                                         {label:'Desktop', value:'Desktop'},
@@ -212,7 +212,7 @@ export function CatalogueSelect(){
                                                                 id="Manufacturer"
                                                                 label="Manufacturer"
                                                                 value={manufacturer}
-                                                                onChange={(e)=> setManufacturer(e.target.value)}
+                                                                onChange={setManufacturer}
                                                                 icon={SiDell}
                                                                 required={true}
                                                                 options={[
@@ -229,7 +229,7 @@ export function CatalogueSelect(){
                                                                 label="Model"
                                                                 placeholder='e.g. Optiplex 7040'
                                                                 value={model}
-                                                                onChange={(e)=>setModel(e.target.value)}
+                                                                onChange={setModel}
                                                                 icon={LiaBarcodeSolid}
                                                                 required={true}
                                                             />
@@ -238,7 +238,7 @@ export function CatalogueSelect(){
                                                                 label='Processor'
                                                                 placeholder='13th Gen Intel(R) Core(TM) i5-13500'   
                                                                 value={cpu}
-                                                                onChange={(e)=>setCpu(e.target.value)}
+                                                                onChange={setCpu}
                                                                 required={true}
                                                                 icon={HiMiniCpuChip}
                                                             />
@@ -246,7 +246,7 @@ export function CatalogueSelect(){
                                                             <InputSelectField
                                                                 label='RAM Capacity'
                                                                 value={memory}
-                                                               onChange={(e)=>setMemory(e.target.value)}
+                                                               onChange={setMemory}
                                                                 options={[
                                                                     { label:'4GB', value:'4GB' },
                                                                     { label:'8GB', value:'8GB' },
@@ -260,7 +260,7 @@ export function CatalogueSelect(){
                                                             <InputSelectField
                                                                 label='Storage Drive Capacity'
                                                                 value={storage}
-                                                                onChange={(e)=>setStorage(e.target.value)}
+                                                                onChange={setStorage}
                                                                 options={[
                                                                     { label:'64GB', value:'64GB' },
                                                                     { label:'128GB', value:'128GB' },
@@ -279,7 +279,7 @@ export function CatalogueSelect(){
                                                             <InputSelectField
                                                                 label='Operating System'
                                                                 value={os}
-                                                                onChange={(e)=>setOs(e.target.value)}
+                                                                onChange={setOs}
                                                                 options={[
                                                                     { label:'Windows 10', value:'Windows 10' },
                                                                     { label:'Windows 11', value:'Windows 11' },
@@ -306,7 +306,7 @@ export function CatalogueSelect(){
                                                                 id="Manufacturer"
                                                                 label="Manufacturer"
                                                                 value={manufacturer}
-                                                                onChange={(e)=>setManufacturer(e.target.value)}
+                                                                onChange={setManufacturer}
                                                                 icon={SiHp}
                                                                 required={true}
                                                                 options={[
@@ -322,7 +322,7 @@ export function CatalogueSelect(){
                                                                 label="Model"
                                                                 placeholder='e.g. HP LaserJet Enterprise M506n'
                                                                 value={model}
-                                                                onChange={(e)=>setModel(e.target.value)}
+                                                                onChange={setModel}
                                                                 icon={LiaBarcodeSolid}
                                                                 required={true}
                                                             />
@@ -331,7 +331,7 @@ export function CatalogueSelect(){
                                                                 label='Print Technology'
                                                                 required={true}
                                                                 value={printTech}
-                                                                onChange={(e)=>setPrintTech(e.target.value)}
+                                                                onChange={setPrintTech}
                                                                 options={
                                                                     [
                                                                         {label:'Laser', value:'Laser'},
@@ -346,7 +346,7 @@ export function CatalogueSelect(){
                                                                 label='Printer Functionality'
                                                                 required={true}
                                                                 value={functionality}
-                                                                onChange={(e)=>setFunctionality(e.target.value)}
+                                                                onChange={setFunctionality}
                                                                 options={
                                                                     [
                                                                         {label:'Mulitfunction', value:'Multifunction'},
@@ -360,7 +360,7 @@ export function CatalogueSelect(){
                                                                 id="colour"
                                                                 label="Color Capability"
                                                                 value={colour}
-                                                                onChange={(e)=>setColour(e.target.value)}
+                                                                onChange={setColour}
                                                                 icon={FaDroplet}
                                                                 required={true}
                                                                 options={[
@@ -373,7 +373,7 @@ export function CatalogueSelect(){
                                                             <InputField
                                                                 label='Toner Model'
                                                                 value={toner}
-                                                                onChange={(e)=>setToner(e.target.value)}
+                                                                onChange={setToner}
                                                                 placeholder='e.g. HP 414A/414X'   
                                                                 required={true}
                                                                 icon={PiBarcodeDuotone}

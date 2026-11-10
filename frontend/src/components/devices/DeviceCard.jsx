@@ -5,7 +5,12 @@ import { PiDesktopTower, PiPrinter } from "react-icons/pi"
 
 export function DeviceCard({ device, needFilter, filter }) {
 
-    if (needFilter && device.formFactor !== filter) {
+    const matchesCategory =
+        filter === "All" ||
+        device.type?.toLowerCase() === filter.toLowerCase() ||
+        device.formFactor?.toLowerCase() === filter.toLowerCase();
+
+    if (needFilter && !matchesCategory) {
         return null;
     }
 
@@ -17,8 +22,7 @@ export function DeviceCard({ device, needFilter, filter }) {
             cursor-pointer flex gap-2 items-center
             border border-gray-300 rounded-lg
             shadow-md hover:scale-102
-            transition-all duration-200
-        ">
+            transition-all duration-200">
 
             <div className="flex flex-col gap-1 w-full bg-gray-100 border-gray-300 rounded-md">
 

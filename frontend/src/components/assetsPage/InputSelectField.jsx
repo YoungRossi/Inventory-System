@@ -35,7 +35,7 @@ export function InputSelectField({
                 id={id}
                 name={id}
                 value={value}
-                onChange={onChange}
+                onChange={(e)=>onChange(e.target.value)}
                 required={required}
                 className="w-full h-8 text-xs rounded-md border
                            border-gray-300 pl-8 bg-white 

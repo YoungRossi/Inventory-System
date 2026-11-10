@@ -11,10 +11,17 @@ import { HiMiniCpuChip } from "react-icons/hi2"
 import { TbFileInfoFilled } from "react-icons/tb"
 import { SiDell } from "react-icons/si"
 import { GiLaptop } from "react-icons/gi"
+import { useState } from 'react'
 
 
 
 export function SharedInfo({isComputer}){
+    const[assetTag, setAssetTag]= useState('')
+    const[serialNo, setSerialNo]= useState('')
+    const[arrivalDate, setArrivalDate]= useState('')
+    const[warrantyDate, setWarrantDate]= useState('')
+    const[status, setStatus]= useState('')
+
     return(
         <>
             <div id="mainCntr" className="flex flex-col w-full p-3 shadow-lg shadow-gray-300 border-gray-200 border rounded-md">
@@ -38,6 +45,8 @@ export function SharedInfo({isComputer}){
             desc="Enter the NWRHA Asset Tag"
             icon={FaTag}
             required={false}
+            value={assetTag}
+            onChange={setAssetTag}
         />
 
         <InputField
@@ -47,6 +56,8 @@ export function SharedInfo({isComputer}){
             desc="Enter the serial number"
             icon={IoMdBarcode}
             required={true}
+            value={serialNo}
+            onChange={setSerialNo}
         />
 
         <InputDateField
@@ -54,12 +65,17 @@ export function SharedInfo({isComputer}){
         label="Arrival Date"
         desc='Select the date'
         required={true}
+        value={arrivalDate}
+        onChange={setArrivalDate}
         />
+
         <InputDateField
         id=""
         label="Warranty Expiry Date"
         desc='Expiry date of the warranty'
         required={true}
+        value={arrivalDate}
+        onChange={setWarrantDate}
         />
         
         <InputSelectField
@@ -73,7 +89,10 @@ export function SharedInfo({isComputer}){
                 {label:'Under-Repair', value:'Under-Repair'}
             ]
         }
-        icon={BsFillInfoCircleFill}   
+        icon={BsFillInfoCircleFill}
+        value={status}
+        onChange={setStatus}  
+        
         />
 
     </form>
