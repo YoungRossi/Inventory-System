@@ -45,7 +45,7 @@ export function InputDateField({
                    focus:ring-2 focus:ring-blue-500 shadow shadow-gray-400
                    md:text-[11px]"
       >
-        <CalendarDays size={18} className="text-gray-400 -pl-1" />
+        <CalendarDays size={18} className="text-blue-400 -pl-1" />
         <span className="mr-auto ml-1">
           {selectedDate
             ? format(selectedDate, "PPP")

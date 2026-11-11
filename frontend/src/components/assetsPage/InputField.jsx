@@ -11,10 +11,10 @@ export function InputField({ label, name, id, type, desc, value, placeholder,onC
             {/* Input wrapper */}
             <div className="relative w-full">
                  {Icon && (
-                    <span className="bg-amber-400 w-2 h-2">
+                    <span className="w-2 h-2">
                         <Icon
                             className="absolute left-2 top-1/2
-                                    -translate-y-1/2 text-gray-400 "
+                                    -translate-y-1/2 text-blue-400 "
                             size={18}
                         />
                     </span>

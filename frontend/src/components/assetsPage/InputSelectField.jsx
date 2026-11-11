@@ -22,10 +22,10 @@ export function InputSelectField({
             </label>
             <div className="relative w-full" >
                 {Icon && (
-                    <span className="bg-amber-400 w-2 h-2">
+                    <span className=" w-2 h-2">
                         <Icon
                             className="absolute left-2 top-1/2
-                                    -translate-y-1/2 text-gray-400"
+                                    -translate-y-1/2 text-blue-400"
                             size={18}
                         />
                     </span>
@@ -58,7 +58,7 @@ export function InputSelectField({
                 size={16}
                 className="absolute right-4 top-1/2
                -translate-y-1/2 pointer-events-none
-               text-gray-400 md:right-2"
+               text-blue-500 md:right-2"
             />
             </div>
             

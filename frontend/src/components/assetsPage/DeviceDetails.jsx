@@ -89,11 +89,11 @@ export function DeviceDetails({isComputer}){
                             <p className='text-10 font-medium'>{isComputer ? 'Computer ': 'Printer '}Details</p>
                             <p className='text-xs'>Please fill out the details</p>
                         </div>
-                        <button className='flex ml-auto bg-blue-500 w-32 h-7 shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-500  
+                        <button className='flex ml-auto bg-blue-500 w-45 h-7 shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-500  
                         hover:bg-blue-600 rounded-md hover:scale-103 text-xs text-white gap-2 items-center justify-center'
                         onClick={()=>getAllDevices()}>
                             {isComputer ? <TbDeviceDesktopUp  className='text-[20px] text-white'/> : <RiPrinterCloudLine className='text-[20px] text-white'/>}
-                            Upload Details
+                            Auto-Fill from Catalogue
                         </button>
 
                         {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={data} setFields={setFields} isComputer={isComputer}/>}
