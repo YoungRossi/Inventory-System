@@ -98,7 +98,7 @@ export function DeviceDetailsModal({
                 <div className="mx-3 mt-4">
 
                     <InputField
-                        placeholder="Search device model..."
+                        placeholder="Search device manufacturer or model..."
                         icon={TbDatabaseSearch}
                         onChange={setSearchText}
                     />
