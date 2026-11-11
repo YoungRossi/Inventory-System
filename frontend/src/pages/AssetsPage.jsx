@@ -7,7 +7,28 @@ import { DeviceCatalogue } from '../components/assetsPage/DeviceCatalogue'
 import { useState } from 'react'
 
 export function AssetsPage (){
-     const [isComputer, setIsComputer] = useState(true)
+    const [isComputer, setIsComputer] = useState(true)
+    const [newDeviceData, setNewDeviceData] = useState({
+    assetTag: '',
+    serialNo: '',
+    arrivalDate: '',
+    warrantyDate: '',
+    status: '',
+    companyName: '',
+    macAddress: '',
+    formfactor: '',
+    manufacturer: '',
+    model: '',
+    cpu: '',
+    memory: '',
+    storage: '',
+    os: '',
+    functionality: '',
+    colour: '',
+    toner: '',
+    ipAddress: '',
+});
+
     function selectDevice(bool){
         setIsComputer(bool)
         console.log(bool)
