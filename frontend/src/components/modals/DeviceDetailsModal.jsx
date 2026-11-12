@@ -110,14 +110,14 @@ export function DeviceDetailsModal({
                 <div className="flex flex-col flex-1 gap-2 border border-gray-100 bg-white rounded-md shadow-lg shadow-gray-300 pb-2 m-3 h-[370px] overflow-hidden">
 
                     {/* Category buttons */}
-                    <div className="flex h-8 gap-2 w-full items-center justify-center bg-gray-100 border-b border-gray-200">
+                    <div className="flex h-8 gap-2 w-full items-center justify-center bg-blue-300 border-b border-gray-200">
 
                         {isComputer ? (
                             <>
                             <button
                             onClick={() => displayItems("All")}
-                            className={`cursor-pointer flex border border-gray-50 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "All" ? "bg-blue-500 text-white" : "text-gray-700 bg-none border-gray-600"
+                            className={`cursor-pointer flex border border-blue-300 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
+                                btn === "All" ? "text-white bg-gray-600" : "bg-blue-500 text-white"
                             }`}
                         >
                             All
@@ -125,7 +125,7 @@ export function DeviceDetailsModal({
                             <button
                             onClick={() => displayItems("Desktop")}
                             className={`cursor-pointer flex border border-gray-50 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Desktop" ? "bg-blue-500 text-white" : "text-gray-700 bg-none border-gray-600"
+                                btn === "Desktop" ? "text-white bg-gray-600" : "bg-blue-500 text-white" 
                             }`}
                         >
                             <PiDesktopTower className="text-[20px]" />
@@ -136,7 +136,7 @@ export function DeviceDetailsModal({
                         <button
                             onClick={() => displayItems("Laptop")}
                             className={`cursor-pointer flex border border-gray-100 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Laptop" ? "bg-blue-500 text-white" : "text-gray-700 bg-none border-gray-600"
+                                btn === "Laptop" ? "text-white bg-gray-600" : "bg-blue-500 text-white"
                             }`}
                         >
                             <FaLaptop className="text-[17px]" />
@@ -147,7 +147,7 @@ export function DeviceDetailsModal({
                         <button
                             onClick={() => displayItems("Tablet")}
                             className={`cursor-pointer flex border border-gray-100 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Tablet" ? "bg-blue-500 text-white" : "text-gray-700 bg-none border-gray-600"
+                                btn === "Tablet" ? "text-white bg-gray-600" : "bg-blue-500 text-white"
                             }`}
                         >
                             <MdOutlineTabletMac className="text-[14px] items-center" />
