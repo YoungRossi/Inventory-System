@@ -21,6 +21,9 @@ export function SharedInfo({isComputer}){
     const[arrivalDate, setArrivalDate]= useState('')
     const[warrantyDate, setWarrantDate]= useState('')
     const[status, setStatus]= useState('')
+    const[institution, setInstitution]= useState('')
+    const[department, setDepartment]= useState('')
+    const[assignedUser, setAssignedUser]= useState('')
 
     return(
         <>
@@ -93,6 +96,49 @@ export function SharedInfo({isComputer}){
         value={status}
         onChange={setStatus}  
         
+        />
+        <InputSelectField
+        label='Institution'
+        required={true}
+        desc='Select Institution'
+        options={
+            [
+                {label:'Port of Spain General', value:'Port of Spain General'},
+                {label:'St. Anns Phychiatric', value:'St. Anns Phychiatric'},
+                {label:'St. James Medical', value:'St. James Medical'}
+            ]
+        }
+        icon={BsFillInfoCircleFill}
+        value={institution}
+        onChange={setStatus}  
+        
+        />
+        <InputSelectField
+        label='Department'
+        required={true}
+        desc='Select Department'
+        options={
+            [
+                {label:'Human Resource', value:'Human Resource'},
+                {label:'Transport', value:'Transport'},
+                {label:'Finance', value:'Finance'}
+            ]
+        }
+        icon={BsFillInfoCircleFill}
+        value={department}
+        onChange={setStatus}  
+        
+        />
+
+        <InputField
+            id=""
+            label="Assigned User"
+            placeholder='e.g. MV47891'
+            desc="Enter the assigned user"
+            icon={IoMdBarcode}
+            required={true}
+            value={assignedUser}
+            onChange={setSerialNo}
         />
 
     </form>

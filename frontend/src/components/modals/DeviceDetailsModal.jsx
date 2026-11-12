@@ -116,16 +116,18 @@ export function DeviceDetailsModal({
                             <>
                             <button
                             onClick={() => displayItems("All")}
-                            className={`cursor-pointer flex border border-blue-300 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "All" ? "text-white bg-gray-600" : "bg-blue-500 text-white"
+                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104  ${
+                                btn === "All" ? "bg-gray-600 text-white border-gray-500 hover:bg-blue-500 hover:text-white hover:border-gray-400" :
+                                 "bg-blue-500 border-blue-400 text-white hover:bg-gray-600 hover:text-white hover:border-gray-400"
                             }`}
                         >
                             All
                         </button>
                             <button
                             onClick={() => displayItems("Desktop")}
-                            className={`cursor-pointer flex border border-gray-50 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Desktop" ? "text-white bg-gray-600" : "bg-blue-500 text-white" 
+                            className={`cursor-pointer flex border border-gray-50 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 ${
+                                btn === "Desktop" ? "bg-gray-600 text-white border-gray-500 hover:bg-blue-500 hover:text-white hover:border-gray-400" :
+                                 "bg-blue-500 border-blue-400 text-white hover:bg-gray-600 hover:text-white hover:border-gray-400"
                             }`}
                         >
                             <PiDesktopTower className="text-[20px]" />
@@ -135,8 +137,9 @@ export function DeviceDetailsModal({
 
                         <button
                             onClick={() => displayItems("Laptop")}
-                            className={`cursor-pointer flex border border-gray-100 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Laptop" ? "text-white bg-gray-600" : "bg-blue-500 text-white"
+                            className={`cursor-pointer flex border border-gray-100 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 ${
+                                btn === "Laptop" ? "bg-gray-600 text-white border-gray-500 hover:bg-blue-500 hover:text-white hover:border-gray-400" :
+                                 "bg-blue-500 border-blue-300 text-white hover:bg-gray-600 hover:text-white hover:border-gray-400"
                             }`}
                         >
                             <FaLaptop className="text-[17px]" />
@@ -146,8 +149,9 @@ export function DeviceDetailsModal({
 
                         <button
                             onClick={() => displayItems("Tablet")}
-                            className={`cursor-pointer flex border border-gray-100 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Tablet" ? "text-white bg-gray-600" : "bg-blue-500 text-white"
+                            className={`cursor-pointer flex border border-gray-100 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104  ${
+                                btn === "Tablet" ? "bg-gray-600 text-white border-gray-500 hover:bg-blue-500 hover:text-white hover:border-gray-400" :
+                                 "bg-blue-500 border-blue-300 text-white hover:bg-gray-600 hover:text-white hover:border-gray-400"
                             }`}
                         >
                             <MdOutlineTabletMac className="text-[14px] items-center" />

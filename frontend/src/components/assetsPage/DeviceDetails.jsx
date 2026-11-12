@@ -17,6 +17,7 @@ import { PiBarcodeDuotone, PiNetworkFill } from "react-icons/pi"
 import { BsPciCardNetwork } from "react-icons/bs"
 import { TbDeviceDesktopUp } from "react-icons/tb"
 import { RiPrinterCloudLine } from "react-icons/ri"
+import { TfiSave } from "react-icons/tfi"
 
 import { useState } from 'react'
 import { toast } from 'sonner'
@@ -80,7 +81,7 @@ export function DeviceDetails({isComputer}){
 
     return(
         <>
-            <div id="mainCntr" className="flex flex-col w-full p-3 border shadow-lg shadow-gray-300 border-gray-200 rounded-md">
+            <div id="mainCntr" className="flex flex-col w-full p-3 border border-gray-200 rounded-md shadow-lg shadow-gray-400">
                 <div id="titleSec" className="flex gap-2 items-center w-full mb-3">
                          <div id="imgctnr">
                             <img src={section3} className='w-8 h-8' />
@@ -330,6 +331,11 @@ export function DeviceDetails({isComputer}){
                     )
                     }
                 </div>
+
+                <button className="h-7 w-35 text-[15px] rounded-md ml-auto shadow-md shadow-gray-500 bg-blue-600
+                 text-white flex items-center justify-center gap-x-2 mt-3">
+                    <TfiSave className='text-[20px]'/> Review & Save
+                </button>
             </div>
         </>
     )

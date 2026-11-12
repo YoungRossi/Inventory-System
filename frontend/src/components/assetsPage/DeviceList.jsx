@@ -11,12 +11,12 @@ import { VscCloseAll } from "react-icons/vsc";
 import { TfiPrinter } from "react-icons/tfi"
 
 import { useState, useEffect } from "react";
+import axios from 'axios'
 
 export function DeviceList({
     
 }) {
 
-    // Search and filter states
     const [searchText, setSearchText] = useState("");
     const [filter, setFilter] = useState("All");
     const [btn, setBtn] = useState("All");
@@ -32,6 +32,16 @@ export function DeviceList({
     function displayItems(type) {
         setFilter(type);
         setBtn(type);
+    }
+
+    async function getAllDevice(){
+        try{
+            const result = await axios.get('/assets')
+        
+        }catch(err){
+
+        }
+        
     }
 
     {/*   
@@ -105,8 +115,9 @@ export function DeviceList({
                     <div className="flex h-8 gap-2 w-full items-center justify-center bg-blue-300 border-b border-gray-200">
                             <button
                             onClick={() => displayItems("All")}
-                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "All" ? "bg-gray-600 text-white" : "bg-blue-500 border-blue-300 text-white"
+                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104  ${
+                                btn === "All" ? "bg-gray-600 text-white border-gray-500 hover:bg-blue-500 hover:text-white hover:border-gray-400" :
+                                 "bg-blue-500 border-blue-300 text-white hover:bg-gray-600 hover:text-white hover:border-gray-400"
                             }`}
                         >
                             All
@@ -114,8 +125,9 @@ export function DeviceList({
                        
                             <button
                             onClick={() => displayItems("Computer")}
-                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Computer" ? "bg-gray-600 text-white" : "bg-blue-500 border-blue-300 text-white"
+                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104  ${
+                                btn === "Computer" ? "bg-gray-600 text-white border-gray-500 hover:bg-blue-500 hover:text-white hover:border-gray-400" :
+                                 "bg-blue-500 border-blue-300 text-white hover:bg-gray-600 hover:text-white hover:border-gray-400"
                             }`}
                         >
                             <PiDesktopTower className="text-[20px]" />
@@ -124,8 +136,9 @@ export function DeviceList({
                         
                         <button
                             onClick={() => displayItems("Printer")}
-                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Printer" ? "bg-gray-600 text-white" : "bg-blue-500 border-blue-300 text-white"
+                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 ${
+                                btn === "Printer" ? "bg-gray-600 text-white border-gray-500 hover:bg-blue-500 hover:text-white hover:border-gray-400" :
+                                 "bg-blue-500 border-blue-300 text-white hover:bg-gray-600 hover:text-white hover:border-gray-400"
                             } `}
                         >
                             <TfiPrinter className="text-[14px] items-center" />

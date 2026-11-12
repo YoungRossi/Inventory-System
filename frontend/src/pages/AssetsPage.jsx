@@ -7,6 +7,9 @@ import { DeviceList } from '../components/assetsPage/DeviceList'
 
 import { useState } from 'react'
 
+import { TfiSave } from "react-icons/tfi"
+
+
 export function AssetsPage (){
     const [isComputer, setIsComputer] = useState(true)
     const [newDeviceData, setNewDeviceData] = useState({
@@ -44,20 +47,25 @@ export function AssetsPage (){
                         <DeviceList/>
                     </div>
 
-                    <div id="middleContainer" className="bg-white grid grid-rows-[auto_auto_auto] rounded-lg content-start mt-2 p-3 gap-3">
+                    <div id="middleContainer" className="bg-white grid grid-rows-[auto_auto_auto] rounded-x-lg content-start p-3 gap-3">
                         <AssetSelector 
-                        isComputer={isComputer}
-                        setIsComputer={setIsComputer}
+                            isComputer={isComputer}
+                            setIsComputer={setIsComputer}
                         />
-                        <SharedInfo isComputer={isComputer}/>
-                        <DeviceDetails isComputer={isComputer}/>
-
+                        <SharedInfo 
+                            isComputer={isComputer}
+                        />
+                        <DeviceDetails 
+                            isComputer={isComputer}
+                        />
+                       
                     </div>
 
                     <div id="rightContainer" className="py-2 pr-3">
                         <DeviceCatalogue/>
                     </div>
                 </div>
+                
             </div>
                 
             
