@@ -13,13 +13,14 @@ import { TfiPrinter } from "react-icons/tfi"
 import { useState, useEffect } from "react";
 
 export function DeviceList({
-    isComputer
+    
 }) {
 
     // Search and filter states
     const [searchText, setSearchText] = useState("");
     const [filter, setFilter] = useState("All");
     const [btn, setBtn] = useState("All");
+    const [isComputer, setIsComputer] = useState('true')
 
      useEffect(() => {
         setFilter("All");
@@ -64,7 +65,7 @@ export function DeviceList({
         >
 
             <div
-                className="flex flex-col bg-blue-100 rounded-lg shadow-xl"
+                className="flex flex-col bg-white rounded-lg shadow-xl"
                 
             >
 
@@ -101,58 +102,35 @@ export function DeviceList({
                 <div className="flex flex-col flex-1 gap-2 border border-gray-100 bg-white rounded-md shadow-lg shadow-gray-300 pb-2 m-3 h-[370px] overflow-hidden">
 
                     {/* Category buttons */}
-                    <div className="flex h-8 gap-2 w-full items-center justify-center bg-gray-100 border-b border-gray-200">
-
-                        {isComputer ? (
-                            <>
+                    <div className="flex h-8 gap-2 w-full items-center justify-center bg-blue-300 border-b border-gray-200">
                             <button
                             onClick={() => displayItems("All")}
-                            className={`cursor-pointer flex border border-gray-50 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "All" ? "bg-blue-500 text-white" : "text-gray-700 bg-none border-gray-600"
+                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
+                                btn === "All" ? "bg-gray-600 text-white" : "bg-blue-500 border-blue-300 text-white"
                             }`}
                         >
                             All
                         </button>
+                       
                             <button
-                            onClick={() => displayItems("Desktop")}
-                            className={`cursor-pointer flex border border-gray-50 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Desktop" ? "bg-blue-500 text-white" : "text-gray-700 bg-none border-gray-600"
+                            onClick={() => displayItems("Computer")}
+                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
+                                btn === "Computer" ? "bg-gray-600 text-white" : "bg-blue-500 border-blue-300 text-white"
                             }`}
                         >
                             <PiDesktopTower className="text-[20px]" />
-                            Desktop
+                            Computer
                         </button>
-
-
+                        
                         <button
-                            onClick={() => displayItems("Laptop")}
-                            className={`cursor-pointer flex border border-gray-100 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Laptop" ? "bg-blue-500 text-white" : "text-gray-700 bg-none border-gray-600"
-                            }`}
-                        >
-                            <FaLaptop className="text-[17px]" />
-                            Laptop
-                        </button>
-
-
-                        <button
-                            onClick={() => displayItems("Tablet")}
-                            className={`cursor-pointer flex border border-gray-100 rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
-                                btn === "Tablet" ? "bg-blue-500 text-white" : "text-gray-700 bg-none border-gray-600"
-                            }`}
-                        >
-                            <MdOutlineTabletMac className="text-[14px] items-center" />
-                            Tablet
-                        </button>
-                        </>
-                        ):(<button
                             onClick={() => displayItems("Printer")}
-                            className="cursor-pointer flex border bg-blue-500 border-gray-100 rounded-4xl 
-                                text-white font-medium text-xs h-6 items-center gap-1 px-2"
+                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 hover:bg-blue-500 hover:text-white hover:border-gray-400 ${
+                                btn === "Printer" ? "bg-gray-600 text-white" : "bg-blue-500 border-blue-300 text-white"
+                            } `}
                         >
                             <TfiPrinter className="text-[14px] items-center" />
                             Printers
-                        </button>)}
+                        </button>
                     </div>
 
                     <div className="flex flex-col flex-1 min-h-0 overflow-y-auto
