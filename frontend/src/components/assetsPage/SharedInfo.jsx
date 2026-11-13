@@ -4,13 +4,16 @@ import { InputDateField } from './InputDateField'
 
 import section2 from '../../assets/section2.png'
 
-import { FaTag, FaLocationDot, FaMemory } from "react-icons/fa6"
+import { FaTag, FaLocationDot, FaMemory, FaUsersViewfinder } from "react-icons/fa6"
 import { BsFillInfoCircleFill } from "react-icons/bs"
 import { IoMdBarcode } from "react-icons/io"
 import { HiMiniCpuChip } from "react-icons/hi2"
 import { TbFileInfoFilled } from "react-icons/tb"
 import { SiDell } from "react-icons/si"
 import { GiLaptop } from "react-icons/gi"
+import { FaHospital } from "react-icons/fa"
+import { ImUsers } from "react-icons/im"
+
 import { useState } from 'react'
 
 
@@ -108,9 +111,9 @@ export function SharedInfo({isComputer}){
                 {label:'St. James Medical', value:'St. James Medical'}
             ]
         }
-        icon={BsFillInfoCircleFill}
+        icon={FaHospital}
         value={institution}
-        onChange={setStatus}  
+        onChange={setInstitution}  
         
         />
         <InputSelectField
@@ -124,9 +127,9 @@ export function SharedInfo({isComputer}){
                 {label:'Finance', value:'Finance'}
             ]
         }
-        icon={BsFillInfoCircleFill}
+        icon={FaUsersViewfinder}
         value={department}
-        onChange={setStatus}  
+        onChange={setDepartment}  
         
         />
 
@@ -135,10 +138,10 @@ export function SharedInfo({isComputer}){
             label="Assigned User"
             placeholder='e.g. MV47891'
             desc="Enter the assigned user"
-            icon={IoMdBarcode}
+            icon={ImUsers}
             required={true}
             value={assignedUser}
-            onChange={setSerialNo}
+            onChange={setAssignedUser}
         />
 
     </form>
