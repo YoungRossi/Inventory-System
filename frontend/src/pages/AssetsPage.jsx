@@ -13,25 +13,40 @@ import { TfiSave } from "react-icons/tfi"
 export function AssetsPage (){
     const [isComputer, setIsComputer] = useState(true)
     const [newDeviceData, setNewDeviceData] = useState({
-    assetTag: '',
-    serialNo: '',
-    arrivalDate: '',
-    warrantyDate: '',
-    status: '',
-    companyName: '',
-    macAddress: '',
-    formfactor: '',
-    manufacturer: '',
-    model: '',
-    cpu: '',
-    memory: '',
-    storage: '',
-    os: '',
-    functionality: '',
-    colour: '',
-    toner: '',
-    ipAddress: '',
+        type:'Computer',
+        assetTag: '',
+        serialNo: '',
+        arrivalDate: '',
+        warrantyDate: '',
+        status: '',
+        computerName: '',
+        macAddress: '',
+        assignedUser:'',
+        institution:'',
+        ip: '',
+        department:'',
+        computerDetails:{
+            formfactor: '',
+            manufacturer: '',
+            model: '',
+            cpu: '',
+            memory: '',
+            storage: '',
+            os: '',
+        },
+        printerDetails:{
+            manufacturer: '',
+            model: '',
+            printTech: '',
+            functionality: '',
+            colour: '',
+            toner: '',
+        }
 });
+
+    function showSharedInfoData(){
+        console.log(newDeviceData)
+    }
 
     function selectDevice(bool){
         setIsComputer(bool)
@@ -54,9 +69,14 @@ export function AssetsPage (){
                         />
                         <SharedInfo 
                             isComputer={isComputer}
+                            data={newDeviceData}
+                            setData={setNewDeviceData}
                         />
                         <DeviceDetails 
+                            output={showSharedInfoData}
                             isComputer={isComputer}
+                            data={newDeviceData}
+                            setData={setNewDeviceData}
                         />
                        
                     </div>

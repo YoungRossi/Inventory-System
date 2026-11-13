@@ -8,7 +8,7 @@ const assetSchema = new mongoose.Schema({
         trim: true,
         uppercase: true
     },
-    serialNumber: {
+    serialNo: {
         type: String,
         trim: true,
         default: ''
@@ -43,12 +43,7 @@ const assetSchema = new mongoose.Schema({
         enum: ['in-service', 'in-repair', 'in-storage', 'retired', 'disposed'],
         default: 'in-service'
     },
-    condition: {
-        type: String,
-        enum: ['new', 'good', 'fair', 'damaged'],
-        default: 'good'
-    },
-    purchaseDate: {
+    DeployDate: {
         type: Date,
         default: null
     },
@@ -67,7 +62,7 @@ const assetSchema = new mongoose.Schema({
         formFactor:{ type:String, trim: true},
         hostname: { type: String, trim: true },
         processor: { type: String, trim: true },
-        ram: { type: String, trim: true },
+        memory: { type: String, trim: true },
         storage: { type: String, trim: true },
         operatingSystem: { type: String, trim: true },
         ipAddress: { type: String, trim: true },
@@ -76,10 +71,10 @@ const assetSchema = new mongoose.Schema({
 
     // Printer-specific fields
     printerDetails: {
-        
+        tonerModel: { type: String, trim: true },
+        functionality: { type: String, trim: true },
         printColour: {
             type: String,
-            enum: ['colour', 'black/white']
         },
         ipAddress: { type: String, trim: true },
         macAddress: { type: String, trim: true, uppercase: true },
@@ -90,7 +85,7 @@ const assetSchema = new mongoose.Schema({
 
 
 assetSchema.pre('validate', function () {
-    if (this.type === 'computer') {
+    if (this.type === 'Computer') {
         if (!this.computerDetails) {
             this.invalidate(
                 'computerDetails',
@@ -106,7 +101,7 @@ assetSchema.pre('validate', function () {
         }
     }
 
-    if (this.type === 'printer') {
+    if (this.type === 'Printer') {
         if (!this.printerDetails) {
             this.invalidate(
                 'printerDetails',

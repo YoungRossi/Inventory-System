@@ -4,21 +4,17 @@ import { InputDateField } from './InputDateField'
 
 import section2 from '../../assets/section2.png'
 
-import { FaTag, FaLocationDot, FaMemory, FaUsersViewfinder } from "react-icons/fa6"
+import { FaTag, FaUsersViewfinder } from "react-icons/fa6"
 import { BsFillInfoCircleFill } from "react-icons/bs"
 import { IoMdBarcode } from "react-icons/io"
-import { HiMiniCpuChip } from "react-icons/hi2"
-import { TbFileInfoFilled } from "react-icons/tb"
-import { SiDell } from "react-icons/si"
-import { GiLaptop } from "react-icons/gi"
 import { FaHospital } from "react-icons/fa"
 import { ImUsers } from "react-icons/im"
-
+import { BiRename } from "react-icons/bi"
+import { BsPciCardNetwork } from "react-icons/bs"
+import { PiNetworkFill } from "react-icons/pi"
 import { useState } from 'react'
 
-
-
-export function SharedInfo({isComputer}){
+export function SharedInfo({isComputer, data, setData}){
     const[assetTag, setAssetTag]= useState('')
     const[serialNo, setSerialNo]= useState('')
     const[arrivalDate, setArrivalDate]= useState('')
@@ -27,6 +23,16 @@ export function SharedInfo({isComputer}){
     const[institution, setInstitution]= useState('')
     const[department, setDepartment]= useState('')
     const[assignedUser, setAssignedUser]= useState('')
+    const[macAddress, setMacAddress]= useState('')
+    const[ip, setIp]= useState('')
+    const[computerName, setComputerName]= useState('')
+
+    const handleChange = (name,value)=>{
+        setData(prev =>({
+            ...prev,
+            [name]:value
+        }))
+    }
 
     return(
         <>
@@ -51,8 +57,8 @@ export function SharedInfo({isComputer}){
             desc="Enter the NWRHA Asset Tag"
             icon={FaTag}
             required={false}
-            value={assetTag}
-            onChange={setAssetTag}
+            value={data.assetTag}
+            onChange={(value) => handleChange("assetTag", value)}
         />
 
         <InputField
@@ -62,8 +68,39 @@ export function SharedInfo({isComputer}){
             desc="Enter the serial number"
             icon={IoMdBarcode}
             required={true}
-            value={serialNo}
-            onChange={setSerialNo}
+            value={data.serialNo}
+            onChange={(value) => handleChange("serialNo", value)}
+        />
+        {isComputer &&
+            <InputField
+                id="Computer Name"
+                label="Computer Name"
+                placeholder='e.g. NW-ICT-CS-003'
+                value={data.computerName}
+                desc="The PC name"
+                icon={BiRename}
+                required={true}
+                onChange={(value) => handleChange("computerName", value)}
+            />
+        }    
+        <InputField
+            label='IP Address'
+            desc='Enter the IP Address'
+            placeholder='e.g. 192.168.1.1'
+            required={true}
+            icon={PiNetworkFill}
+            value={data.ip}
+            onChange={(value) => handleChange("ip", value)}
+        />
+        
+        <InputField
+            label='MAC Address'
+            desc="Enter Computer's MAC Address"
+            placeholder='.e.g. A4-BB-6D-12-34-56'   
+            value={data.macAddress}
+            required={true}
+            icon={ BsPciCardNetwork }
+            onChange={(value) => handleChange("macAddress", value)}
         />
 
         <InputDateField
@@ -71,8 +108,8 @@ export function SharedInfo({isComputer}){
         label="Arrival Date"
         desc='Select the date'
         required={true}
-        value={arrivalDate}
-        onChange={setArrivalDate}
+        value={data.arrivalDate}
+        onChange={(value) => handleChange("arrivalDate", value)}
         />
 
         <InputDateField
@@ -80,8 +117,8 @@ export function SharedInfo({isComputer}){
         label="Warranty Expiry Date"
         desc='Expiry date of the warranty'
         required={true}
-        value={arrivalDate}
-        onChange={setWarrantDate}
+        value={data.warrantyDate}
+        onChange={(value) => handleChange("warrantyDate", value)}
         />
         
         <InputSelectField
@@ -96,8 +133,8 @@ export function SharedInfo({isComputer}){
             ]
         }
         icon={BsFillInfoCircleFill}
-        value={status}
-        onChange={setStatus}  
+        value={data.status}
+        onChange={(value) => handleChange("status", value)}  
         
         />
         <InputSelectField
@@ -112,8 +149,8 @@ export function SharedInfo({isComputer}){
             ]
         }
         icon={FaHospital}
-        value={institution}
-        onChange={setInstitution}  
+        value={data.institution}
+        onChange={(value) => handleChange("institution", value)}  
         
         />
         <InputSelectField
@@ -128,8 +165,8 @@ export function SharedInfo({isComputer}){
             ]
         }
         icon={FaUsersViewfinder}
-        value={department}
-        onChange={setDepartment}  
+        value={data.department}
+        onChange={(value) => handleChange("department", value)}  
         
         />
 
@@ -140,13 +177,13 @@ export function SharedInfo({isComputer}){
             desc="Enter the assigned user"
             icon={ImUsers}
             required={true}
-            value={assignedUser}
-            onChange={setAssignedUser}
+            value={data.assignedUser}
+            onChange={(value) => handleChange("assignedUser", value)}
         />
 
     </form>
-</div>
-            </div>
+    </div>
+    </div>
         </>
     )
 }

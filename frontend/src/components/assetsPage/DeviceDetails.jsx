@@ -13,8 +13,7 @@ import { LiaMemorySolid, LiaBarcodeSolid } from "react-icons/lia"
 import { SiDell, SiHp } from "react-icons/si"
 import { PiDesktopTowerBold } from "react-icons/pi"
 import { TiPrinter } from "react-icons/ti"
-import { PiBarcodeDuotone, PiNetworkFill } from "react-icons/pi"
-import { BsPciCardNetwork } from "react-icons/bs"
+import { PiBarcodeDuotone } from "react-icons/pi"
 import { TbDeviceDesktopUp } from "react-icons/tb"
 import { RiPrinterCloudLine } from "react-icons/ri"
 import { TfiSave } from "react-icons/tfi"
@@ -24,9 +23,9 @@ import { toast } from 'sonner'
 import axios from 'axios'
 
 
-export function DeviceDetails({isComputer}){
+export function DeviceDetails({isComputer, data, setData, output}){
+    const[catalogueDevices, setCatalogueDevices]=useState([])
     const[showModal, setShowModal] = useState(false)
-    const[data, setData] = useState([])
     const[deviceData, setDeviceData] = useState({})
     const[formFactor, setFormFactor] = useState('')
     const[manufacturer, setManufacturer] = useState('')
@@ -41,6 +40,32 @@ export function DeviceDetails({isComputer}){
     const[colour, setColour] = useState('')
     const[functionality, setFunctionality] = useState('')
     const[ip, setIp] = useState('')
+
+     const handleChangeComputer = (name, value) => {
+
+        setData(prev => ({
+            ...prev,
+
+            computerDetails: {
+                ...prev.computerDetails,
+                [name]: value
+            }
+        }));
+    }
+
+     const handleChangePrinter = (name, value) => {
+
+        setData(prev => ({
+            ...prev,
+
+            printerDetails: {
+                ...prev.printerDetails,
+                [name]: value
+            }
+        }));
+
+     }
+
     
     function setFields(deviceData){
         const { formFactor, manufacturer, model, cpu, memory, storage, os, toner, colour, functionality } = deviceData
@@ -69,7 +94,7 @@ export function DeviceDetails({isComputer}){
             return;
         }
 
-        setData(response.data);
+        setCatalogueDevices(response.data);
         setShowModal(true);
 
     } catch (err) {
@@ -97,34 +122,13 @@ export function DeviceDetails({isComputer}){
                             Auto-Fill from Catalogue
                         </button>
 
-                        {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={data} setFields={setFields} isComputer={isComputer}/>}
+                        {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={catalogueDevices} setFields={setFields} isComputer={isComputer}/>}
 
                 </div>
 
                  <div id="formCtnr" className="w-full border border-blue-100 rounded-lg p-3 bg-blue-100">
                     {isComputer ? (
                     <form className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center">
-                        
-                         <InputField
-                            id="Computer Name"
-                            label="Computer Name"
-                            placeholder='e.g. NW-ICT-CS-003'
-                            value={computerName}
-                            desc="The PC name"
-                            icon={IoMdBarcode}
-                            required={true}
-                            onchange={setComputerName}
-                        />
-
-                        <InputField
-                            label='MAC Address'
-                            desc="Enter Computer's MAC Address"
-                            placeholder='.e.g. A4-BB-6D-12-34-56'   
-                            value={macAddress}
-                            required={true}
-                            icon={ BsPciCardNetwork }
-                            onChange={setMacAddress}
-                        />
 
                         <InputSelectField
                             label='Form Factor'
@@ -303,40 +307,18 @@ export function DeviceDetails({isComputer}){
                             icon={PiBarcodeDuotone}
                             value={toner}
                             onChange={setToner}
-
                         />
-
-                        <InputField
-                            label='IP Address'
-                            desc='Enter the IP Address'
-                            placeholder='e.g. 192.168.1.1'
-                            required={true}
-                            icon={PiNetworkFill}
-                            value={ip}
-                            onChange={setIp}
-
-                        />
-
-                        <InputField
-                            label='MAC Address'
-                            desc="Enter Computer's MAC Address"
-                            placeholder='.e.g. A4-BB-6D-12-34-56'   
-                            required={true}
-                            icon={BsPciCardNetwork}
-                            value={macAddress}
-                            onChange={setMacAddress}
-                        />
-
                     </form>
                     )
                     }
                 </div>
 
-                <button className="h-7 w-35 text-[15px] rounded-md ml-auto shadow-md shadow-gray-500 bg-blue-600
+                <button onClick={()=>output()} className="h-7 w-35 text-[15px] rounded-md ml-auto shadow-md shadow-gray-500 bg-blue-600
                  text-white flex items-center justify-center gap-x-2 mt-3">
-                    <TfiSave className='text-[20px]'/> Review & Save
+                    <TfiSave className='text-[17px]'/> Review & Save
                 </button>
             </div>
         </>
     )
-}
+
+    }
