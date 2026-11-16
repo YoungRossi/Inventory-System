@@ -49,16 +49,41 @@ export function AssetsPage (){
         console.log(newDeviceData)
     }
 
-    async function submitForm(){
-        try{
-            const response = await axios.post('/assets', newDeviceData)
-            
-        }catch(err){
+    async function handleSubmit(){
+        showSharedInfoData()
 
+    try {
+
+        const assetPayload = {
+            ...newDeviceData,
+
+            ...(newDeviceData.type === 'Computer' && {
+                computerDetails: newDeviceData.computerDetails
+            }),
+
+            ...(newDeviceData.type === 'Printer' && {
+                printerDetails: newDeviceData.printerDetails
+            })
+        };
+
+        const response = await axios.post('/api/assets', assetPayload);
+
+        if (response.status === 201) {
+            toast.success(response.data.message);
+
+            console.log('Registered Asset:', response.data.asset);
         }
-        
-        
+
+    } catch (err) {
+
+        console.error('Asset Registration Error:', err);
+
+        toast.error(
+            err.response?.data?.error || 'Something went wrong.'
+        );
+
     }
+}
 
     function selectDevice(bool){
         setIsComputer(bool)
@@ -85,7 +110,7 @@ export function AssetsPage (){
                             setData={setNewDeviceData}
                         />
                         <DeviceDetails 
-                            output={showSharedInfoData}
+                            onSubmit={handleSubmit}
                             isComputer={isComputer}
                             data={newDeviceData}
                             setData={setNewDeviceData}

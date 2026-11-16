@@ -1,53 +1,68 @@
 const mongoose = require('mongoose')
 
+const computerDetailsSchema = new mongoose.Schema({
+    formFactor: { type: String, trim: true },
+    hostname: { type: String, trim: true },
+    model: { type: String, required: true, trim: true },
+    manufacturer: { type: String, required: true, trim: true },
+    processor: { type: String, trim: true },
+    memory: { type: String, trim: true },
+    storage: { type: String, trim: true },
+    operatingSystem: { type: String, trim: true },
+    ipAddress: { type: String, trim: true },
+    macAddress: { type: String, trim: true, uppercase: true }
+}, { _id: false })
+
+
+const printerDetailsSchema = new mongoose.Schema({
+    model: { type: String, required: true, trim: true },
+    manufacturer: { type: String, required: true, trim: true },
+    tonerModel: { type: String, trim: true },
+    functionality: { type: String, trim: true },
+    printColour: { type: String },
+    ipAddress: { type: String, trim: true },
+    macAddress: { type: String, trim: true, uppercase: true }
+}, { _id: false })
+
 const assetSchema = new mongoose.Schema({
     assetTag: {
         type: String,
-        required: true,
         unique: true,
         trim: true,
         uppercase: true
     },
     serialNo: {
         type: String,
+        unique:true,
         trim: true,
         default: ''
-    },
-    manufacturer: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    model: {
-        type: String,
-        required: true,
-        trim: true
     },
     type: {
         type: String,
         required: true,
-        enum: ['computer', 'printer']
+        enum: ['Computer', 'Printer']
     },
-    location: {
+    institution: {
         type: String,
-        required: true,
+        trim: true
+    },
+    computerName: {
+        type: String,
         trim: true
     },
     department: {
         type: String,
-        required: true,
         trim: true
     },
     status: {
         type: String,
-        enum: ['in-service', 'in-repair', 'in-storage', 'retired', 'disposed'],
-        default: 'in-service'
+        enum: ['Assigned', 'Awaiting-Assignment', 'Non-Functional', 'Under-Repair', 'Disposed']
     },
-    DeployDate: {
+    arrivalDate: {
         type: Date,
         default: null
     },
-    warrantyExpiry: {
+    warrantyDate: {
         type: Date,
         default: null
     },
@@ -56,36 +71,32 @@ const assetSchema = new mongoose.Schema({
         trim: true,
         default: ''
     },
-
-    // Computer-specific fields
-    computerDetails: {
-        formFactor:{ type:String, trim: true},
-        hostname: { type: String, trim: true },
-        processor: { type: String, trim: true },
-        memory: { type: String, trim: true },
-        storage: { type: String, trim: true },
-        operatingSystem: { type: String, trim: true },
-        ipAddress: { type: String, trim: true },
-        macAddress: { type: String, trim: true, uppercase: true }
+    macAddress: {
+        type: String,
+        trim: true
+    },
+    ipAddress: {
+        type: String,
+        trim: true
+    },
+    computerDetails:{
+        type: computerDetailsSchema,
+        default: undefined
     },
 
-    // Printer-specific fields
     printerDetails: {
-        tonerModel: { type: String, trim: true },
-        functionality: { type: String, trim: true },
-        printColour: {
-            type: String,
-        },
-        ipAddress: { type: String, trim: true },
-        macAddress: { type: String, trim: true, uppercase: true },
-       
+        type: printerDetailsSchema,
+        default: undefined
     }
 
-}, { timestamps: true });
+}, { timestamps: true })
 
 
 assetSchema.pre('validate', function () {
+
+    // Validate asset type and its corresponding details
     if (this.type === 'Computer') {
+
         if (!this.computerDetails) {
             this.invalidate(
                 'computerDetails',
@@ -102,6 +113,7 @@ assetSchema.pre('validate', function () {
     }
 
     if (this.type === 'Printer') {
+
         if (!this.printerDetails) {
             this.invalidate(
                 'printerDetails',
@@ -116,6 +128,33 @@ assetSchema.pre('validate', function () {
             );
         }
     }
+
+    // Validate assignment information for BOTH asset types
+    if (this.status === 'Assigned') {
+
+        if (!this.institution || !this.institution.trim()) {
+            this.invalidate(
+                'institution',
+                'Institution is required when an asset is assigned.'
+            );
+        }
+
+        if (!this.department || !this.department.trim()) {
+            this.invalidate(
+                'department',
+                'Department is required when an asset is assigned.'
+            );
+        }
+
+        if (!this.assignedUser || !this.assignedUser.trim()) {
+            this.invalidate(
+                'assignedUser',
+                'Assigned User is required when an asset is assigned.'
+            );
+        }
+    }
 });
 
-module.exports = mongoose.model('Asset', assetSchema)
+const Asset = mongoose.model('Asset', assetSchema)
+
+module.exports = Asset

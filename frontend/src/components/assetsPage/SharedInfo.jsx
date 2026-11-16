@@ -127,9 +127,12 @@ export function SharedInfo({isComputer, data, setData}){
         desc='Select equipment status'
         options={
             [
-                {label:'In-Service', value:'In-Service'},
-                {label:'Out-of-Service', value:'Out-of-Service'},
-                {label:'Under-Repair', value:'Under-Repair'}
+                {label:'Assigned', value:'Assigned'},
+                {label:'Awaiting-Assignment', value:'Awaiting-Assignment'},
+                {label:'Non-Functional', value:'Non-Functional'},
+                {label:'Under-Repair', value:'Under-Repair'},
+                {label:'Disposed', value:'Disposed'},
+
             ]
         }
         icon={BsFillInfoCircleFill}

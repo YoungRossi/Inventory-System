@@ -7,7 +7,6 @@ import section3 from '../../assets/section3.png'
 
 import { FaWindows, FaDroplet } from "react-icons/fa6"
 import { BsDeviceHddFill } from "react-icons/bs"
-import { IoMdBarcode } from "react-icons/io"
 import { HiMiniCpuChip } from "react-icons/hi2"
 import { LiaMemorySolid, LiaBarcodeSolid } from "react-icons/lia"
 import { SiDell, SiHp } from "react-icons/si"
@@ -24,7 +23,7 @@ import axios from 'axios'
 import { BiPrinter } from 'react-icons/bi'
 
 
-export function DeviceDetails({isComputer, data, setData, output}){
+export function DeviceDetails({isComputer, data, setData, onSubmit}){
     const[catalogueDevices, setCatalogueDevices]=useState([])
     const[showModal, setShowModal] = useState(false)
     const[deviceData, setDeviceData] = useState({})
@@ -331,7 +330,7 @@ export function DeviceDetails({isComputer, data, setData, output}){
                     }
                 </div>
 
-                <button onClick={()=>output()} className="h-7 w-35 text-[15px] rounded-md ml-auto shadow-md shadow-gray-500 bg-blue-600
+                <button onClick={()=>onSubmit()} className="h-7 w-35 text-[15px] rounded-md ml-auto shadow-md shadow-gray-500 bg-blue-600
                  text-white flex items-center justify-center gap-x-2 mt-3">
                     <TfiSave className='text-[17px]'/> Review & Save
                 </button>

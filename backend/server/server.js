@@ -8,6 +8,7 @@ const usersRouter = require('./routes/UsersRoute')
 const authRouter = require('./routes/AuthRoute')
 const homeRouter = require('./routes/HomeRoute')
 const deviceRouter = require('./routes/DeviceRoute')
+const assetRouter = require('./routes/AssetRoute')
 const { isSignedIn } = require('./middleware')
 const app = express()
 const port = 3000
@@ -29,8 +30,7 @@ app.use(cors({origin: 'http://localhost:5173',
 
 app.use(authRouter)
 //app.use(isSignedIn)
-app.use(usersRouter, homeRouter, deviceRouter)
-
+app.use(usersRouter, homeRouter, deviceRouter, assetRouter)
 
 async function startServer() {
     try{
@@ -44,5 +44,6 @@ async function startServer() {
         console.log(`Error: ${err}`)
     }
 }
+
 
 startServer()

@@ -7,7 +7,7 @@ async function getAllAssets(){
 }
 
 async function insertAssetIntoDB(asset){
-    const result = Device.create(asset)
+    const result = await Asset.create(asset)
     console.log('POST REQUEST: Create New Asset')
     return result
 }

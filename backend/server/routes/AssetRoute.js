@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { getAllAssets, insertAssetIntoDB } = require('../controller/AssetsController')
 
-router.get('/assets'), async (req,res)=>{
+router.get('/assets', async (req,res)=>{
     try{
        const response = await getAllAssets()
        res.status(200).send(response) 
@@ -14,46 +14,46 @@ router.get('/assets'), async (req,res)=>{
     }
 
 
-}
+})
 
-router.post('/assets'), async (req,res)=>{
+router.post('/assets', async (req,res)=>{
     try{
         const {
             assetTag, 
-            serialNo, 
-            manufacturer, 
-            model, 
+            computerName,
+            arrivalDate,
+            serialNo,
             type, 
-            location, 
             department, 
             status, 
-            condition, 
-            purchaseDate,
-            warrantyExpiry,
+            warrantyDate,
             assignedUser,
+            macAddress,
+            ip,
+            institution,
             computerDetails,
             printerDetails
         } = req.body
 
-        if (!['computer', 'printer'].includes(type)) {
+        if (!['Computer', 'Printer'].includes(type)) {
                 return res.status(400).json({
                 error: 'Invalid device type.'
             });
         }
 
          const assetData = {
-            assetTag,
+            assetTag, 
+            computerName,
+            arrivalDate,
             serialNo,
-            manufacturer,
-            model,
-            type,
-            location,
-            department,
-            status,
-            condition,
-            purchaseDate,
-            warrantyExpiry,
-            assignedUser
+            type, 
+            department, 
+            status, 
+            warrantyDate,
+            assignedUser,
+            macAddress,
+            ip,
+            institution,
         }
 
         if (type === 'Computer') {
@@ -66,7 +66,9 @@ router.post('/assets'), async (req,res)=>{
 
             assetData.computerDetails = {
                 formFactor: computerDetails.formFactor,
-                hostname: computerDetails.hostname,
+                computerName: computerDetails.computerName,
+                model: computerDetails.model,
+                manufacturer: computerDetails.manufacturer,
                 processor: computerDetails.cpu,
                 ram: computerDetails.memory,
                 storage: computerDetails.storage,
@@ -85,6 +87,8 @@ router.post('/assets'), async (req,res)=>{
 
             assetData.printerDetails = {
                 functionality: printerDetails.functionality,
+                manufacturer: printerDetails.manufacturer,
+                model: printerDetails.model,
                 tonerModel: printerDetails.toner,
                 printColour: printerDetails.colour,
                 ipAddress: printerDetails.ipAddress,
@@ -103,4 +107,6 @@ router.post('/assets'), async (req,res)=>{
     }catch(err){
         console.error('Asset Registration Error:', err)
     }
-}
+})
+
+module.exports= router
