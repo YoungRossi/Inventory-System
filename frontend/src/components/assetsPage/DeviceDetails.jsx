@@ -21,6 +21,7 @@ import { TfiSave } from "react-icons/tfi"
 import { useState } from 'react'
 import { toast } from 'sonner'
 import axios from 'axios'
+import { BiPrinter } from 'react-icons/bi'
 
 
 export function DeviceDetails({isComputer, data, setData, output}){
@@ -134,7 +135,7 @@ export function DeviceDetails({isComputer, data, setData, output}){
                             label='Form Factor'
                             required={true}
                             desc='What type of Computer it is'
-                            value={formFactor}
+                            value={data.formFactor}
                             options={
                                 [
                                     {label:'Desktop', value:'Desktop'},
@@ -145,14 +146,14 @@ export function DeviceDetails({isComputer, data, setData, output}){
                                 ]
                             }
                             icon={ PiDesktopTowerBold }
-                            onChange={setFormFactor}   
+                            onChange={(value) => handleChangeComputer("formFactor", value)}   
                         />
 
                         <InputSelectField
                             id="Manufacturer"
                             label="Manufacturer"
                             desc="Select the Brand of the Computer"
-                            value={manufacturer}
+                            value={data.manufacturer}
                             icon={SiDell}
                             required={true}
                             options={[
@@ -162,18 +163,18 @@ export function DeviceDetails({isComputer, data, setData, output}){
                                 { label:'Samsung', value:'Samsung' },
                                 { label:'Apple', value:'Apple' },
                             ]}
-                            onChange={setManufacturer}
+                            onChange={(value)=>handleChangeComputer("manufacturer", value)}
 
                         />
                         <InputField
                             id="Model"
                             label="Model"
                             placeholder='e.g. Optiplex 7040'
-                            desc="Enter the cpmputer model"
-                            value={model}
+                            desc="Enter the computer model"
+                            value={data.model}
                             icon={LiaBarcodeSolid}
                             required={true}
-                            onChange={setModel}
+                            onChange={(value)=>handleChangeComputer("model", value)}
                         />
 
                         <InputField
@@ -181,15 +182,15 @@ export function DeviceDetails({isComputer, data, setData, output}){
                             desc='The name of the processor'
                             placeholder='13th Gen Intel(R) Core(TM) i5-13500'   
                             required={true}
-                            value={cpu}
+                            value={data.cpu}
                             icon={HiMiniCpuChip}
-                            onChange={setCpu}
+                            onChange={(value)=>handleChangeComputer("cpu", value)}
                         />
 
                         <InputSelectField
                             label='RAM Capacity'
                             desc='Select the total memory'
-                            value={memory}
+                            value={data.memory}
                             options={[
                                 { label:'4GB', value:'4GB' },
                                 { label:'8GB', value:'8GB' },
@@ -199,12 +200,12 @@ export function DeviceDetails({isComputer, data, setData, output}){
                             ]}
                             required={true}
                             icon={LiaMemorySolid}
-                            onChange={setMemory}
+                            onChange={(value)=>handleChangeComputer("memory",value)}
                         />
                         <InputSelectField
                             label='Storage Drive Capacity'
                             desc='Select the total memory'
-                            value={storage}
+                            value={data.storage}
                             options={[
                                 { label:'64GB', value:'64GB' },
                                 { label:'128GB', value:'128GB' },
@@ -218,13 +219,13 @@ export function DeviceDetails({isComputer, data, setData, output}){
                             ]}
                             required={true}
                             icon={BsDeviceHddFill}
-                            onChange={setStorage}
+                            onChange={(value)=>handleChangeComputer("storage", value)}
                         />
 
                         <InputSelectField
                             label='Operating System'
                             desc="Select the computer's OS"
-                            value={os}
+                            value={data.os}
                             options={[
                                 { label:'Windows 10', value:'Windows 10' },
                                 { label:'Windows 11', value:'Windows 11' },
@@ -234,7 +235,7 @@ export function DeviceDetails({isComputer, data, setData, output}){
                             ]}
                             required={true}
                             icon={FaWindows}
-                            onChange={setOs}
+                            onChange={(value)=>handleChangeComputer("os", value)}
                         />
                         
                     </form>
@@ -255,20 +256,37 @@ export function DeviceDetails({isComputer, data, setData, output}){
                                 { label:'Zebra', value:'Zebra' },
                                 { label:'Brother', value:'Brother' },
                             ]}
-                            value={manufacturer}
-                            onChange={setManufacturer}
+                            value={data.manufacturer}
+                            onChange={(value)=>handleChangePrinter("manufacturer", value)}
 
                         />
                         <InputField
                             id="Model"
                             label="Model"
                             placeholder='e.g. HP LaserJet Enterprise M506n'
-                            desc="Enter the cpmputer model"
+                            desc="Enter the computer model"
                             icon={LiaBarcodeSolid}
                             required={true}
-                            value={model}
-                            onChange={setModel}
+                            value={data.model}
+                            onChange={(value)=>handleChangePrinter("model", value)}
                         />
+                        <InputSelectField
+                            label='Print Technology'
+                            required={true}
+                            desc="Select the printer technology"
+                            value={data.printTech}
+                            onChange={(value)=>handleChangePrinter('printTech', value)}
+                            options={
+                                [
+                                    {label:'Laser', value:'Laser'},
+                                    {label:'Inkjet', value:'Inkject'},
+                                    {label:'Thermal', value:'Thermal'},
+                                                                       
+                                ]
+                                    }
+                            icon={ TiPrinter }   
+                         />
+
                          <InputSelectField
                             label='Printer Functionality'
                             required={true}
@@ -280,9 +298,9 @@ export function DeviceDetails({isComputer, data, setData, output}){
                                    
                                 ]
                             }
-                            icon={ TiPrinter }
-                            value={functionality}
-                            onChange={setFunctionality}   
+                            icon={ BiPrinter }
+                            value={data.functionality}
+                            onChange={(value)=>handleChangePrinter("functionality", value)}   
                         />
                        <InputSelectField
                             id="colour"
@@ -294,8 +312,8 @@ export function DeviceDetails({isComputer, data, setData, output}){
                                 { label:'Colour', value:'Colour' },
                                 { label:'Black/White (Monochrome)', value:'Black/White (Monochrome)' }
                             ]}
-                            value={colour}
-                            onChange={setColour}
+                            value={data.colour}
+                            onChange={(value)=>handleChangePrinter("colour", value)}
 
                         />
 
@@ -305,8 +323,8 @@ export function DeviceDetails({isComputer, data, setData, output}){
                             placeholder='e.g. HP 414A/414X'   
                             required={true}
                             icon={PiBarcodeDuotone}
-                            value={toner}
-                            onChange={setToner}
+                            value={data.toner}
+                            onChange={(value)=>handleChangePrinter("toner", value)}
                         />
                     </form>
                     )

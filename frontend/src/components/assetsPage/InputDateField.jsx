@@ -40,13 +40,13 @@ export function InputDateField({
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full h-8 items-center justify-between
                    rounded-md border border-gray-300 bg-white
-                   px-3 py-2 text-xs text-gray-700
+                   px-2 py-2 text-xs text-gray-700
                    hover:bg-gray-50 focus:outline-none
                    focus:ring-2 focus:ring-blue-500 shadow shadow-gray-400
-                   md:text-[11px]"
+                   md:text-[11px] gap-1"
       >
-        <CalendarDays size={18} className="text-blue-400 -pl-1" />
-        <span className="mr-auto ml-1">
+        <CalendarDays size={18} className="text-blue-400" />
+        <span className="mr-auto">
           {selectedDate
             ? format(selectedDate, "PPP")
             : "Select date"}

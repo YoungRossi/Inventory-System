@@ -1,6 +1,6 @@
 
 
-export function InputField({ label, name, id, type, desc, value, placeholder,onChange, required=false, icon: Icon }) {
+export function InputField({ label, name, id, type, desc, value, placeholder,onChange, required=false, inputBgColor, icon: Icon }) {
   return (
         <div className="flex flex-col w-full">
             <label htmlFor={id} className="text-[13px] font-medium -mb-1 md:text-[11px]">
@@ -27,12 +27,12 @@ export function InputField({ label, name, id, type, desc, value, placeholder,onC
                     value={value}
                     onChange={(e)=>onChange(e.target.value)}
                     type={type}
-                    className="w-full text-xs h-8 border border-gray-300
+                    className={`w-full text-xs h-8 border border-gray-200 ${inputBgColor}
                                rounded-md py-2 pl-8 pr-3
-                               bg-gray-50 outline-none
+                               bg-white outline-none
                                focus:border-blue-500
                                focus:ring-1 focus:ring-blue-500/20 shadow shadow-gray-400
-                               md:text-[12px]"
+                               md:text-[12px]`}
                 />
             </div>
 
