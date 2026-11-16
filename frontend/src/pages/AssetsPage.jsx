@@ -6,6 +6,7 @@ import { DeviceCatalogue } from '../components/assetsPage/DeviceCatalogue'
 import { DeviceList } from '../components/assetsPage/DeviceList'
 
 import { useState } from 'react'
+import axios from 'axios'
 
 import { TfiSave } from "react-icons/tfi"
 
@@ -46,6 +47,17 @@ export function AssetsPage (){
 
     function showSharedInfoData(){
         console.log(newDeviceData)
+    }
+
+    async function submitForm(){
+        try{
+            const response = await axios.post('/assets', newDeviceData)
+            
+        }catch(err){
+
+        }
+        
+        
     }
 
     function selectDevice(bool){
