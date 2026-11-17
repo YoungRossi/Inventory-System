@@ -45,6 +45,32 @@ export function AssetsPage (){
         }
 });
 
+        function handleChangeComputer(name, value){
+
+        setData(prev => ({
+            ...prev,
+
+            computerDetails: {
+                ...prev.computerDetails,
+                [name]: value
+            }
+        }));
+    }
+
+    function handleChangePrinter (name, value){
+
+        setData(prev => ({
+            ...prev,
+
+            printerDetails: {
+                ...prev.printerDetails,
+                [name]: value
+            }
+        }));
+
+     }
+    
+
     function showSharedInfoData(){
         console.log(newDeviceData)
     }
@@ -114,6 +140,9 @@ export function AssetsPage (){
                             isComputer={isComputer}
                             data={newDeviceData}
                             setData={setNewDeviceData}
+                            handleChangePrinter={handleChangePrinter}
+                            handleChangeComputer={handleChangeComputer}
+
                         />
                        
                     </div>
