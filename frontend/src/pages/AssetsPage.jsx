@@ -5,10 +5,9 @@ import { DeviceDetails } from '../components/assetsPage/DeviceDetails'
 import { DeviceCatalogue } from '../components/assetsPage/DeviceCatalogue'
 import { DeviceList } from '../components/assetsPage/DeviceList'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
-
-import { TfiSave } from "react-icons/tfi"
+import{ toast } from 'sonner'
 
 
 export function AssetsPage (){
@@ -27,7 +26,7 @@ export function AssetsPage (){
         ip: '',
         department:'',
         computerDetails:{
-            formfactor: '',
+            formFactor: '',
             manufacturer: '',
             model: '',
             cpu: '',
@@ -45,9 +44,9 @@ export function AssetsPage (){
         }
 });
 
-        function handleChangeComputer(name, value){
+    function handleChangeComputer(name, value){
 
-        setData(prev => ({
+        setNewDeviceData(prev => ({
             ...prev,
 
             computerDetails: {
@@ -59,7 +58,7 @@ export function AssetsPage (){
 
     function handleChangePrinter (name, value){
 
-        setData(prev => ({
+        setNewDeviceData(prev => ({
             ...prev,
 
             printerDetails: {
@@ -69,6 +68,39 @@ export function AssetsPage (){
         }));
 
      }
+
+    function handleComputerUpload(device) {
+
+    setNewDeviceData(prev => ({
+        ...prev,
+        computerDetails: {
+            ...prev.computerDetails,
+            formFactor: device.formFactor,
+            manufacturer: device.manufacturer,
+            model: device.model,
+            cpu: device.cpu,
+            memory: device.memory,
+            storage: device.storage,
+            os: device.os
+        }
+    }));
+}
+
+    function handlePrinterUpload(device) {
+
+    setNewDeviceData(prev => ({
+        ...prev,
+        printerDetails: {
+            ...prev.printerDetails,
+            manufacturer: device.manufacturer,
+            model: device.model,
+            printTech: device.printTech,
+            functionality: device.functionality,
+            colour: device.colour,
+            toner: device.toner
+        }
+    }));
+    }
     
 
     function showSharedInfoData(){
@@ -92,7 +124,7 @@ export function AssetsPage (){
             })
         };
 
-        const response = await axios.post('/api/assets', assetPayload);
+        const response = await axios.post('/assets', assetPayload);
 
         if (response.status === 201) {
             toast.success(response.data.message);
@@ -111,10 +143,9 @@ export function AssetsPage (){
     }
 }
 
-    function selectDevice(bool){
-        setIsComputer(bool)
-        console.log(bool)
-    }
+    useEffect(() => {
+    console.log("Updated computer details:", newDeviceData.computerDetails);
+}, [newDeviceData.computerDetails]);
 
     return(
         <> 
@@ -142,7 +173,8 @@ export function AssetsPage (){
                             setData={setNewDeviceData}
                             handleChangePrinter={handleChangePrinter}
                             handleChangeComputer={handleChangeComputer}
-
+                            handlePrinterUpload={handlePrinterUpload}
+                            handleComputerUpload={handleComputerUpload}
                         />
                        
                     </div>

@@ -15,7 +15,8 @@ import { useState, useEffect } from "react";
 export function DeviceDetailsModal({
     data,
     setShowModal,
-    setFields,
+    handleComputerUpload,
+    handlePrinterUpload,
     isComputer
 }) {
 
@@ -31,7 +32,7 @@ export function DeviceDetailsModal({
     }, [isComputer]);
 
     // Update selected category
-    function displayItems(type) {
+    function displayItems(type){
         setFilter(type);
         setBtn(type);
     }
@@ -58,6 +59,15 @@ export function DeviceDetailsModal({
 
     return matchesSearch && matchesType && matchesCategory;
 });
+
+    function selectDevice(device) {
+        console.log("Selected device:", device);
+        isComputer
+            ? handleComputerUpload(device)
+            : handlePrinterUpload(device);
+
+        setShowModal(false);
+}
 
     return (
         <div
@@ -177,7 +187,7 @@ export function DeviceDetailsModal({
 
                                 <div
                                     key={device._id}
-                                    onClick={() => setFields(device)}
+                                    onClick={()=>selectDevice(device)}
                                     className="cursor-pointer"
                                 >
                                     <DeviceCard

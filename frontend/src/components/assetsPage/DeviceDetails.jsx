@@ -23,67 +23,10 @@ import axios from 'axios'
 import { BiPrinter } from 'react-icons/bi'
 
 
-export function DeviceDetails({isComputer, data, setData, onSubmit}){
+export function DeviceDetails({isComputer, data, setData, onSubmit, 
+    handleChangeComputer, handleChangePrinter, handlePrinterUpload, handleComputerUpload}){
     const[catalogueDevices, setCatalogueDevices]=useState([])
     const[showModal, setShowModal] = useState(false)
-    const[deviceData, setDeviceData] = useState({})
-    const[formFactor, setFormFactor] = useState('')
-    const[manufacturer, setManufacturer] = useState('')
-    const[model, setModel] = useState('')
-    const[computerName, setComputerName] = useState('')
-    const[cpu, setCpu] = useState('')
-    const[memory, setMemory] = useState('')
-    const[storage, setStorage] = useState('')
-    const[os, setOs] = useState('')
-    const[macAddress, setMacAddress] = useState('')
-    const[toner, setToner] = useState('')
-    const[colour, setColour] = useState('')
-    const[functionality, setFunctionality] = useState('')
-    const[ip, setIp] = useState('')
-
-     const handleChangeComputer = (name, value) => {
-
-        setData(prev => ({
-            ...prev,
-
-            computerDetails: {
-                ...prev.computerDetails,
-                [name]: value
-            }
-        }));
-    }
-
-     const handleChangePrinter = (name, value) => {
-
-        setData(prev => ({
-            ...prev,
-
-            printerDetails: {
-                ...prev.printerDetails,
-                [name]: value
-            }
-        }));
-
-     }
-
-    
-    function setFields(deviceData){
-        const { formFactor, manufacturer, model, cpu, memory, storage, os, toner, colour, functionality } = deviceData
-        setFormFactor(formFactor)
-        setManufacturer(manufacturer)
-        setModel(model)
-        setCpu(cpu)
-        setMemory(memory)
-        setStorage(storage)
-        setOs(os)
-        setToner(toner)
-        setColour(colour)
-        setFunctionality(functionality)
-
-        setShowModal(false)
-
-        console.log(`${formFactor} ${manufacturer} ${model} ${cpu} ${memory} ${storage} ${os}`)
-    }
 
    async function getAllDevices() {
     try {
@@ -122,7 +65,8 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                             Auto-Fill from Catalogue
                         </button>
 
-                        {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={catalogueDevices} setFields={setFields} isComputer={isComputer}/>}
+                        {showModal && <DeviceDetailsModal setShowModal={setShowModal} data={catalogueDevices}  handleComputerUpload={handleComputerUpload}
+                            handlePrinterUpload={handlePrinterUpload} isComputer={isComputer}/>}
 
                 </div>
 
@@ -134,7 +78,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                             label='Form Factor'
                             required={true}
                             desc='What type of Computer it is'
-                            value={data.formFactor}
+                            value={data.computerDetails.formFactor}
                             options={
                                 [
                                     {label:'Desktop', value:'Desktop'},
@@ -152,7 +96,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                             id="Manufacturer"
                             label="Manufacturer"
                             desc="Select the Brand of the Computer"
-                            value={data.manufacturer}
+                            value={data.computerDetails.manufacturer}
                             icon={SiDell}
                             required={true}
                             options={[
@@ -170,7 +114,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                             label="Model"
                             placeholder='e.g. Optiplex 7040'
                             desc="Enter the computer model"
-                            value={data.model}
+                            value={data.computerDetails.model}
                             icon={LiaBarcodeSolid}
                             required={true}
                             onChange={(value)=>handleChangeComputer("model", value)}
@@ -181,7 +125,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                             desc='The name of the processor'
                             placeholder='13th Gen Intel(R) Core(TM) i5-13500'   
                             required={true}
-                            value={data.cpu}
+                            value={data.computerDetails.cpu}
                             icon={HiMiniCpuChip}
                             onChange={(value)=>handleChangeComputer("cpu", value)}
                         />
@@ -189,7 +133,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                         <InputSelectField
                             label='RAM Capacity'
                             desc='Select the total memory'
-                            value={data.memory}
+                            value={data.computerDetails.memory}
                             options={[
                                 { label:'4GB', value:'4GB' },
                                 { label:'8GB', value:'8GB' },
@@ -204,7 +148,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                         <InputSelectField
                             label='Storage Drive Capacity'
                             desc='Select the total memory'
-                            value={data.storage}
+                            value={data.computerDetails.storage}
                             options={[
                                 { label:'64GB', value:'64GB' },
                                 { label:'128GB', value:'128GB' },
@@ -224,7 +168,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                         <InputSelectField
                             label='Operating System'
                             desc="Select the computer's OS"
-                            value={data.os}
+                            value={data.computerDetails.os}
                             options={[
                                 { label:'Windows 10', value:'Windows 10' },
                                 { label:'Windows 11', value:'Windows 11' },
@@ -255,7 +199,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                                 { label:'Zebra', value:'Zebra' },
                                 { label:'Brother', value:'Brother' },
                             ]}
-                            value={data.manufacturer}
+                            value={data.printerDetails.manufacturer}
                             onChange={(value)=>handleChangePrinter("manufacturer", value)}
 
                         />
@@ -266,14 +210,14 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                             desc="Enter the computer model"
                             icon={LiaBarcodeSolid}
                             required={true}
-                            value={data.model}
+                            value={data.printerDetails.model}
                             onChange={(value)=>handleChangePrinter("model", value)}
                         />
                         <InputSelectField
                             label='Print Technology'
                             required={true}
                             desc="Select the printer technology"
-                            value={data.printTech}
+                            value={data.printerDetails.printTech}
                             onChange={(value)=>handleChangePrinter('printTech', value)}
                             options={
                                 [
@@ -298,7 +242,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                                 ]
                             }
                             icon={ BiPrinter }
-                            value={data.functionality}
+                            value={data.printerDetails.functionality}
                             onChange={(value)=>handleChangePrinter("functionality", value)}   
                         />
                        <InputSelectField
@@ -311,7 +255,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                                 { label:'Colour', value:'Colour' },
                                 { label:'Black/White (Monochrome)', value:'Black/White (Monochrome)' }
                             ]}
-                            value={data.colour}
+                            value={data.printerDetails.colour}
                             onChange={(value)=>handleChangePrinter("colour", value)}
 
                         />
@@ -322,7 +266,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit}){
                             placeholder='e.g. HP 414A/414X'   
                             required={true}
                             icon={PiBarcodeDuotone}
-                            value={data.toner}
+                            value={data.printerDetails.toner}
                             onChange={(value)=>handleChangePrinter("toner", value)}
                         />
                     </form>
