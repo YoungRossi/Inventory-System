@@ -1,9 +1,15 @@
 import {ComputerDevice} from './ComputerDevice'
 import { PrinterDevice } from './PrinterDevice'
 
-import { PiDesktopTower, PiPrinter } from "react-icons/pi"
+import { PiDesktopTower, PiPrinter, PiDeviceTablet, PiLaptop } from "react-icons/pi"
 
 export function DeviceCard({ device, needFilter, filter }) {
+    const deviceIcons = {
+        Desktop: PiDesktopTower,
+        Laptop: PiLaptop,
+        Printer: PiPrinter,
+        Tablet: PiDeviceTablet
+}
 
     const matchesCategory =
         filter === "All" ||
@@ -16,6 +22,9 @@ export function DeviceCard({ device, needFilter, filter }) {
 
 
     const isComputer = device.type === "Computer";
+    const FilterIcon = isComputer
+    ? deviceIcons[device.formFactor]
+    : deviceIcons["Printer"];
 
     return (
         <div className="
@@ -29,8 +38,12 @@ export function DeviceCard({ device, needFilter, filter }) {
                 <div className="flex items-center -mb-1 bg-white p-0.5 w-full ml border-gray-300 rounded-t-sm">
 
                     {isComputer
-                        ? <PiDesktopTower className="text-[22px] text-blue-500 ml-1"/>
-                        : <PiPrinter className="text-[22px] text-blue-500 ml-1"/>
+                        ? <span className='p-1 bg-blue-50 rounded-md justify-center items-center ml-1 '>
+                                <FilterIcon className="text-[22px] text-blue-600"/>
+                          </span>
+                        : <span className='p-1 bg-blue-50 rounded-md justify-center items-center ml-1 '>
+                                <FilterIcon className="text-[22px] text-blue-600"/>
+                          </span>
                     }
 
                     <p className="text-[13px] underline decoration-1 under pl-1 font-medium text-black">

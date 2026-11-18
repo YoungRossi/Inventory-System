@@ -60,7 +60,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit,
                         </div>
                         <button className='flex ml-auto bg-blue-500 w-45 h-7 shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-500  
                         hover:bg-blue-600 rounded-md hover:scale-103 text-xs text-white gap-2 items-center justify-center'
-                        onClick={()=>getAllDevices()}>
+                        type='button' onClick={()=>getAllDevices()}>
                             {isComputer ? <TbDeviceDesktopUp  className='text-[20px] text-white'/> : <RiPrinterCloudLine className='text-[20px] text-white'/>}
                             Auto-Fill from Catalogue
                         </button>
@@ -72,7 +72,7 @@ export function DeviceDetails({isComputer, data, setData, onSubmit,
 
                  <div id="formCtnr" className="w-full border border-blue-100 rounded-lg p-3 bg-blue-100">
                     {isComputer ? (
-                    <form className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center">
 
                         <InputSelectField
                             label='Form Factor'
@@ -181,11 +181,11 @@ export function DeviceDetails({isComputer, data, setData, onSubmit,
                             onChange={(value)=>handleChangeComputer("os", value)}
                         />
                         
-                    </form>
+                    </div>
 
                     ):(
 
-                        <form className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center">
                        
                         <InputSelectField
                             id="Manufacturer"
@@ -269,12 +269,12 @@ export function DeviceDetails({isComputer, data, setData, onSubmit,
                             value={data.printerDetails.toner}
                             onChange={(value)=>handleChangePrinter("toner", value)}
                         />
-                    </form>
+                    </div>
                     )
                     }
                 </div>
 
-                <button onClick={()=>onSubmit()} className="h-7 w-35 text-[15px] rounded-md ml-auto shadow-md shadow-gray-500 bg-blue-600
+                <button type='submit' className="h-7 w-35 text-[15px] rounded-md ml-auto shadow-md shadow-gray-500 bg-blue-600
                  text-white flex items-center justify-center gap-x-2 mt-3">
                     <TfiSave className='text-[17px]'/> Review & Save
                 </button>

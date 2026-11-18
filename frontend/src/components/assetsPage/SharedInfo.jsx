@@ -48,7 +48,7 @@ export function SharedInfo({isComputer, data, setData}){
                 </div>
 
                  <div id="formCtnr" className="w-full">
-    <form className="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-0 items-center justify-center border rounded-lg border-gray-200 bg-blue-100 p-3">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-0 items-center justify-center border rounded-lg border-gray-200 bg-blue-100 p-3">
 
         <InputField
             id="assetTag"
@@ -184,7 +184,7 @@ export function SharedInfo({isComputer, data, setData}){
             onChange={(value) => handleChange("assignedUser", value)}
         />
 
-    </form>
+    </div>
     </div>
     </div>
         </>

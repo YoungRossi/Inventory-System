@@ -188,7 +188,7 @@ export function CatalogueSelect(){
 
                                     <div id="formCtnr" className="w-full p-2">
                                                         {isComputer ? (<>
-                                                        <form className="">
+                                                        <form className="" onSubmit={submitForm}>
                                                            <div className='border border-blue-200 rounded-md p-2 grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center bg-blue-100'>
                                                             
                                                             <InputSelectField
@@ -291,7 +291,7 @@ export function CatalogueSelect(){
                                                                 icon={FaWindows}
                                                             />
 
-                                                            <button onClick={submitForm} className='bg-blue-500 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
+                                                            <button type='submit' className='bg-blue-500 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
                                                                <BsDatabaseUp className='text-[25px] text-white'/> Save New Device
                                                             </button>
                                                         
@@ -300,7 +300,7 @@ export function CatalogueSelect(){
                                                             </form>
                                                         </>
                                                         ):(
-                                                            <form className="">
+                                                            <form className="" onSubmit={submitForm}>
                                                             <div className='grid grid-cols-1 md:grid-cols-1 gap-3 items-center justify-center border border-blue-200 p-2 rounded-md bg-blue-100'>
                                                                 <InputSelectField
                                                                 id="Manufacturer"
@@ -379,7 +379,7 @@ export function CatalogueSelect(){
                                                                 icon={PiBarcodeDuotone}
                                                             />
 
-                                                            <button onClick={submitForm} className='bg-blue-500 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
+                                                            <button type='submit' className='bg-blue-500 group text-sm mt-2 text-white flex h-7 w-45 items-center justify-center gap-3 rounded-md shadow shadow-gray-400 transition-colors duration-200 hover:bg-blue-700 hover:shadow-xl hover:scale-103'>
                                                                <BsDatabaseUp className='text-[25px] text-white'/> Save New Device
                                                             </button>
 

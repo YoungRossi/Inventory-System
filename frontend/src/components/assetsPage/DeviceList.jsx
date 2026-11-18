@@ -3,7 +3,7 @@ import { InputField } from "../assetsPage/InputField";
 import { DeviceCard } from "../devices/DeviceCard";
 
 import { TbDatabaseSearch } from "react-icons/tb";
-import { PiDesktopTower } from "react-icons/pi";
+import { PiDesktopTower, PiPrinter } from "react-icons/pi";
 import { MdOutlineTabletMac } from "react-icons/md";
 import { FaLaptop } from "react-icons/fa";
 import { BsDatabaseAdd } from "react-icons/bs";
@@ -21,6 +21,7 @@ export function DeviceList({
     const [filter, setFilter] = useState("All");
     const [btn, setBtn] = useState("All");
     const [isComputer, setIsComputer] = useState('true')
+    const [assets, setAssets] = useState([])
 
      useEffect(() => {
         setFilter("All");
@@ -28,21 +29,27 @@ export function DeviceList({
         setSearchText("");
     }, [isComputer]);
 
+   
     // Update selected category
     function displayItems(type) {
         setFilter(type);
         setBtn(type);
     }
 
-    async function getAllDevice(){
+    async function getAllAssets(){
         try{
             const result = await axios.get('/assets')
-        
+            setAssets(result.data)
         }catch(err){
-
+            console.log('Error Retrieving Data: ', err)
         }
         
     }
+
+     useEffect(()=>{
+        getAllAssets()
+    },[assets])
+
 
     {/*   
     const catalogueData = data.filter((device) => {
@@ -74,11 +81,11 @@ export function DeviceList({
         >
 
             <div
-                className="flex flex-col bg-white rounded-lg shadow-xl"
+                className="flex flex-col bg-white rounded-lg shadow-xlh-[120vh] max-h-150 min-h-150"
             >
 
                 {/* Header */}
-                <div className="flex gap-1 border-b border-gray-200 bg-white rounded-t-md px-2 py-1 items-center">
+                <div className="flex gap-1 border-b border-gray-200 bg-white rounded-t-md px-2 py-1 items-center ">
 
                     <BsDatabaseAdd className="text-[30px] text-blue-700" />
 
@@ -110,12 +117,12 @@ export function DeviceList({
                 <div className="flex flex-col flex-1 gap-2 border border-gray-100 bg-white rounded-md shadow-lg shadow-gray-300 pb-2 m-3 h-[370px] overflow-hidden">
 
                     {/* Category buttons */}
-                    <div className="flex h-8 gap-2 w-full items-center justify-center bg-gray-300 border-b border-gray-200">
+                    <div className="flex h-8 gap-5 w-full items-center justify-center bg-blue-50 border-b border-gray-200">
                             <button
                             onClick={() => displayItems("All")}
-                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104  ${
-                                btn === "All" ? "bg-gray-600 text-white border-gray-500 hover:bg-white hover:text-black hover:border-gray-400" :
-                                 "bg-white border-gray-300 text-black hover:bg-gray-600 hover:text-white hover:border-gray-400"
+                            className={`flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2   ${
+                                btn === "All" ? "bg-blue-400 text-white border-blue-200 hover:scale-100 cursor-default" :
+                                 "bg-white border-gray-200 text-blue-400 hover:bg-blue-400 hover:text-white hover:border-blue-400 cursor-pointer"
                             }`}
                         >
                             All
@@ -123,9 +130,9 @@ export function DeviceList({
                        
                             <button
                             onClick={() => displayItems("Computer")}
-                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104  ${
-                                btn === "Computer" ? "bg-gray-600 text-white border-gray-500 hover:bg-white hover:text-black hover:border-gray-400" :
-                                 "bg-white border-gray-300 text-black hover:bg-gray-600 hover:text-white hover:border-gray-400"
+                            className={`flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2  ${
+                                btn === "Computer" ? "bg-blue-400 text-white border-blue-200 hover:scale-100 cursor-default" :
+                                 "bg-white border-gray-200 text-blue-400 hover:bg-blue-400 hover:text-white hover:border-blue-400 cursor-pointer"
                             }`}
                         >
                             <PiDesktopTower className="text-[20px]" />
@@ -134,9 +141,9 @@ export function DeviceList({
                         
                         <button
                             onClick={() => displayItems("Printer")}
-                            className={`cursor-pointer flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 hover:scale-104 ${
-                                btn === "Printer" ? "bg-gray-600 text-white border-gray-500 hover:bg-white hover:text-black hover:border-gray-400" :
-                                 "bg-white border-gray-300 text-black hover:bg-gray-600 hover:text-white hover:border-gray-400"
+                            className={`flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2 ${
+                                btn === "Printer" ? "bg-blue-400 text-white border-blue-200 hover:scale-100 cursor-default" :
+                                 "bg-white border-gray-200 text-blue-400 hover:bg-blue-400 hover:text-white hover:border-blue-400 cursor-pointer"
                             } `}
                         >
                             <TfiPrinter className="text-[14px] items-center" />
@@ -146,6 +153,30 @@ export function DeviceList({
 
                     <div className="flex flex-col flex-1 min-h-0 overflow-y-auto
                         gap-2 px-3 pb-3">
+                            {assets.length > 0 ? (
+                                assets.map((asset) => {
+                                    const details = asset.type === "Computer"
+                                        ? asset.computerDetails
+                                        : asset.printerDetails;
+
+                                    return (
+                                        <div key={asset._id}
+                                            className="border border-gray-200 h-10 rounded-md flex items-center p-1 gap-1"
+                                        >
+                                            <span className="p-0.5 border rounded-md">
+                                                {asset.type === "Computer" ? <PiDesktopTower className="text-[23px]"/> : <PiPrinter className="text-[23px]"/>}
+                                            </span>
+                                            <span className="text-[9px]">
+                                                {details?.manufacturer} {details?.model} {asset.serialNo}
+                                            </span>
+                                        </div>
+                                    );
+                                })
+                            ) : (
+                                <div>
+                                    <p>There are no assets on list</p>
+                                </div>
+                            )}
                             {/*
                         {catalogueData.length > 0 ? (
 

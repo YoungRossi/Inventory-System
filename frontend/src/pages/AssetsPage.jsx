@@ -51,6 +51,7 @@ export function AssetsPage (){
 
             computerDetails: {
                 ...prev.computerDetails,
+                type:'Computer',
                 [name]: value
             }
         }));
@@ -63,6 +64,7 @@ export function AssetsPage (){
 
             printerDetails: {
                 ...prev.printerDetails,
+                type:'Printer',
                 [name]: value
             }
         }));
@@ -102,13 +104,19 @@ export function AssetsPage (){
     }));
     }
     
+    function handleAssetTypeChange(isComputerSelected) {
+    setIsComputer(isComputerSelected);
 
-    function showSharedInfoData(){
-        console.log(newDeviceData)
+    setNewDeviceData(prev => ({
+        ...prev,
+        type: isComputerSelected ? 'Computer' : 'Printer'
+    }));
     }
 
-    async function handleSubmit(){
-        showSharedInfoData()
+
+    async function handleSubmit(e) {
+        e.preventDefault()
+        console.log(newDeviceData)
 
     try {
 
@@ -156,27 +164,32 @@ export function AssetsPage (){
                         <DeviceList/>
                     </div>
 
-                    <div id="middleContainer" className="bg-white grid grid-rows-[auto_auto_auto] rounded-x-lg content-start p-3 gap-3">
-                        <AssetSelector 
-                            isComputer={isComputer}
-                            setIsComputer={setIsComputer}
-                        />
-                        <SharedInfo 
-                            isComputer={isComputer}
-                            data={newDeviceData}
-                            setData={setNewDeviceData}
-                        />
-                        <DeviceDetails 
+                    <div id="middleContainer" className="bg-white rounded-x-lg content-start p-3">
+                        <form
                             onSubmit={handleSubmit}
-                            isComputer={isComputer}
-                            data={newDeviceData}
-                            setData={setNewDeviceData}
-                            handleChangePrinter={handleChangePrinter}
-                            handleChangeComputer={handleChangeComputer}
-                            handlePrinterUpload={handlePrinterUpload}
-                            handleComputerUpload={handleComputerUpload}
-                        />
-                       
+                            className="grid grid-rows-[auto_auto_auto] gap-3"
+                        >
+                            <AssetSelector
+                                isComputer={isComputer}
+                                setIsComputer={handleAssetTypeChange}
+                            />
+
+                            <SharedInfo
+                                isComputer={isComputer}
+                                data={newDeviceData}
+                                setData={setNewDeviceData}
+                            />
+
+                            <DeviceDetails
+                                isComputer={isComputer}
+                                data={newDeviceData}
+                                setData={setNewDeviceData}
+                                handleChangePrinter={handleChangePrinter}
+                                handleChangeComputer={handleChangeComputer}
+                                handlePrinterUpload={handlePrinterUpload}
+                                handleComputerUpload={handleComputerUpload}
+                            />
+                        </form>
                     </div>
 
                     <div id="rightContainer" className="py-2 pr-3">
