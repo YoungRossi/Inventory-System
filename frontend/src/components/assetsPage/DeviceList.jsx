@@ -5,10 +5,13 @@ import { DeviceCard } from "../devices/DeviceCard";
 import { TbDatabaseSearch } from "react-icons/tb";
 import { PiDesktopTower, PiPrinter } from "react-icons/pi";
 import { MdOutlineTabletMac } from "react-icons/md";
-import { FaLaptop } from "react-icons/fa";
+import { FaLaptop, FaTags} from "react-icons/fa";
 import { BsDatabaseAdd } from "react-icons/bs";
 import { VscCloseAll } from "react-icons/vsc";
 import { TfiPrinter } from "react-icons/tfi"
+import { Hp } from '@thesvg/react'
+
+
 
 import { useState, useEffect } from "react";
 import axios from 'axios'
@@ -152,7 +155,7 @@ export function DeviceList({
                     </div>
 
                     <div className="flex flex-col flex-1 min-h-0 overflow-y-auto
-                        gap-2 px-3 pb-3">
+                        gap-2 px-2 pb-3">
                             {assets.length > 0 ? (
                                 assets.map((asset) => {
                                     const details = asset.type === "Computer"
@@ -160,15 +163,26 @@ export function DeviceList({
                                         : asset.printerDetails;
 
                                     return (
-                                        <div key={asset._id}
-                                            className="border border-gray-200 h-10 rounded-md flex items-center p-1 gap-1"
+                                        <div key={asset._id }
+                                            className="border border-gray-200 h-20 rounded-md flex flex-col p-1 gap-1.5"
                                         >
                                             <span className="p-0.5 border rounded-md">
                                                 {asset.type === "Computer" ? <PiDesktopTower className="text-[23px]"/> : <PiPrinter className="text-[23px]"/>}
                                             </span>
-                                            <span className="text-[9px]">
-                                                {details?.manufacturer} {details?.model} {asset.serialNo}
-                                            </span>
+                                            <div>
+                                                <div className="text-[9px]">
+                                                    <div className="flex flex-col">
+                                                        <p className='text-[12px] font-medium underline leading-tight'>{details?.manufacturer} {details?.model}</p>
+                                                        <p className='text-[10px] italic leading-tight'>{asset.computerName}</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div className=" flex border-t border-gray-100 h-3 bg-blue-200">
+                                                <FaTags className="leading-tight" />        
+                                                <span className="text-[12px] leading-tight">{asset.assetTag}</span>
+                                            </div>
+                                            
                                         </div>
                                     );
                                 })

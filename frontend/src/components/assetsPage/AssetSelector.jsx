@@ -25,7 +25,9 @@ export function AssetSelector({isComputer, setIsComputer}){
                         </div>
                     </div>
                     <div id='contentDiv' className='flex w-full justify-center gap-3 mt-2'>
-                    <button onClick={() => selectDevice(true)} id="computerAssetBtn" 
+                    <button 
+                        type='button'
+                        onClick={() => selectDevice(true)} id="computerAssetBtn" 
                         className={`group mt-2 flex h-9 w-40 items-center justify-center gap-2 rounded-md shadow
                              shadow-gray-400 transition-colors duration-200 md:h-7 md:w-30
                             ${
@@ -51,7 +53,9 @@ export function AssetSelector({isComputer, setIsComputer}){
                             Computer
                         </p>
                     </button>
-                    <button onClick={() => selectDevice(false)} id="printerAssetBtn" 
+                    <button 
+                        type='button'
+                        onClick={() => selectDevice(false)} id="printerAssetBtn" 
                         className={`group mt-2 flex h-9 w-40 items-center justify-center gap-2 rounded-md shadow
                              shadow-gray-400 transition-colors duration-200 md:h-7 md:w-30
                             ${
