@@ -10,11 +10,14 @@ import { BsDatabaseAdd } from "react-icons/bs";
 import { VscCloseAll } from "react-icons/vsc";
 import { TfiPrinter } from "react-icons/tfi"
 import { Hp } from '@thesvg/react'
+import { IoBarcodeSharp } from "react-icons/io5"
 
 
 
 import { useState, useEffect } from "react";
 import axios from 'axios'
+import { ImBarcode } from "react-icons/im";
+
 
 export function DeviceList({
     
@@ -120,7 +123,7 @@ export function DeviceList({
                 <div className="flex flex-col flex-1 gap-2 border border-gray-100 bg-white rounded-md shadow-lg shadow-gray-300 pb-2 m-3 h-[370px] overflow-hidden">
 
                     {/* Category buttons */}
-                    <div className="flex h-8 gap-5 w-full items-center justify-center bg-blue-50 border-b border-gray-200">
+                    <div className="flex h-8 gap-5 w-full items-center justify-center bg-blue-100 border-b border-gray-200">
                             <button
                             onClick={() => displayItems("All")}
                             className={`flex border rounded-4xl font-medium text-xs h-6 items-center gap-1 px-2   ${
@@ -164,23 +167,35 @@ export function DeviceList({
 
                                     return (
                                         <div key={asset._id }
-                                            className="border border-gray-200 h-20 rounded-md flex flex-col p-1 gap-1.5"
+                                            className="border border-gray-200 h-13 rounded-md flex flex-col gap-1.5 shadow-lg shadow-gray-400"
                                         >
-                                            <span className="p-0.5 border rounded-md">
-                                                {asset.type === "Computer" ? <PiDesktopTower className="text-[23px]"/> : <PiPrinter className="text-[23px]"/>}
-                                            </span>
-                                            <div>
+                                            <div className="flex leading-tight gap-1 mx-1 mt-1 rounded-b-md">
+                                                <span className="p-0.5 rounded-md">
+                                                        {asset.type === "Computer" ? <PiDesktopTower className="text-[30px]"/> : <PiPrinter className="text-[23px]"/>}
+                                                </span>
+                                                
                                                 <div className="text-[9px]">
                                                     <div className="flex flex-col">
                                                         <p className='text-[12px] font-medium underline leading-tight'>{details?.manufacturer} {details?.model}</p>
                                                         <p className='text-[10px] italic leading-tight'>{asset.computerName}</p>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <div className=" flex border-t border-gray-100 h-3 bg-blue-200">
-                                                <FaTags className="leading-tight" />        
-                                                <span className="text-[12px] leading-tight">{asset.assetTag}</span>
+                                                
+                                            <div className=" flex border-t border-gray-100 h-6 gap-2 -mt-1 pl-2 bg-blue-100 leading-tight w-full rounded-b-md">
+                                                <span className=" flex items-center gap-1">
+                                                    <FaTags className="text-[12px] text-blue-500" />        
+                                                    <p className="text-[12px] text-black leading-tight">{asset.assetTag}</p>
+                                                    
+                                                </span>
+                                                <span className=" flex items-center gap-1">
+                                                    <IoBarcodeSharp className="text-[12px] text-blue-500" />        
+                                                    <p className="text-[12px] text-black leading-tight">{asset.serialNo}</p>
+                                                </span>
+                                                <span className=" flex items-center gap-1">
+                                                    <FaTags className="text-[12px] text-blue-500" />        
+                                                    <p className="text-[12px] text-black leading-tight">{asset.assetTag}</p>
+                                                </span>  
                                             </div>
                                             
                                         </div>
